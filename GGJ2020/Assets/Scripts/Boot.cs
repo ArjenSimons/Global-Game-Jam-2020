@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Boot : MonoBehaviour
 {
+    [SerializeField] private int minSpeed;
+    [SerializeField] private int maxSpeed;
+    
     private int speed;
-    private int distanceCovered;
+    public int distanceCovered { get; private set; }
+
 }
