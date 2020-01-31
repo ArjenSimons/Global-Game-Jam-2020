@@ -9,8 +9,6 @@ public class ProgressManager
     [SerializeField] private Boot boot1;
     [SerializeField] private Boot boot2;
 
-
-
     public float getProgression(BootType boot)
     {
         int distanceCovered = 0;

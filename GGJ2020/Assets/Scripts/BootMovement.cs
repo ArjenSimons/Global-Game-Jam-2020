@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boot : MonoBehaviour
+public class BootMovement : MonoBehaviour
 {
     [SerializeField] private int minSpeed;
     [SerializeField] private int maxSpeed;
