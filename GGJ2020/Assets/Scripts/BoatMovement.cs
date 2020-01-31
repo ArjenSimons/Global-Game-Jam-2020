@@ -10,4 +10,11 @@ public class BoatMovement : MonoBehaviour
     private int speed;
     public int distanceCovered { get; private set; }
 
+
+    private void FixedUpdate()
+    {
+        speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+
+        distanceCovered += speed;
+    }
 }
