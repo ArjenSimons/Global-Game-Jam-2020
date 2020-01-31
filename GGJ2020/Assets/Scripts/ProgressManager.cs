@@ -11,7 +11,7 @@ public class ProgressManager
 
     public float getProgression(BoatType boot)
     {
-        float distanceCovered = 0;
+        int distanceCovered = 0;
         switch (boot)
         {
             case BoatType.BOAT_ONE:
