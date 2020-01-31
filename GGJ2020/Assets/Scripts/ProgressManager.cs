@@ -6,8 +6,8 @@ using UnityEngine;
 public class ProgressManager
 {
     [SerializeField] private int raceDistance;
-    [SerializeField] private Boot boot1;
-    [SerializeField] private Boot boot2;
+    [SerializeField] private BootMovement boot1;
+    [SerializeField] private BootMovement boot2;
 
     public float getProgression(BootType boot)
     {
