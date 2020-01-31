@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BootType
+public enum BoatType
 {
-    BOOT_ONE,
-    BOOT_TWO
+    BOAT_ONE,
+    BOAT_TWO
 }

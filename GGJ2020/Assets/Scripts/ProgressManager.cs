@@ -6,19 +6,19 @@ using UnityEngine;
 public class ProgressManager
 {
     [SerializeField] private int raceDistance;
-    [SerializeField] private BootMovement boot1;
-    [SerializeField] private BootMovement boot2;
+    [SerializeField] private BoatMovement boat1;
+    [SerializeField] private BoatMovement boat2;
 
-    public float getProgression(BootType boot)
+    public float getProgression(BoatType boot)
     {
         int distanceCovered = 0;
         switch (boot)
         {
-            case BootType.BOOT_ONE:
-                distanceCovered = boot1.distanceCovered;
+            case BoatType.BOAT_ONE:
+                distanceCovered = boat1.distanceCovered;
                 break;
-            case BootType.BOOT_TWO:
-                distanceCovered = boot2.distanceCovered;
+            case BoatType.BOAT_TWO:
+                distanceCovered = boat2.distanceCovered;
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
