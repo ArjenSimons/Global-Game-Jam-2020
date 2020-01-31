@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 508539260281132942}
   - component: {fileID: 508539260281132929}
   - component: {fileID: 5036870671611831210}
-  - component: {fileID: 9155746340296589270}
+  - component: {fileID: 4130754548458104495}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9155746340296589270
+--- !u!114 &4130754548458104495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 508539260281132928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c0d4b0968980145bb2c976845160da, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fe6823d6e2d0c2418d11f784bbe1cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovementSpeed: 7
-  movementDecay: 0.8
+  maxMovementSpeed: 5
+  movementDecay: 0.5
   movementSpeedIncrease: 1.2

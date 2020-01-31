@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class player2Movement : MonoBehaviour
 {
     [SerializeField]
     private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f;
@@ -26,10 +26,10 @@ public class playerMovement : MonoBehaviour
 
     private void movement()
     {
-        inputDirectionUpper = Input.GetAxis("UpperJoystickHorizontal1");
-        inputDirectionUnder = Input.GetAxis("DownJoystickHorizontal1");
+        inputDirectionUpper = Input.GetAxis("UpperJoystickHorizontal2");
+        inputDirectionUnder = Input.GetAxis("DownJoystickHorizontal2");
 
-        if (Input.GetKey(KeyCode.A) || inputDirectionUnder < 0 || inputDirectionUpper < -0.2f)
+        if (Input.GetKey(KeyCode.LeftArrow) || inputDirectionUnder < 0 || inputDirectionUpper < -0.2f)
         {
             walking = true;
 
@@ -42,7 +42,7 @@ public class playerMovement : MonoBehaviour
             rb.velocity = transform.right * playerSpeed;
         }
 
-        if (Input.GetKey(KeyCode.D) || inputDirectionUnder > 0 || inputDirectionUpper > 0.2f)
+        if (Input.GetKey(KeyCode.RightArrow) || inputDirectionUnder > 0 || inputDirectionUpper > 0.2f)
         {
             walking = true;
 
@@ -61,8 +61,7 @@ public class playerMovement : MonoBehaviour
             playerSpeed = rb.velocity.x;
         }
 
-
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {
             walking = false;
         }
