@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthChangeEvent : UnityEvent<Player, int> { }
+public class HealthChangeEvent : UnityEvent<Player, int, bool> { }
 
 public class BoatHealth : MonoBehaviour
 {
@@ -15,8 +15,8 @@ public class BoatHealth : MonoBehaviour
         get { return _health; }
         set
         {
+            onHealthChanged.Invoke(playerType, value, value > _health);
             _health = value;
-            onHealthChanged.Invoke(playerType, health);
         }
     }
 
@@ -39,19 +39,19 @@ public class BoatHealth : MonoBehaviour
     // Deal damage to the boat
     public void DamageBoat(int damage)
     {
-        if (_health - damage <= minHealth)
+        if (health - damage <= minHealth)
         {
-            _health = minHealth;
+            health = minHealth;
         }
         else
         {
-            _health -= damage;
+            health -= damage;
         }
     }
 
     // Restore the damage dealt to the boat
     public void RestoreBoat(int restore)
     {
-        _health += restore;
+        health += restore;
     }
 }

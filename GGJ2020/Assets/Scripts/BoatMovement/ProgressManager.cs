@@ -32,7 +32,8 @@ public class ProgressManager : MonoBehaviour
             case Player.PLAYER_TWO:
                 distanceCovered = boatTwo.distanceCovered;
                 break;
-            default: throw new ArgumentOutOfRangeException();
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         float progression = distanceCovered / raceDistance * 100f;
@@ -43,5 +44,19 @@ public class ProgressManager : MonoBehaviour
             onPlayerFinish.Invoke(boot);
 
         return progression;
+    }
+
+    public bool IsAhead(Player boot)
+    {
+        switch (boot)
+        {
+            case Player.PLAYER_ONE:
+                return boatOne.distanceCovered > boatTwo.distanceCovered;
+            case Player.PLAYER_TWO:
+                return boatTwo.distanceCovered > boatOne.distanceCovered;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+       
     }
 }
