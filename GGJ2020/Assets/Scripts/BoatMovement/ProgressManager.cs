@@ -2,28 +2,36 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ProgressManager
+public class ProgressManager : MonoBehaviour
 {
-    [SerializeField] private int raceDistance;
-    [SerializeField] private BoatMovement boat1;
-    [SerializeField] private BoatMovement boat2;
+    [SerializeField] private static int raceDistance;
+    [SerializeField] private BoatMovement boatOne;
+    [SerializeField] private BoatMovement boatTwo;
 
-    public static float getProgression(Player boot)
+    public class OnPlayterFinishEvent : UnityEvent<Player> { }
+
+    public static OnPlayterFinishEvent onPlayerFinish = new OnPlayterFinishEvent();
+
+    public float getProgression(Player boot)
     {
         float distanceCovered = 0;
         switch (boot)
         {
             case Player.PLAYER_ONE:
-                distanceCovered = boat1.distanceCovered;
+                distanceCovered = boatOne.distanceCovered;
                 break;
             case Player.PLAYER_TWO:
-                distanceCovered = boat2.distanceCovered;
+                distanceCovered = boatTwo.distanceCovered;
                 break;
             default: throw new ArgumentOutOfRangeException();
         }
 
         float progression = distanceCovered / raceDistance * 100f;
+
+        if (progression >= 100)
+            onPlayerFinish.Invoke(boot);
 
         return progression;
     }

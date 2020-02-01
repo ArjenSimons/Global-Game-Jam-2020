@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ProgressionUI : MonoBehaviour
 {
+    [SerializeField] private ProgressManager progressManager;
     [SerializeField] private Image playerOneIndicator;
     [SerializeField] private Image playerTwoIndicator;
 
@@ -13,8 +14,8 @@ public class ProgressionUI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playerOneProgression = ProgressManager.getProgression(Player.PLAYER_ONE);
-        playerTwoProgression = ProgressManager.getProgression(Player.PLAYER_TWO);
+        playerOneProgression = progressManager.getProgression(Player.PLAYER_ONE);
+        playerTwoProgression = progressManager.getProgression(Player.PLAYER_TWO);
 
         //TODO: Update position of playterIndicators on canvas
     }

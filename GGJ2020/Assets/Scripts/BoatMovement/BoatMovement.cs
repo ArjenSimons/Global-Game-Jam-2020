@@ -15,6 +15,8 @@ public class BoatMovement : MonoBehaviour
     {
         boatHealth = GetComponent<BoatHealth>();
         speed = maxSpeed;
+
+        ProgressManager.onPlayerFinish.AddListener(setfinish);
     }
 
     private void FixedUpdate()
@@ -24,6 +26,13 @@ public class BoatMovement : MonoBehaviour
         speed = Mathf.Clamp(speed, float.MinValue, maxSpeed);
 
         distanceCovered += speed;
+
+        
+    }
+
+    private void setfinish(Player player)
+    {
+        Debug.Log(player + ": finished");
     }
 
     private void calculateSpeed()
