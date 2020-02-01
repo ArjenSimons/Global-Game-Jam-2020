@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 ///  This script manages the sequence puzzle PLAYER2
@@ -18,6 +19,9 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     [SerializeField]
     private ButtonsP2[] correctOrderBig;
+
+    public Sprite[] buttonSprites;
+    public GameObject[] buttons;
 
     private int currentSequenceButton;
     private int smallOrderMax;
@@ -77,13 +81,23 @@ public class SequencePuzzleP2 : MonoBehaviour
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
             for (int i = 0; i < correctOrderSmall.Length; i++)
-                correctOrderSmall[i] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
+            {
+                int randomNumber = UnityEngine.Random.Range(0, 3);
+                correctOrderSmall[i] = (ButtonsP2)randomNumber;
+                buttons[i].GetComponent<Image>().sprite = buttonSprites[i];
+            }
+
         }
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
             for (int j = 0; j < correctOrderBig.Length; j++)
+            {
+                int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
+                buttons[j].GetComponent<Image>().sprite = buttonSprites[j];
+            }
+                
         }
 
     }
