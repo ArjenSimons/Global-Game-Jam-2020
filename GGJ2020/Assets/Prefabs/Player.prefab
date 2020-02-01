@@ -120,6 +120,7 @@ MonoBehaviour:
   maxMovementSpeed: 5
   movementDecay: 0.5
   movementSpeedIncrease: 1.2
+  boat: {fileID: 0}
 --- !u!114 &3870699328437490232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492560114b7d5414e8f314f7a8e3dea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputButtons: 
-  sequences: []
+  correctOrderSmall: 00000000000000000000000000000000
+  correctOrderBig: 0000000000000000000000000000000000000000000000000000000000000000

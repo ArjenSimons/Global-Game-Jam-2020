@@ -48,11 +48,32 @@ public class SequencePuzzle : MonoBehaviour
         {
             Check(Buttons.Y);
         }
-        Debug.Log(currentSequenceButton);
+
+        //if (Input.GetButton("A-Button1") || Input.GetButton("A-Button2"))
+        //{
+        //    Check(Buttons.A);
+        //}
+        //else if (Input.GetButton("B-Button1") || Input.GetButton("B-Button2"))
+        //{
+        //    Check(Buttons.B);
+        //}
+        //else if (Input.GetButton("X-Button1") || Input.GetButton("X-Button2"))
+        //{
+        //    Check(Buttons.X);
+        //}
+        //else if (Input.GetButton("Y-Button1") || Input.GetButton("Y-Button2"))
+        //{
+        //    Check(Buttons.Y);
+        //}
     }
 
     private void SequenceRandomizer()
     {
+        // decide whether to use correctOrderSmall or correctOrderBig
+        //if (stage = 1 )
+        //{
+
+        //}
         for (int i = 0; i < correctOrderSmall.Length; i++)
         {
             correctOrderSmall[i] = (Buttons)UnityEngine.Random.Range(0, 3);
