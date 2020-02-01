@@ -19,20 +19,22 @@ public class Canon : MonoBehaviour
     private float rotateSpeed = 0.35f;
     private float maxRotation;
     private float minRotation;
+    private float startRotatedAngle;
+
     private readonly float rotateOffset = 15f;
     private readonly float shootForce = 100f;
     private readonly float shootDuration = 5f;
     private readonly int orangeDamage = 1;
+    private readonly float minRotatedAngleForRedOffset = 6;
+    private readonly float minRotatedAngleForOrangeOffset = 3;
     private readonly int greenDamage = 2;
-    private readonly float rayXOffset = 1.3f;
-    private readonly float indicatorXOffset = 2.675f;
-    private readonly float barrelXOffset = 0.9f;
+    private float indicatorXOffset;
+    private readonly float barrelYOffset = 0.15f;
+    private readonly float leftOrientationRotateAngle = 180f;
+    private readonly float middleOrientationRotateAngle = 90f;
 
     private Vector2 canonBallPosition;
     private Vector2 shootDirection;
-
-    private bool InsideRedOfIndicator => rotatedAngle > 5 || rotatedAngle < -5;
-    private bool InsideOrangeOfIndicator => (rotatedAngle > 3 && rotatedAngle <= 5) || (rotatedAngle < -3 && rotatedAngle >= -5);
 
     private Timer shootTimer;
 
@@ -48,36 +50,41 @@ public class Canon : MonoBehaviour
 
     private void SetOrientation()
     {
+        indicatorXOffset = indicator.transform.localPosition.x;
         switch (orientation)
         {
-            case Orientation.LEFT:
-                barrelRay.transform.localPosition = new Vector2(-rayXOffset, barrelRay.transform.localPosition.y);
-                indicator.transform.localPosition = new Vector2(-indicatorXOffset, indicator.transform.localPosition.y);
-                indicator.transform.eulerAngles = new Vector3(0, 0, 180);
+            case Orientation.LEFT:               
+                indicator.transform.localPosition = new Vector2(-indicatorXOffset, 0);
+                indicator.transform.eulerAngles = new Vector3(0, 0, leftOrientationRotateAngle);
                 canonball.transform.localPosition = new Vector2(-1, canonball.transform.localPosition.y);
-                barrelTF.localPosition = new Vector2(-barrelXOffset, barrelTF.localPosition.y);
+                barrelTF.RotateAround(pivotTF.position, Vector3.forward, leftOrientationRotateAngle);
+                barrelTF.localPosition = new Vector2(barrelTF.localPosition.x, barrelYOffset);
                 maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
                 minRotation = barrelTF.localEulerAngles.z - rotateOffset;
-                shootDirection = -barrelTF.right;             
+                rotatedAngle = leftOrientationRotateAngle;
+                startRotatedAngle = leftOrientationRotateAngle;
+                shootDirection = barrelTF.right;             
                 break;
             case Orientation.RIGHT:
-                barrelRay.transform.localPosition = new Vector3(rayXOffset, barrelRay.transform.position.y, transform.localPosition.z);
-                indicator.transform.localPosition = new Vector2(-indicatorXOffset, indicator.transform.localPosition.y);               
-                canonball.transform.localPosition = new Vector2(1, canonball.transform.localPosition.y);
-                barrelTF.localPosition = new Vector2(barrelXOffset, barrelTF.localPosition.y);
+                indicator.transform.localPosition = new Vector2(indicatorXOffset, indicator.transform.localPosition.y);               
+                canonball.transform.localPosition = new Vector2(1, canonball.transform.localPosition.y);                             
+                barrelTF.localPosition = new Vector2(barrelTF.localPosition.x, barrelYOffset);
                 maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
                 minRotation = barrelTF.localEulerAngles.z - rotateOffset;
                 shootDirection = barrelTF.right;
                 break;
             case Orientation.MIDDLE:
-                barrelRay.transform.localPosition = new Vector3(0, barrelRay.transform.position.y, transform.localPosition.z);
                 indicator.transform.localPosition = new Vector2(0, indicator.transform.localPosition.y);
                 canonball.transform.localPosition = new Vector2(0, canonball.transform.localPosition.y);
-                barrelTF.localPosition = new Vector2(0, barrelTF.localPosition.y);
+                barrelTF.RotateAround(pivotTF.position, Vector3.forward, middleOrientationRotateAngle);
+                barrelTF.localPosition = new Vector2(barrelTF.localPosition.x, barrelYOffset);
                 maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
                 minRotation = barrelTF.localEulerAngles.z - rotateOffset;
+                rotatedAngle = middleOrientationRotateAngle;
+                startRotatedAngle = middleOrientationRotateAngle;
                 break;
         }
+        print(maxRotation + " " + minRotation);
         canonBallPosition = canonball.transform.position;
     }
 
@@ -98,6 +105,22 @@ public class Canon : MonoBehaviour
         {
             RotateCanon();
         }
+    }
+
+    private bool InsideRedOfIndicator()
+    {
+        print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
+        print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
+        print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");
+        
+        print(rotatedAngle);
+        return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset;
+    }
+
+    private bool InsideOrangeOfIndicator()
+    {
+        return (rotatedAngle > startRotatedAngle + minRotatedAngleForOrangeOffset && rotatedAngle <= startRotatedAngle + minRotatedAngleForRedOffset)
+        || (rotatedAngle >= startRotatedAngle - minRotatedAngleForRedOffset && rotatedAngle < startRotatedAngle - minRotatedAngleForOrangeOffset);
     }
 
     private bool PlayerInput()
@@ -144,12 +167,12 @@ public class Canon : MonoBehaviour
     {
         if (PlayerInput())
         {         
-            if (InsideRedOfIndicator)
+            if (InsideRedOfIndicator())
             {
                 Debug.Log("insideRed");
                 ShootCanon(0);
             }
-            else if (InsideOrangeOfIndicator)
+            else if (InsideOrangeOfIndicator())
             {
                 Debug.Log("insideOrange");
                 ShootCanon(orangeDamage);
