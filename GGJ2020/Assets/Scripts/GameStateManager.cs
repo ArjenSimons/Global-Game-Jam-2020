@@ -8,7 +8,7 @@ public class GameStateManager : MonoBehaviour
     public bool GameOver { get; private set; }
 
     private readonly int gameOverSceneIndex = 1;
-    private Player winner;
+    [SerializeField] private Player winner;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class GameStateManager : MonoBehaviour
             || Input.GetButtonDown("A-Button1") || Input.GetButtonDown("A-Button2"))
             {
                 GameOver = false;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadSceneAsync(0);
                 SceneManager.sceneLoaded += OnGameSceneLoaded;
             }
         }
@@ -57,8 +57,8 @@ public class GameStateManager : MonoBehaviour
     private void OnGameEnd(Player player)
     {
         GameOver = true;
-        winner = player;
-        SceneManager.LoadScene(gameOverSceneIndex);
+        this.winner = player;
+        SceneManager.LoadSceneAsync(gameOverSceneIndex);
         SceneManager.sceneLoaded += OnGameEndSceneLoaded;
     }
 
@@ -66,6 +66,7 @@ public class GameStateManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnGameEndSceneLoaded;
         Text endText = FindObjectOfType<Text>();
+        print(endText);
         endText.text = $"Player {(int)winner + 1} wins!";
     }
 }
