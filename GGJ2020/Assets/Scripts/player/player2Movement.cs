@@ -124,15 +124,11 @@ public class player2Movement : PlayerMovementBase
         }
     }
 
-    public void LoseCanonBall()
-    {
-        CarryingCanonBall = false;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "CanonballStack" && !CarryingCanonBall)
-        {
+        {            
+
             CarryingCanonBall = true;
         }
 
