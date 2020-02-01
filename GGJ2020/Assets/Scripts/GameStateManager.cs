@@ -8,9 +8,14 @@ public class GameStateManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        ProgressManager progressManager = FindObjectOfType<ProgressManager>();
+        if(progressManager != null)
+        {
+            progressManager.onPlayerFinish.AddListener(OnGameEnd);
+        }
     }
 
-    private void OnGameEnd()
+    private void OnGameEnd(Player player)
     {
         GameOver = true;
     }
