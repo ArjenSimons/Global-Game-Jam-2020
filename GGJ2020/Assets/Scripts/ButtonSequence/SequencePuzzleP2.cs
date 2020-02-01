@@ -27,6 +27,8 @@ public class SequencePuzzleP2 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
+    bool isActivated;
+
     private GameObject boatSegment;
 
     BoatSegment bS;
@@ -46,28 +48,31 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     private void Update()
     {
-        // PLAYER TWO uses xbox controller
-        if (player == Player.PLAYER_TWO)
+        if (isActivated)
         {
-            if (Input.GetButtonDown("A-Button1"))
+            // PLAYER TWO uses logitech controller
+            if (player == Player.PLAYER_TWO)
             {
-                Check(ButtonsP2.A);
-                Debug.Log("press A xbox controller");
-            }
-            else if (Input.GetButtonDown("B-Button1"))
-            {
-                Check(ButtonsP2.B);
-                Debug.Log("press B xbox controller");
-            }
-            else if (Input.GetButtonDown("X-Button1"))
-            {
-                Check(ButtonsP2.X);
-                Debug.Log("press X xbox controller");
-            }
-            else if (Input.GetButtonDown("Y-Button1"))
-            {
-                Check(ButtonsP2.Y);
-                Debug.Log("press Y xbox controller");
+                if (Input.GetButtonDown("A-Button1"))
+                {
+                    Check(ButtonsP2.A);
+                    Debug.Log("press A xbox controller");
+                }
+                else if (Input.GetButtonDown("B-Button1"))
+                {
+                    Check(ButtonsP2.B);
+                    Debug.Log("press B xbox controller");
+                }
+                else if (Input.GetButtonDown("X-Button1"))
+                {
+                    Check(ButtonsP2.X);
+                    Debug.Log("press X xbox controller");
+                }
+                else if (Input.GetButtonDown("Y-Button1"))
+                {
+                    Check(ButtonsP2.Y);
+                    Debug.Log("press Y xbox controller");
+                }
             }
         }
 
@@ -105,7 +110,7 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
 
         }
-
+        isActivated = true;
     }
 
     /// <summary>
@@ -126,11 +131,15 @@ public class SequencePuzzleP2 : MonoBehaviour
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+
                     foreach (GameObject button in buttons)
                     {
                         button.GetComponent<Image>().color = new Color(255,255,255);
                     }
                     playerCanvas.gameObject.SetActive(false);
+
+                    isActivated = false;
+
                     //delete hole
                 }
             }
@@ -153,11 +162,15 @@ public class SequencePuzzleP2 : MonoBehaviour
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+
                     foreach (GameObject button in buttons)
                     {
                         button.GetComponent<Image>().color = new Color(255, 255, 255);
                     }
                     playerCanvas.gameObject.SetActive(false);
+
+                    isActivated = false;
+
                     //delete hole
                 }
             }
