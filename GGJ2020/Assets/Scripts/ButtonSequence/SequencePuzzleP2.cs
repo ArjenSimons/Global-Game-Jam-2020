@@ -20,6 +20,8 @@ public class SequencePuzzleP2 : MonoBehaviour
     [SerializeField]
     private ButtonsP2[] correctOrderBig;
 
+    private playerMovement movementScript2;
+
     public Sprite[] buttonSprites;
     public GameObject[] buttons;
 
@@ -29,26 +31,23 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public bool isActivated;
 
-    private GameObject boatSegment;
-
     BoatSegment bS;
+
+    public Canvas playerCanvas;
 
     private void Start()
     {
-        bS = GetComponent<BoatSegment>();
-
         currentSequenceButton = 0;
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
-
-
+        movementScript2 = this.gameObject.GetComponent<playerMovement>();
     }
 
     private void Update()
     {
         if (isActivated)
         {
-            // PLAYER TWO uses logitech controller
+            // PLAYER TWO uses xbox controller
             if (player == Player.PLAYER_TWO)
             {
                 if (Input.GetButtonDown("A-Button1"))
@@ -56,27 +55,23 @@ public class SequencePuzzleP2 : MonoBehaviour
                     Check(ButtonsP2.A);
                     Debug.Log("press A xbox controller");
                 }
-                else if (Input.GetButtonDown("B-Button1"))
+                if (Input.GetButtonDown("B-Button1"))
                 {
                     Check(ButtonsP2.B);
                     Debug.Log("press B xbox controller");
                 }
-                else if (Input.GetButtonDown("X-Button1"))
+                if (Input.GetButtonDown("X-Button1"))
                 {
                     Check(ButtonsP2.X);
                     Debug.Log("press X xbox controller");
                 }
-                else if (Input.GetButtonDown("Y-Button1"))
+                if (Input.GetButtonDown("Y-Button1"))
                 {
                     Check(ButtonsP2.Y);
                     Debug.Log("press Y xbox controller");
                 }
             }
         }
-
-
-
-        //InputKeyboard();
     }
 
     /// <summary>
@@ -88,10 +83,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            Debug.Log("RANDOMIZE2");
             for (int i = 0; i < correctOrderSmall.Length; i++)
             {
-
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderSmall[i] = (ButtonsP2)randomNumber;
                 buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
@@ -100,19 +93,72 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            Debug.Log("RANDOMIZE");
-            for (int j = 0; j < correctOrderBig.Length; j++)
-                correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
             for (int j = 0; j < correctOrderBig.Length; j++)
             {
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderBig[j] = (ButtonsP2)randomNumber;
                 buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
-
-                Debug.Log("grote");
             }
 
         }
+    }
+
+    public void StartSequencePuzzle()
+    {
+        movementScript2.canWalk = false;
+        playerCanvas.gameObject.SetActive(true);
+        ResetSequencePuzzle();
+        isActivated = true;
+        Debug.Log("Started puzzle");
+    }
+
+    public void StopSequencePuzzle()
+    {
+        movementScript2.canWalk = true;
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+        playerCanvas.gameObject.SetActive(false);
+        Debug.Log("Ended puzzle");
+    }
+
+    public void ResetSequencePuzzle()
+    {
+        currentSequenceButton = 0;
+        SequenceRandomizer();
+        Debug.Log("Puzzle Reset");
+    }
+
+    public void RightButtonWasPressed()
+    {
+        buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
+        currentSequenceButton++;
+        Debug.Log("The right Button was pressed.");
+    }
+
+    public void SequenceSolved()
+    {
+        isActivated = false;
+        ResetSequencePuzzle();
+        StopSequencePuzzle();
+
+        bS.RepairBoatSegment();
+
+        Debug.Log("Sequence was solved.");
+    }
+
+    public void SequenceFailed()
+    {
+        ResetSequencePuzzle();
+        StopSequencePuzzle();
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+
+        bS.GetComponent<HoleFixing>().ResetBtnA();
+        Debug.Log("Sequence was failed.");
     }
 
     /// <summary>
@@ -126,44 +172,32 @@ public class SequencePuzzleP2 : MonoBehaviour
         {
             if (input == correctOrderSmall[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == smallOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    bS.RepairBoatSegment();
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
             if (input == correctOrderBig[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == bigOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    bS.RepairBoatSegment();
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
     }
@@ -171,28 +205,5 @@ public class SequencePuzzleP2 : MonoBehaviour
     public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
     {
         bS = brokenBoatSegment;
-    }
-
-    /// <summary>
-    /// Method that reads user input thru keyboard
-    /// </summary>
-    private void InputKeyboard()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Check(ButtonsP2.A);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            Check(ButtonsP2.B);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            Check(ButtonsP2.X);
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Check(ButtonsP2.Y);
-        }
     }
 }

@@ -218,17 +218,14 @@ public class Canon : MonoBehaviour
         {         
             if (InsideRedOfIndicator())
             {
-                Debug.Log("insideRed");
                 ShootCanon(0);
             }
             else if (InsideOrangeOfIndicator())
             {
-                Debug.Log("insideOrange");
                 ShootCanon(DamageManager.SMALLDAMAGE);
             }
             else
             {
-                Debug.Log("insideGreen");
                 ShootCanon(DamageManager.BIGDAMAGE);
             }
         }
@@ -270,11 +267,10 @@ public class Canon : MonoBehaviour
         if (!GuarenteedMiss())
         {
             OnCanonBallShot(opponent, damage);
-            Debug.Log($"finished shooting with damage {damage}");
         }
         else
         {
-            print("Guarenteed miss!");
+
         }
     }
 
