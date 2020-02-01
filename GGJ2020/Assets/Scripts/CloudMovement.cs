@@ -26,12 +26,14 @@ public class CloudMovement : MonoBehaviour
     /// The speed of the cloud, maximum speed of cloud and maximum speed of boat.
     /// Slow and Fast speed offsets for paralax scrolling.
     /// </summary>
-    private float speed, maxSpeed, maxBoatSpeed, slowSpeedOffset, fastSpeedOffset, offScreenOffset;
+    private float speed, minSpeed, maxSpeed, maxBoatSpeed, slowSpeedOffset, fastSpeedOffset, offScreenOffset;
 
     /// <summary>
     /// MovementVector used to move the cloud.
     /// </summary>
     Vector3 movementVector;
+
+    private GameObject parentBoat;
 
     public Camera upperCamera;
 
@@ -47,6 +49,7 @@ public class CloudMovement : MonoBehaviour
         oneHundredPerc = 100;
 
         maxSpeed = 3;
+        minSpeed = 0.2f;
 
         if (this.gameObject.name.Contains(CloudSpeedType.Slow.ToString()))
         {
@@ -61,10 +64,20 @@ public class CloudMovement : MonoBehaviour
             cloudSpeedType = CloudSpeedType.Fast;
         }
 
-        slowSpeedOffset = -1.5f;
-        fastSpeedOffset = 1.5f;
+        slowSpeedOffset = -0.5f;
+        fastSpeedOffset = 0.5f;
 
-        maxBoatSpeed = GameObject.Find("Boat1").GetComponent<BoatMovement>().maxSpeed;
+        if (this.gameObject.name.Contains("1"))
+        {
+            parentBoat = GameObject.Find("Boat1");
+            this.gameObject.tag = tag + "1";
+        }
+        else if (this.gameObject.name.Contains("2"))
+        {
+            parentBoat = GameObject.Find("Boat2");
+            this.gameObject.tag = tag + "2";
+        }
+        maxBoatSpeed = parentBoat.GetComponent<BoatMovement>().maxSpeed;
 
         //boats start at max speed so clouds should too.
         ChangeSpeed(maxBoatSpeed);
@@ -100,10 +113,13 @@ public class CloudMovement : MonoBehaviour
         if (cloudSpeedType == CloudSpeedType.Fast)
         {
             speed += fastSpeedOffset;
+            speed = (maxSpeed - minSpeed) * speed / maxSpeed + minSpeed;
         }
         else if (cloudSpeedType == CloudSpeedType.Slow)
         {
             speed += slowSpeedOffset;
+
+            speed = (maxSpeed - minSpeed) * speed / maxSpeed + minSpeed;
         }
 
         movementVector = -Vector3.right * speed / 50;

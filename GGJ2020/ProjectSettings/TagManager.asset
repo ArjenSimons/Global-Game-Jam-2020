@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cloud
+  - Cloud1
+  - Cloud2
   layers:
   - Default
   - TransparentFX
