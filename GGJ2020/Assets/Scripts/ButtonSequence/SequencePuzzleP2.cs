@@ -152,6 +152,10 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         ResetSequencePuzzle();
         StopSequencePuzzle();
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
 
         bS.GetComponent<HoleFixing>().ResetBtnA();
         Debug.Log("Sequence was failed.");
