@@ -1597,6 +1597,11 @@ PrefabInstance:
       propertyPath: _PlayerType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2296543598701415572, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: progressionManager
+      value: 
+      objectReference: {fileID: 1464259895}
     - target: {fileID: 180654232057131508, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_RootOrder
@@ -2859,7 +2864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1467dadd53fce4e9c8ec5408516d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceDistance: 100
+  raceDistance: 60
   boatOne: {fileID: 982231756}
   boatTwo: {fileID: 1750593422924748609}
 --- !u!4 &1464259896
@@ -4433,6 +4438,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2296543598701415572, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: progressionManager
+      value: 
+      objectReference: {fileID: 1464259895}
     - target: {fileID: 180654232057131508, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_LocalPosition.x
