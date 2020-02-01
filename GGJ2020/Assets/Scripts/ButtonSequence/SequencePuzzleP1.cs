@@ -38,6 +38,9 @@ public class SequencePuzzleP1 : MonoBehaviour
         currentSequenceButton = 0;
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
+
+        //StopSequencePuzzle();
+
     }
 
 
@@ -125,7 +128,6 @@ public class SequencePuzzleP1 : MonoBehaviour
     {
         currentSequenceButton = 0;
         SequenceRandomizer();
-        StopSequencePuzzle();
         Debug.Log("Puzzle Reset");
     }
 
@@ -138,9 +140,10 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     public void SequenceSolved()
     {
+        ResetSequencePuzzle();
         StopSequencePuzzle();
 
-        //ToDo: call method that deletes hole.
+        bS.RepairBoatSegment();
 
         Debug.Log("Sequence was solved.");
     }

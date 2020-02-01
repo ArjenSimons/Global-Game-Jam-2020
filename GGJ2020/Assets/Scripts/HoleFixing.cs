@@ -39,14 +39,22 @@ public class HoleFixing : MonoBehaviour
             switch (playerEnum)
             {
                 case Player.PLAYER_ONE:
-                    if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
+                    if (Input.GetButtonDown("A-Button2") && mayPressBtnA)
                     {
+                        if (!IsInvoking("StartSequencePuzzle"))
+                        {
+                            Invoke("StartSequencePuzzle", 0.5f);
+                        }
                         tryingToActivate = false;
                     }
                     break;
                 case Player.PLAYER_TWO:
-                    if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
+                    if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
                     {
+                        if (!IsInvoking("StartSequencePuzzle"))
+                        {
+                            Invoke("StartSequencePuzzle", 0.5f);
+                        }
                         tryingToActivate = false;
                     }
                     break;
@@ -92,9 +100,15 @@ public class HoleFixing : MonoBehaviour
         repairButtonIndicator.SetActive(false);
     }
 
+    public void ResetBtnA()
+    {
+        mayPressBtnA = true;
+    }
+
     // method do GENERATE SEQUENCE PUZZLE when pressed A BUTTON
     private void StartSequencePuzzle()
     {
+        Debug.Log("Started sequence.");
         HideButtonIndicator();
         mayPressBtnA = false;
 

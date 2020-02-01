@@ -126,7 +126,6 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         currentSequenceButton = 0;
         SequenceRandomizer();
-        StopSequencePuzzle();
         Debug.Log("Puzzle Reset");
     }
 
@@ -139,9 +138,11 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void SequenceSolved()
     {
+        isActivated = false;
+        ResetSequencePuzzle();
         StopSequencePuzzle();
 
-        //ToDo: call method that deletes hole.
+        bS.RepairBoatSegment();
 
         Debug.Log("Sequence was solved.");
     }
@@ -150,6 +151,7 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         ResetSequencePuzzle();
 
+        bS.GetComponent<HoleFixing>().ResetBtnA();
         Debug.Log("Sequence was failed.");
     }
 

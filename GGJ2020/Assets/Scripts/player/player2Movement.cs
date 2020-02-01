@@ -127,7 +127,6 @@ public class player2Movement : PlayerMovementBase
     {
         if (other.tag == "CanonballStack" && !CarryingCanonBall)
         {
-            print("test");
             CarryingCanonBall = true;
         }
 
