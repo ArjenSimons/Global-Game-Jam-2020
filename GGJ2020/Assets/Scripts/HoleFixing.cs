@@ -17,6 +17,9 @@ public class HoleFixing : MonoBehaviour
 
     public bool tryingToActivate;
 
+    private float inputDownPlayer1;
+    private float inputDownPlayer2;
+
     private BoatSegment boatSegment;
 
     private SequencePuzzleP1 puzzlePlayer1;
@@ -30,16 +33,20 @@ public class HoleFixing : MonoBehaviour
         puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
 
         tryingToActivate = true;
+
     }
 
     private void Update()
     {
+        inputDownPlayer1 = Input.GetAxis("DownJoystickVertical1");
+        inputDownPlayer2 = Input.GetAxis("DownJoystickVertical2");
+
         if (tryingToActivate)
         {
             switch (playerEnum)
             {
                 case Player.PLAYER_ONE:
-                    if (Input.GetButtonDown("A-Button2") && mayPressBtnA)
+                    if (inputDownPlayer2 <= -0.2 && mayPressBtnA)
                     {
                         if (!IsInvoking("StartSequencePuzzle"))
                         {
@@ -49,7 +56,7 @@ public class HoleFixing : MonoBehaviour
                     }
                     break;
                 case Player.PLAYER_TWO:
-                    if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
+                    if (inputDownPlayer1 <= -0.2 && mayPressBtnA)
                     {
                         if (!IsInvoking("StartSequencePuzzle"))
                         {
@@ -60,7 +67,6 @@ public class HoleFixing : MonoBehaviour
                     break;
             }
         }
-
     }
 
     /// <summary>
