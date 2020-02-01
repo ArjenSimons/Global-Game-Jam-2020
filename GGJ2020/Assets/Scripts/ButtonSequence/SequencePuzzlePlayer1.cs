@@ -11,6 +11,9 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     public enum ButtonsPlayer1 { A, B, X, Y }
 
     [SerializeField]
+    private Player player;
+
+    [SerializeField]
     private ButtonsPlayer1[] correctOrderSmall;
 
     [SerializeField]
@@ -54,25 +57,28 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
         //    Check(Buttons.Y);
         //}
 
-        if (Input.GetButtonDown("A-Button1"))
+        if (player == Player.PLAYER_ONE)
         {
-            Check(ButtonsPlayer1.A);
-            Debug.Log("press A xbox controller");
-        }
-        if (Input.GetButtonDown("B-Button1"))
-        {
-            Check(ButtonsPlayer1.B);
-            Debug.Log("press B xbox controller");
-        }
-        if (Input.GetButtonDown("X-Button1"))
-        {
-            Check(ButtonsPlayer1.X);
-            Debug.Log("press X xbox controller");
-        }
-        if (Input.GetButtonDown("Y-Button1"))
-        {
-            Check(ButtonsPlayer1.Y);
-            Debug.Log("press Y xbox controller");
+            if (Input.GetButtonDown("A-Button1"))
+            {
+                Check(ButtonsPlayer1.A);
+                Debug.Log("press A xbox controller");
+            }
+            if (Input.GetButtonDown("B-Button1"))
+            {
+                Check(ButtonsPlayer1.B);
+                Debug.Log("press B xbox controller");
+            }
+            if (Input.GetButtonDown("X-Button1"))
+            {
+                Check(ButtonsPlayer1.X);
+                Debug.Log("press X xbox controller");
+            }
+            if (Input.GetButtonDown("Y-Button1"))
+            {
+                Check(ButtonsPlayer1.Y);
+                Debug.Log("press Y xbox controller");
+            }
         }
     }
 
