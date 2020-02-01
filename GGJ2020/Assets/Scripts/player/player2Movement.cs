@@ -21,7 +21,7 @@ public class player2Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boatRender = boat.GetComponent<SpriteRenderer>();
+        boatRender = boat.transform.GetChild(boat.transform.childCount - 1).GetComponent<SpriteRenderer>();
         playerRender = GetComponent<SpriteRenderer>();
     }
 
@@ -40,14 +40,14 @@ public class player2Movement : MonoBehaviour
     {
         var boatPos = boat.transform.position;
         var pos = transform.position;
-        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f))
         {
-            pos.x = boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            pos.x = boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f);
             transform.position = pos;
         }
-        else if (transform.position.x < boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        else if (transform.position.x < boatPos.x - boatRender.size.x / 2)
         {
-            pos.x = boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            pos.x = boatPos.x - boatRender.size.x / 2;
             transform.position = pos;
         }
     }
