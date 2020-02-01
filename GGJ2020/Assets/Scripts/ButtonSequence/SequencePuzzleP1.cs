@@ -23,7 +23,7 @@ public class SequencePuzzleP1 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-    bool isActivated;
+    public bool isActivated;
     private GameObject boatSegment;
 
     BoatSegment bS;
@@ -92,7 +92,6 @@ public class SequencePuzzleP1 : MonoBehaviour
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
         }
-        isActivated = true;
     }
 
     /// <summary>

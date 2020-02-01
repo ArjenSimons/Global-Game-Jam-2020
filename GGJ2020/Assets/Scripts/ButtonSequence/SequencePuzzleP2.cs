@@ -27,7 +27,7 @@ public class SequencePuzzleP2 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-    bool isActivated;
+    public bool isActivated;
 
     private GameObject boatSegment;
 
@@ -113,7 +113,6 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
 
         }
-        isActivated = true;
     }
 
     /// <summary>

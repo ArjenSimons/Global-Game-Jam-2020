@@ -15,6 +15,8 @@ public class HoleFixing : MonoBehaviour
 
     public Player playerEnum;
 
+    public bool tryingToActivate;
+
     private BoatSegment boatSegment;
 
     private SequencePuzzleP1 puzzlePlayer1;
@@ -27,27 +29,32 @@ public class HoleFixing : MonoBehaviour
         puzzlePlayer1 = player.GetComponent<SequencePuzzleP1>();
         puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
 
+        tryingToActivate = true;
     }
 
     private void Update()
     {
-        switch (playerEnum)
+        if (tryingToActivate)
         {
-            case Player.PLAYER_ONE:
-                if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
-                {
-                    Debug.Log("XD");
-                    DisplaySequencePuzzle();
-                }
-                break;
-            case Player.PLAYER_TWO:
-                if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
-                {
-                    Debug.Log("XD");
-                    DisplaySequencePuzzle();
-                }
-                break;
+            switch (playerEnum)
+            {
+                case Player.PLAYER_ONE:
+                    if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
+                    {
+                        DisplaySequencePuzzle();
+                        tryingToActivate = false;
+                    }
+                    break;
+                case Player.PLAYER_TWO:
+                    if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
+                    {
+                        DisplaySequencePuzzle();
+                        tryingToActivate = false;
+                    }
+                    break;
+            }
         }
+
     }
 
     /// <summary>
@@ -99,13 +106,13 @@ public class HoleFixing : MonoBehaviour
         {
             puzzlePlayer1.RetrieveBoatSegment(boatSegment);
             puzzlePlayer1.SequenceRandomizer();
-            Debug.Log("yo xD");
+            puzzlePlayer1.isActivated = true;
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
             puzzlePlayer2.RetrieveBoatSegment(boatSegment);
             puzzlePlayer2.SequenceRandomizer();
-            Debug.Log("player 2 bby xD");
+            puzzlePlayer2.isActivated = true;
         }
     }
 }
