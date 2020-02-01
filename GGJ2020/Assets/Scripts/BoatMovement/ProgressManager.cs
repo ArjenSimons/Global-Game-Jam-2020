@@ -9,7 +9,7 @@ public class ProgressManager
     [SerializeField] private BoatMovement boat1;
     [SerializeField] private BoatMovement boat2;
 
-    public float getProgression(Player boot)
+    public static float getProgression(Player boot)
     {
         float distanceCovered = 0;
         switch (boot)
