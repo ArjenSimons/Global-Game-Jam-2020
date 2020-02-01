@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ProgressionUI : MonoBehaviour
 {
     [SerializeField] private ProgressManager progressManager;
-    [SerializeField] private Image playerOneIndicator;
-    [SerializeField] private Image playerTwoIndicator;
+    [SerializeField] private RectTransform playerOneIndicator;
+    [SerializeField] private RectTransform playerTwoIndicator;
 
     private float playerOneProgression;
     private float playerTwoProgression;
@@ -18,5 +18,8 @@ public class ProgressionUI : MonoBehaviour
         playerTwoProgression = progressManager.getProgression(Player.PLAYER_TWO);
 
         //TODO: Update position of playterIndicators on canvas
+
+        playerOneIndicator.transform.localPosition = new Vector2(-910 + playerOneProgression / 100 * 1820, playerOneIndicator.localPosition.y);
+        playerTwoIndicator.transform.localPosition = new Vector2(-910 + playerTwoProgression/100 * 1820, playerTwoIndicator.localPosition.y);
     }
 }
