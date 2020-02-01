@@ -77,7 +77,6 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
             Debug.Log("press Y logitech controller");
         }
 
-
     }
 
 
@@ -98,7 +97,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
         //}
         for (int j = 0; j < correctOrderBig.Length; j++)
         {
-            correctOrderBig[j] = (ButtonsPlayer2)UnityEngine.Random.Range(0, 7);
+            correctOrderBig[j] = (ButtonsPlayer2)UnityEngine.Random.Range(0, 3);
         }
     }
 
