@@ -3697,7 +3697,7 @@ PrefabInstance:
     - target: {fileID: 4130754548458104495, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
       propertyPath: checkRadius
-      value: 0.35
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5036870671611831210, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -3738,8 +3738,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0018214143, y: 0.0091084195}
-  m_Size: {x: 0.44030377, y: 0.66564065}
+  m_Offset: {x: 0.0018214143, y: 0.046601918}
+  m_Size: {x: 0.30031392, y: 0.59065366}
   m_Direction: 0
 --- !u!114 &1867877772
 MonoBehaviour:
@@ -4437,7 +4437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057006012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.573, z: 0}
+  m_LocalPosition: {x: 0, y: -0.196, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 508539260310649711}
@@ -4464,7 +4464,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 80d1c5b2fa8306744b2d41a90637c6b9,
+      objectReference: {fileID: 21300000, guid: b545bdbcb89d54342837facc91085b4b,
         type: 3}
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -4524,12 +4524,12 @@ PrefabInstance:
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 1990469736959471296, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -4562,7 +4562,7 @@ MonoBehaviour:
   maxMovementSpeed: 5
   movementDecay: 0.5
   movementSpeedIncrease: 1.2
-  checkRadius: 0.3
+  checkRadius: 0.4
   boat: {fileID: 1239932367}
   groundCheck: {fileID: 2057006013}
   ground:
