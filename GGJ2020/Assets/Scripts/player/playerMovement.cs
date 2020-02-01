@@ -11,9 +11,11 @@ public class playerMovement : MonoBehaviour
     [SerializeField]
     private GameObject boat;
 
+    private Transform boatSprite;
+
     private Rigidbody2D rb;
 
-    private SpriteRenderer boatRender, playerRender;
+    private SpriteRenderer boatRender;
 
     private bool walking;
 
@@ -21,8 +23,8 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boatRender = boat.transform.GetChild(boat.transform.childCount - 1).GetComponent<SpriteRenderer>();
-        playerRender = GetComponent<SpriteRenderer>();
+        boatSprite = boat.transform.GetChild(boat.transform.childCount - 1);
+        boatRender = boatSprite.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,14 +42,14 @@ public class playerMovement : MonoBehaviour
     {
         var boatPos = boat.transform.position;
         var pos = transform.position;
-        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f))
+        if (transform.position.x > boatPos.x + boatRender.size.x * boatSprite.transform.localScale.x / 2)
         {
-            pos.x = boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f);
+            pos.x = boatPos.x + boatRender.size.x * boatSprite.transform.localScale.x / 2;
             transform.position = pos;
         }
-        else if (transform.position.x < boatPos.x - boatRender.size.x / 2)
+        else if (transform.position.x < boatPos.x - boatRender.size.x * boatSprite.transform.localScale.x / 2)
         {
-            pos.x = boatPos.x - boatRender.size.x / 2;
+            pos.x = boatPos.x - boatRender.size.x * boatSprite.transform.localScale.x / 2;
             transform.position = pos;
         }
     }
