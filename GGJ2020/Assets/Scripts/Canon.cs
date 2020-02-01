@@ -23,7 +23,7 @@ public class Canon : MonoBehaviour
     private float startRotatedAngle;
 
     private readonly float rotateOffset = 15f;
-    private readonly float shootForce = 100f;
+    private readonly float shootForce = 250f;
     private readonly float shootDuration = 5f;
     private readonly float minRotatedAngleForRedOffset = 6;
     private readonly float minRotatedAngleForOrangeOffset = 3;
@@ -145,8 +145,8 @@ public class Canon : MonoBehaviour
     {       
         switch (playerInteracting)
         {
-            case "Player1": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button1");
-            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button2");
+            case "Player1": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button2");
+            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
             default: return Input.GetKeyDown(KeyCode.Space);              
         }       
     }
