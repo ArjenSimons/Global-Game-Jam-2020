@@ -22,8 +22,6 @@ public class HoleFixing : MonoBehaviour
     private SequencePuzzleP1 puzzlePlayer1;
     private SequencePuzzleP2 puzzlePlayer2;
 
-    private IEnumerator coroutine;
-
     private void Start()
     {
         boatSegment = GetComponent<BoatSegment>();
@@ -32,8 +30,6 @@ public class HoleFixing : MonoBehaviour
         puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
 
         tryingToActivate = true;
-
-        coroutine = StartSequencePuzzle(0.5f);
     }
 
     private void Update()
@@ -45,14 +41,12 @@ public class HoleFixing : MonoBehaviour
                 case Player.PLAYER_ONE:
                     if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
                     {
-                        StartCoroutine(coroutine);
                         tryingToActivate = false;
                     }
                     break;
                 case Player.PLAYER_TWO:
                     if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
                     {
-                        StartCoroutine(coroutine);
                         tryingToActivate = false;
                     }
                     break;
@@ -99,33 +93,20 @@ public class HoleFixing : MonoBehaviour
     }
 
     // method do GENERATE SEQUENCE PUZZLE when pressed A BUTTON
-    private void DisplaySequencePuzzle()
+    private void StartSequencePuzzle()
     {
-        Debug.Log("Je ziet nu de puzzel");
-
         HideButtonIndicator();
         mayPressBtnA = false;
 
         if (playerEnum == Player.PLAYER_ONE)
         {
             puzzlePlayer1.RetrieveBoatSegment(boatSegment);
-            puzzlePlayer1.SequenceRandomizer();
-            puzzlePlayer1.isActivated = true;
+            puzzlePlayer1.StartSequencePuzzle();
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
             puzzlePlayer2.RetrieveBoatSegment(boatSegment);
-            puzzlePlayer2.SequenceRandomizer();
-
-            puzzlePlayer2.playerCanvas.gameObject.SetActive(true);
-            Debug.Log("player 2 bby xD");
-            puzzlePlayer2.isActivated = true;
+            puzzlePlayer2.StartSequencePuzzle();
         }
-    }
-
-    private IEnumerator StartSequencePuzzle(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        DisplaySequencePuzzle();
     }
 }

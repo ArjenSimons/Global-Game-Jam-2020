@@ -394,6 +394,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!223 &843340620 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3244027686633575729, guid: 32504eaa42e247d48a9af2cf660c3ceb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1521861884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &918390238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1757,6 +1763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SequenceCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3244027686633575733, guid: 32504eaa42e247d48a9af2cf660c3ceb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3244027686633575734, guid: 32504eaa42e247d48a9af2cf660c3ceb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2063,6 +2074,7 @@ MonoBehaviour:
   player: {fileID: 1867877769}
   repairButtonIndicator: {fileID: 1867877770}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!1 &1751869427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -2084,6 +2096,7 @@ MonoBehaviour:
   player: {fileID: 1867877769}
   repairButtonIndicator: {fileID: 1867877770}
   playerEnum: 1
+  tryingToActivate: 0
 --- !u!114 &1751869433 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -2409,6 +2422,9 @@ MonoBehaviour:
   player: 0
   correctOrderSmall: 00000000000000000000000000000000
   correctOrderBig: 00000000000000000000000000000000
+  buttonSprites: []
+  buttons: []
+  isActivated: 0
 --- !u!4 &1867877773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
@@ -2919,6 +2935,8 @@ MonoBehaviour:
   - {fileID: 1521861887}
   - {fileID: 1521861886}
   - {fileID: 1521861885}
+  isActivated: 0
+  playerCanvas: {fileID: 843340620}
 --- !u!4 &508539260310649711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,

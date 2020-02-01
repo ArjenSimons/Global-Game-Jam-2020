@@ -28,14 +28,13 @@ public class SequencePuzzleP1 : MonoBehaviour
     private int bigOrderMax;
 
     public bool isActivated;
-    private GameObject boatSegment;
 
     BoatSegment bS;
 
+    public Canvas playerCanvas;
+
     private void Start()
     {
-        bS = GetComponent<BoatSegment>();
-
         currentSequenceButton = 0;
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
@@ -104,6 +103,55 @@ public class SequencePuzzleP1 : MonoBehaviour
         }
     }
 
+    public void StartSequencePuzzle()
+    {
+        playerCanvas.gameObject.SetActive(true);
+        ResetSequencePuzzle();
+        isActivated = true;
+        Debug.Log("Started puzzle");
+    }
+
+    public void StopSequencePuzzle()
+    {
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+        playerCanvas.gameObject.SetActive(false);
+        Debug.Log("Ended puzzle");
+    }
+
+    public void ResetSequencePuzzle()
+    {
+        currentSequenceButton = 0;
+        SequenceRandomizer();
+        StopSequencePuzzle();
+        Debug.Log("Puzzle Reset");
+    }
+
+    public void RightButtonWasPressed()
+    {
+        buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
+        currentSequenceButton++;
+        Debug.Log("The right Button was pressed.");
+    }
+
+    public void SequenceSolved()
+    {
+        StopSequencePuzzle();
+
+        //ToDo: call method that deletes hole.
+
+        Debug.Log("Sequence was solved.");
+    }
+
+    public void SequenceFailed()
+    {
+        ResetSequencePuzzle();
+
+        Debug.Log("Sequence was failed.");
+    }
+
     /// <summary>
     /// Checks the input of player with the current sequence button
     /// </summary>
@@ -115,45 +163,32 @@ public class SequencePuzzleP1 : MonoBehaviour
         {
             if (input == correctOrderSmall[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == smallOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    //delete hole
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            //Debug.Log("RANDOMIZE1");
             if (input == correctOrderBig[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == bigOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    //delete hole
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
     }

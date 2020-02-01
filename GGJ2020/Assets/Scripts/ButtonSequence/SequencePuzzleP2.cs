@@ -29,22 +29,15 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public bool isActivated;
 
-    private GameObject boatSegment;
-
     BoatSegment bS;
 
     public Canvas playerCanvas;
 
     private void Start()
     {
-        bS = GetComponent<BoatSegment>();
-
         currentSequenceButton = 0;
-
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
-
-
     }
 
     private void Update()
@@ -91,10 +84,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            Debug.Log("RANDOMIZE2");
             for (int i = 0; i < correctOrderSmall.Length; i++)
             {
-
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderSmall[i] = (ButtonsP2)randomNumber;
                 buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
@@ -113,6 +104,55 @@ public class SequencePuzzleP2 : MonoBehaviour
         }
     }
 
+    public void StartSequencePuzzle()
+    {
+        playerCanvas.gameObject.SetActive(true);
+        ResetSequencePuzzle();
+        isActivated = true;
+        Debug.Log("Started puzzle");
+    }
+
+    public void StopSequencePuzzle()
+    {
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+        playerCanvas.gameObject.SetActive(false);
+        Debug.Log("Ended puzzle");
+    }
+
+    public void ResetSequencePuzzle()
+    {
+        currentSequenceButton = 0;
+        SequenceRandomizer();
+        StopSequencePuzzle();
+        Debug.Log("Puzzle Reset");
+    }
+
+    public void RightButtonWasPressed()
+    {
+        buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
+        currentSequenceButton++;
+        Debug.Log("The right Button was pressed.");
+    }
+
+    public void SequenceSolved()
+    {
+        StopSequencePuzzle();
+
+        //ToDo: call method that deletes hole.
+
+        Debug.Log("Sequence was solved.");
+    }
+
+    public void SequenceFailed()
+    {
+        ResetSequencePuzzle();
+
+        Debug.Log("Sequence was failed.");
+    }
+
     /// <summary>
     /// Checks the input of player with the current sequence button
     /// </summary>
@@ -124,62 +164,32 @@ public class SequencePuzzleP2 : MonoBehaviour
         {
             if (input == correctOrderSmall[currentSequenceButton])
             {
-                buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == smallOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-
-                    foreach (GameObject button in buttons)
-                    {
-                        button.GetComponent<Image>().color = new Color(255,255,255);
-                    }
-                    playerCanvas.gameObject.SetActive(false);
-
-                    isActivated = false;
-
-                    //delete hole
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
             if (input == correctOrderBig[currentSequenceButton])
             {
-                buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == bigOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-
-                    foreach (GameObject button in buttons)
-                    {
-                        button.GetComponent<Image>().color = new Color(255, 255, 255);
-                    }
-                    playerCanvas.gameObject.SetActive(false);
-
-                    isActivated = false;
-
-                    //delete hole
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
     }
