@@ -4,6 +4,8 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class OnPlayerFinishEvent : UnityEvent<Player> { }
+
 public class ProgressManager : MonoBehaviour
 {
     [Tooltip("The minimum amount of seconds the race can last")]
@@ -11,7 +13,6 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private BoatMovement boatOne;
     [SerializeField] private BoatMovement boatTwo;
 
-    public class OnPlayerFinishEvent : UnityEvent<Player> { }
 
     public OnPlayerFinishEvent onPlayerFinish = new OnPlayerFinishEvent();
 
