@@ -163,6 +163,7 @@ public class Canon : MonoBehaviour
 
     private IEnumerator StartCanonActivation()
     {
+        print("test");
         yield return null;
         ActivateCanon();
     }
@@ -221,18 +222,22 @@ public class Canon : MonoBehaviour
 
     private void OnFinishedShooting(int damage)
     {
-        if (GuarenteedMiss())
-            return;
-
         Rigidbody2D ballRB = canonball.GetComponent<Rigidbody2D>();
         ballRB.velocity = Vector3.zero;
         ballRB.angularVelocity = 0;
         canonball.transform.position = canonBallPosition;
-        canonball.SetActive(false);
-        OnCanonBallShot(opponent, damage);
         shootingCanonBall = false;
         shootTimer = null;
-        Debug.Log($"finished shooting with damage {damage}");
+        canonball.SetActive(false);
+        if (!GuarenteedMiss())
+        {
+            OnCanonBallShot(opponent, damage);
+            Debug.Log($"finished shooting with damage {damage}");
+        }
+        else
+        {
+            print("Guarenteed miss!");
+        }
     }
 
     private bool GuarenteedMiss()
