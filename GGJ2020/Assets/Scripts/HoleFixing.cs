@@ -22,6 +22,8 @@ public class HoleFixing : MonoBehaviour
     private SequencePuzzleP1 puzzlePlayer1;
     private SequencePuzzleP2 puzzlePlayer2;
 
+    private IEnumerator coroutine;
+
     private void Start()
     {
         boatSegment = GetComponent<BoatSegment>();
@@ -30,6 +32,8 @@ public class HoleFixing : MonoBehaviour
         puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
 
         tryingToActivate = true;
+
+        coroutine = StartSequencePuzzle(0.5f);
     }
 
     private void Update()
@@ -41,14 +45,14 @@ public class HoleFixing : MonoBehaviour
                 case Player.PLAYER_ONE:
                     if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
                     {
-                        DisplaySequencePuzzle();
+                        StartCoroutine(coroutine);
                         tryingToActivate = false;
                     }
                     break;
                 case Player.PLAYER_TWO:
                     if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
                     {
-                        DisplaySequencePuzzle();
+                        StartCoroutine(coroutine);
                         tryingToActivate = false;
                     }
                     break;
@@ -114,5 +118,11 @@ public class HoleFixing : MonoBehaviour
             puzzlePlayer2.SequenceRandomizer();
             puzzlePlayer2.isActivated = true;
         }
+    }
+
+    private IEnumerator StartSequencePuzzle(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        DisplaySequencePuzzle();
     }
 }
