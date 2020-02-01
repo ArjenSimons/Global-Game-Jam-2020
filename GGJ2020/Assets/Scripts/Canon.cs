@@ -17,7 +17,7 @@ public class Canon : MonoBehaviour
     [SerializeField] private string playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
-    private float rotateSpeed = 0.35f;
+    private float rotateSpeed = 1.05f;
     private float maxRotation;
     private float minRotation;
     private float startRotatedAngle;
@@ -145,8 +145,8 @@ public class Canon : MonoBehaviour
     {       
         switch (playerInteracting)
         {
-            case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
-            case "Player2": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button2");
+            case "Player1": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button1");
+            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button2");
             default: return Input.GetKeyDown(KeyCode.Space);              
         }       
     }
