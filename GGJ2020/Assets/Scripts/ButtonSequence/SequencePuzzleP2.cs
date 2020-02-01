@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 ///  This script manages the sequence puzzle PLAYER2
@@ -19,6 +20,9 @@ public class SequencePuzzleP2 : MonoBehaviour
     [SerializeField]
     private ButtonsP2[] correctOrderBig;
 
+    public Sprite[] buttonSprites;
+    public GameObject[] buttons;
+
     private int currentSequenceButton;
     private int smallOrderMax;
     private int bigOrderMax;
@@ -35,15 +39,11 @@ public class SequencePuzzleP2 : MonoBehaviour
         smallOrderMax = 4;
         bigOrderMax = 8;
 
-       
+
     }
 
     private void Update()
     {
-        //if (activated)
-        //{
-        //    SequenceRandomizer();
-        //}
         // PLAYER TWO uses xbox controller
         if (player == Player.PLAYER_TWO)
         {
@@ -69,7 +69,7 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
         }
 
-     
+
 
         //InputKeyboard();
     }
@@ -85,7 +85,12 @@ public class SequencePuzzleP2 : MonoBehaviour
         {
             Debug.Log("RANDOMIZE2");
             for (int i = 0; i < correctOrderSmall.Length; i++)
-                correctOrderSmall[i] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
+            {
+
+                int randomNumber = UnityEngine.Random.Range(0, 3);
+                correctOrderSmall[i] = (ButtonsP2)randomNumber;
+                buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+            }
         }
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
@@ -93,6 +98,15 @@ public class SequencePuzzleP2 : MonoBehaviour
             Debug.Log("RANDOMIZE");
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
+            for (int j = 0; j < correctOrderBig.Length; j++)
+            {
+                int randomNumber = UnityEngine.Random.Range(0, 3);
+                correctOrderBig[j] = (ButtonsP2)randomNumber;
+                buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+
+                Debug.Log("grote");
+            }
+
         }
 
     }
@@ -127,7 +141,6 @@ public class SequencePuzzleP2 : MonoBehaviour
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            //Debug.Log("RANDOMIZE3");
             if (input == correctOrderBig[currentSequenceButton])
             {
                 currentSequenceButton++;
