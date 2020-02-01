@@ -23,7 +23,7 @@ public class BoatMovement : MonoBehaviour
         clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
         clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
 
-        ProgressManager.onPlayerFinish.AddListener(setfinish);
+        //ProgressManager.onPlayerFinish.AddListener(setfinish);
     }
 
     private void FixedUpdate()

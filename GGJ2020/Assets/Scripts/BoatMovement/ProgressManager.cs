@@ -11,9 +11,9 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private BoatMovement boatOne;
     [SerializeField] private BoatMovement boatTwo;
 
-    public class OnPlayterFinishEvent : UnityEvent<Player> { }
+    public class OnPlayerFinishEvent : UnityEvent<Player> { }
 
-    public static OnPlayterFinishEvent onPlayerFinish = new OnPlayterFinishEvent();
+    public OnPlayerFinishEvent onPlayerFinish = new OnPlayerFinishEvent();
 
     private void Start()
     {
