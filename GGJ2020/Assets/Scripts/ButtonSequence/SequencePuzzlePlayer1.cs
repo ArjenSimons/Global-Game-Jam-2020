@@ -94,7 +94,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
         //}
         for (int j = 0; j < correctOrderBig.Length; j++)
         {
-            correctOrderBig[j] = (ButtonsPlayer1)UnityEngine.Random.Range(0, 7);
+            correctOrderBig[j] = (ButtonsPlayer1)UnityEngine.Random.Range(0, 3);
         }
     }
 
