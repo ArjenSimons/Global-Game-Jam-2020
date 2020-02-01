@@ -41,20 +41,14 @@ public class HoleFixing : MonoBehaviour
                 case Player.PLAYER_ONE:
                     if (Input.GetButtonDown("A-Button2") && mayPressBtnA)
                     {
-                        if (!IsInvoking("StartSequencePuzzle"))
-                        {
-                            Invoke("StartSequencePuzzle", 0.5f);
-                        }
+                        Invoke("StartSequencePuzzle", 0.5f);
                         tryingToActivate = false;
                     }
                     break;
                 case Player.PLAYER_TWO:
                     if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
                     {
-                        if (!IsInvoking("StartSequencePuzzle"))
-                        {
-                            Invoke("StartSequencePuzzle", 0.5f);
-                        }
+                        Invoke("StartSequencePuzzle", 0.5f);
                         tryingToActivate = false;
                     }
                     break;
