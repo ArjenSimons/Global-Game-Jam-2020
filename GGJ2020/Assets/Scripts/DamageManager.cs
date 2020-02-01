@@ -16,7 +16,7 @@ public class DamageManager : MonoBehaviour
     public const int SMALLDAMAGE = 5;
     public const int BIGDAMAGE = 10;
 
-    private const int MAX_SEGMENTS = 6;
+    private const int MAX_SEGMENTS = 4;
 
     private void Awake()
     {

@@ -27,7 +27,7 @@ public class ProgressionUI : MonoBehaviour
         playerTwoIndicator.transform.localPosition = new Vector2(-910 + playerTwoProgression/100 * 1820, playerTwoIndicator.localPosition.y);
 
         //Set speed indicator text
-        speedIndicatorOne.text = boatOne.speed + "km/u";
-        speedIndicatorTwo.text = boatTwo.speed + "km/u";
+        speedIndicatorOne.text = Mathf.Round(boatOne.speed) + "km/u";
+        speedIndicatorTwo.text = Mathf.Round(boatTwo.speed) + "km/u";
     }
 }
