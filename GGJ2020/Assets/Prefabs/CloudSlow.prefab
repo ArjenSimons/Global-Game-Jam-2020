@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6066806353036900508}
   - component: {fileID: -2071133413246718448}
   m_Layer: 0
-  m_Name: Cloud
-  m_TagString: Untagged
+  m_Name: CloudSlow
+  m_TagString: Cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aef392925a0a46d448dbd56c4190ed5d, type: 3}
+  m_SortingOrder: -6
+  m_Sprite: {fileID: 21300000, guid: d9c3c33a687a5dc44bcf9398ddcae20e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47fd9e562df474418246a2b823cd2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0
-  minHeight: 0
-  maxWidth: 0
-  minWidth: 0
+  upperCamera: {fileID: 8814269109008474495, guid: 4fc2004a421a3e343878a6d47af9f333,
+    type: 3}
+  cloudSpeedType: 0

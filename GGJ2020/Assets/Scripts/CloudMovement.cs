@@ -46,15 +46,7 @@ public class CloudMovement : MonoBehaviour
 
         oneHundredPerc = 100;
 
-        minHeight = 2;
-        maxHeight = 4;
-        minWidth = 2;
-        maxWidth = 6;
-
-        //randomizes X and Y scale of clouds
-        this.transform.localScale = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), this.transform.localScale.z);
-
-        maxSpeed = 12;
+        maxSpeed = 3;
 
         if (this.gameObject.name.Contains(CloudSpeedType.Slow.ToString()))
         {
@@ -72,24 +64,19 @@ public class CloudMovement : MonoBehaviour
         slowSpeedOffset = -1.5f;
         fastSpeedOffset = 1.5f;
 
-        //TODO: set maxBoatSpeed to maximum speed of boat.
-
-        maxBoatSpeed = GameObject.Find("Boat").GetComponent<BoatMovement>().maxSpeed;
-
-        Debug.Log(maxBoatSpeed);
+        maxBoatSpeed = GameObject.Find("Boat1").GetComponent<BoatMovement>().maxSpeed;
 
         //boats start at max speed so clouds should too.
         ChangeSpeed(maxBoatSpeed);
-
-        //
-
-        offScreenOffset = upperCamera.WorldToScreenPoint(new Vector3(this.transform.position.x + this.gameObject.GetComponent<SpriteRenderer>().sprite.rect.width, 0, 0)).x - upperCamera.WorldToScreenPoint(new Vector3(this.transform.position.x, 0, 0)).x;
+       
+        offScreenOffset = this.gameObject.GetComponent<SpriteRenderer>().sprite.rect.width / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (upperCamera.WorldToScreenPoint(this.transform.position).x < upperCamera.pixelRect.xMin - offScreenOffset)
+        Vector3 screenPosition = upperCamera.WorldToScreenPoint(this.transform.position);
+        if (screenPosition.x < -offScreenOffset)
         {
             this.transform.position = new Vector3(upperCamera.ScreenToWorldPoint(new Vector3(upperCamera.pixelWidth + offScreenOffset, 0, 0)).x, this.transform.position.y, this.transform.position.z);
         }
@@ -108,11 +95,7 @@ public class CloudMovement : MonoBehaviour
     {
         float percentage = oneHundredPerc / maxBoatSpeed * boatSpeed;
 
-        Debug.Log(percentage);
-
         speed = percentage / oneHundredPerc * maxSpeed;
-
-        Debug.Log(speed);
 
         if (cloudSpeedType == CloudSpeedType.Fast)
         {
@@ -124,7 +107,5 @@ public class CloudMovement : MonoBehaviour
         }
 
         movementVector = -Vector3.right * speed / 50;
-
-        Debug.Log(movementVector);
     }
 }
