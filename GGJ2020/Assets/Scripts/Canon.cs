@@ -21,14 +21,17 @@ public class Canon : MonoBehaviour
     private float maxRotation;
     private float minRotation;
     private float startRotatedAngle;
+    private float extraAngleBasedOnOpponent;
+    private float indicatorXOffset;
 
-    private readonly float rotateOffset = 15f;
+    private readonly float rotateOffset = 20f;
     private readonly float shootForce = 250f;
     private readonly float shootDuration = 5f;
-    private readonly float minRotatedAngleForRedOffset = 6;
+    private readonly float minRotatedAngleForRedOffset = 10;
     private readonly float minRotatedAngleForOrangeOffset = 3;
-    private float indicatorXOffset;
     private readonly float barrelYOffset = 0.15f;
+    private readonly float minProgressDifference = 10f;
+    private readonly float maxProgressDifference = 25f;
     private readonly float leftOrientationRotateAngle = 180f;
     private readonly float middleOrientationRotateAngle = 90f;
 
@@ -37,6 +40,7 @@ public class Canon : MonoBehaviour
 
     private Timer shootTimer;
     private Camera cam;
+    private ProgressManager progressManager;
     private Player opponent;
 
     public event Action<Player, int> OnCanonBallShot;
@@ -47,11 +51,11 @@ public class Canon : MonoBehaviour
     private void Awake()
     {
         if (debug) interactingWithPlayer = true;
-        GetCamera();
-        SetOrientation();   
+        GetReferences();
+        SetOrientation();      
     }
 
-    private void GetCamera()
+    private void GetReferences()
     {
         Camera[] cams = FindObjectsOfType<Camera>();
         char boatNum = transform.root.name[transform.root.name.Length - 1];
@@ -64,7 +68,7 @@ public class Canon : MonoBehaviour
                 break;
             }
         }
-
+        progressManager = FindObjectOfType<ProgressManager>();
     }
 
     private void SetOrientation()
@@ -81,8 +85,7 @@ public class Canon : MonoBehaviour
                 maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
                 minRotation = barrelTF.localEulerAngles.z - rotateOffset;
                 rotatedAngle = leftOrientationRotateAngle;
-                startRotatedAngle = leftOrientationRotateAngle;
-                shootDirection = barrelTF.right;             
+                startRotatedAngle = leftOrientationRotateAngle;                            
                 break;
             case Orientation.RIGHT:
                 indicator.transform.localPosition = new Vector2(indicatorXOffset, indicator.transform.localPosition.y);               
@@ -90,7 +93,6 @@ public class Canon : MonoBehaviour
                 barrelTF.localPosition = new Vector2(barrelTF.localPosition.x, barrelYOffset);
                 maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
                 minRotation = barrelTF.localEulerAngles.z - rotateOffset;
-                shootDirection = barrelTF.right;
                 break;
             case Orientation.MIDDLE:
                 indicator.transform.localPosition = new Vector2(0, indicator.transform.localPosition.y);
@@ -115,7 +117,8 @@ public class Canon : MonoBehaviour
         if (activated)
         {           
             CheckForCanonShot();
-        }     
+        }
+        
     }
 
     private void FixedUpdate()
@@ -126,19 +129,42 @@ public class Canon : MonoBehaviour
         }
     }
 
+    private void RotateRelativeToOpponent()
+    {
+        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
+        float progressDiff = Mathf.Abs(progressManager.getProgression(player) - progressManager.getProgression(opponent));
+        float angle = orientation == Orientation.LEFT ? -rotateOffset : rotateOffset;
+        progressDiff = Mathf.Clamp(progressDiff, 0, maxProgressDifference);
+        print(progressDiff);
+        angle *= progressDiff * 0.01f;
+        if(progressDiff > minProgressDifference)
+        {            
+            angle += orientation == Orientation.LEFT ? -rotateOffset : rotateOffset;
+            extraAngleBasedOnOpponent = angle;
+            barrelTF.RotateAround(pivotTF.position, Vector3.forward, angle);
+            indicator.transform.RotateAround(pivotTF.position, Vector3.forward, angle);
+        }
+        rotatedAngle = orientation == Orientation.LEFT ? leftOrientationRotateAngle + angle : angle;
+        minRotation = rotatedAngle - rotateOffset;
+        maxRotation = rotatedAngle + rotateOffset;      
+    }
+
     private bool InsideRedOfIndicator()
     {
         //print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
         //print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
         //print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
         //print(rotatedAngle);
-        return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset;
+        return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset + extraAngleBasedOnOpponent 
+        || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset + extraAngleBasedOnOpponent;
     }
 
     private bool InsideOrangeOfIndicator()
     {
-        return (rotatedAngle > startRotatedAngle + minRotatedAngleForOrangeOffset && rotatedAngle <= startRotatedAngle + minRotatedAngleForRedOffset)
-        || (rotatedAngle >= startRotatedAngle - minRotatedAngleForRedOffset && rotatedAngle < startRotatedAngle - minRotatedAngleForOrangeOffset);
+        return (rotatedAngle > startRotatedAngle + minRotatedAngleForOrangeOffset + extraAngleBasedOnOpponent 
+            && rotatedAngle <= startRotatedAngle + minRotatedAngleForRedOffset + extraAngleBasedOnOpponent)
+        || (rotatedAngle >= startRotatedAngle - minRotatedAngleForRedOffset + extraAngleBasedOnOpponent 
+            && rotatedAngle < startRotatedAngle - minRotatedAngleForOrangeOffset + extraAngleBasedOnOpponent);
     }
 
     private bool PlayerInput()
@@ -166,14 +192,12 @@ public class Canon : MonoBehaviour
 
     private IEnumerator StartCanonActivation()
     {
-        print("test");
         yield return null;
         ActivateCanon();
     }
 
     private void CheckForOffScreenCanonball(int damage)
-    {
-        //uses main camera for now -> should use camera for his side of screen
+    {        
         Vector3 screenPos = cam.WorldToScreenPoint(canonball.transform.position);
         float halfWidth = canonball.GetComponent<SpriteRenderer>().sprite.rect.width * 0.5f;
         float halfHeight = canonball.GetComponent<SpriteRenderer>().sprite.rect.height * 0.5f;
@@ -213,15 +237,25 @@ public class Canon : MonoBehaviour
     private void ShootCanon(int damage)
     {
         canonball.SetActive(true);
-        canonball.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootForce);
+        shootDirection = barrelTF.right;
+        canonball.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootForce);             
         indicator.SetActive(false);
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
         shootingCanonBall = true;
         activated = false;
         interactingWithPlayer = false;
-        playerInteracting.LoseCanonBall();
+        RotateBarrelBack();
+        playerInteracting.LoseCanonBall();       
         StartCoroutine(WaitForShotFinish(damage));
+    }
+
+    private void RotateBarrelBack()
+    {
+        float angle = orientation == Orientation.LEFT ? -extraAngleBasedOnOpponent : extraAngleBasedOnOpponent;
+        barrelTF.RotateAround(pivotTF.position, Vector3.forward, angle);
+        indicator.transform.RotateAround(pivotTF.position, Vector3.forward, angle);
+        extraAngleBasedOnOpponent = 0;
     }
 
     private void OnFinishedShooting(int damage)
@@ -246,10 +280,8 @@ public class Canon : MonoBehaviour
 
     private bool GuarenteedMiss()
     {
-        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
-        ProgressManager progressManager = FindObjectOfType<ProgressManager>();
-        return progressManager == null 
-        || (orientation == Orientation.LEFT && (progressManager.getProgression(player) < progressManager.getProgression(opponent)))
+        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;       
+        return (orientation == Orientation.LEFT && (progressManager.getProgression(player) < progressManager.getProgression(opponent)))
         || (orientation == Orientation.RIGHT && (progressManager.getProgression(player) > progressManager.getProgression(opponent)));
     }
 
@@ -258,6 +290,7 @@ public class Canon : MonoBehaviour
         activated = true;
         indicator.SetActive(true);
         barrelRay.SetActive(true);
+        RotateRelativeToOpponent();
     }
 
     private void RotateCanon()
