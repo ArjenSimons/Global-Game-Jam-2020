@@ -13,14 +13,17 @@ public class BoatMovement : MonoBehaviour
     private float speed;
     public float distanceCovered { get; private set; }
 
-    private GameObject[] clouds;
+    private GameObject[] clouds1, clouds2;
 
     private void Start()
     {
         boatHealth = GetComponent<BoatHealth>();
         speed = _maxSpeed;
 
-        clouds = GameObject.FindGameObjectsWithTag(Tags.Cloud.ToString());
+        clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
+        clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
+
+        ProgressManager.onPlayerFinish.AddListener(setfinish);
     }
 
     private void FixedUpdate()
@@ -29,7 +32,14 @@ public class BoatMovement : MonoBehaviour
 
         speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
 
-        distanceCovered += speed;
+        distanceCovered += speed * Time.deltaTime;
+
+        
+    }
+
+    private void setfinish(Player player)
+    {
+        Debug.Log(player + ": finished");
     }
 
     private void calculateSpeed()
@@ -42,9 +52,20 @@ public class BoatMovement : MonoBehaviour
         //Map adjustedSpeed to value between the minSpeed and the maxSpeed
         speed = (_maxSpeed - minSpeed) * adjustedSpeed / _maxSpeed + minSpeed;
 
-        foreach (GameObject cloud in clouds)
+        if (this.gameObject.name == "Boat1")
         {
-            cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
+            foreach (GameObject cloud in clouds1)
+            {
+                cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
+            }
         }
+        else if (this.gameObject.name == "Boat2")
+        {
+            foreach (GameObject cloud in clouds2)
+            {
+                cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
+            }
+        }
+
     }
 }
