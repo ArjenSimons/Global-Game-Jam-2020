@@ -11,6 +11,9 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     public enum ButtonsPlayer1 { A, B, X, Y }
 
     [SerializeField]
+    private Player player;
+
+    [SerializeField]
     private ButtonsPlayer1[] correctOrderSmall;
 
     [SerializeField]
@@ -23,7 +26,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     GameObject boatSegment;
     BoatSegment bS;
 
-    public virtual void Start()
+    private void Start()
     {
         bS = GetComponentInChildren<BoatSegment>();
 
@@ -35,7 +38,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     }
 
 
-    public virtual void Update()
+    private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.A))
         //{
@@ -54,30 +57,59 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
         //    Check(Buttons.Y);
         //}
 
-        if (Input.GetButtonDown("A-Button1"))
+        if (player == Player.PLAYER_TWO)
         {
-            Check(ButtonsPlayer1.A);
-            Debug.Log("press A xbox controller");
+            if (Input.GetButtonDown("A-Button1"))
+            {
+                Check(ButtonsPlayer1.A);
+                Debug.Log("press A xbox controller");
+            }
+            else if (Input.GetButtonDown("B-Button1"))
+            {
+                Check(ButtonsPlayer1.B);
+                Debug.Log("press B xbox controller");
+            }
+            else if (Input.GetButtonDown("X-Button1"))
+            {
+                Check(ButtonsPlayer1.X);
+                Debug.Log("press X xbox controller");
+            }
+            else if (Input.GetButtonDown("Y-Button1"))
+            {
+                Check(ButtonsPlayer1.Y);
+                Debug.Log("press Y xbox controller");
+            }
         }
-        if (Input.GetButtonDown("B-Button1"))
-        {
-            Check(ButtonsPlayer1.B);
-            Debug.Log("press B xbox controller");
-        }
-        if (Input.GetButtonDown("X-Button1"))
-        {
-            Check(ButtonsPlayer1.X);
-            Debug.Log("press X xbox controller");
-        }
-        if (Input.GetButtonDown("Y-Button1"))
-        {
-            Check(ButtonsPlayer1.Y);
-            Debug.Log("press Y xbox controller");
-        }
+
+        //if (player == Player.PLAYER_TWO)
+        //{
+        //    if (Input.GetButtonDown("A-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.A);
+        //        Debug.Log("press A logitech controller");
+        //    }
+
+        //    if (Input.GetButtonDown("B-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.B);
+        //        Debug.Log("press B logitech controller");
+        //    }
+
+        //    if (Input.GetButtonDown("X-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.X);
+        //        Debug.Log("press X logitech controller");
+        //    }
+        //    if (Input.GetButtonDown("Y-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.Y);
+        //        Debug.Log("press Y logitech controller");
+        //    }
+        //}
     }
 
 
-    public virtual void SequenceRandomizer()
+    private void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
         //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
@@ -103,7 +135,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public virtual void Check(ButtonsPlayer1 input)
+    private void Check(ButtonsPlayer1 input)
     {
         if (input == correctOrderSmall[currentSequenceButton])
         {

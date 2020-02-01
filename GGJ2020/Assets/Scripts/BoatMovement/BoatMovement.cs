@@ -5,16 +5,23 @@ using UnityEngine;
 public class BoatMovement : MonoBehaviour
 {
     [SerializeField] private int minSpeed;
-    [SerializeField] private int maxSpeed;
+    [SerializeField] private int _maxSpeed;
+
+    public int maxSpeed { get { return _maxSpeed; } }
     private BoatHealth boatHealth;
 
     private float speed;
     public float distanceCovered { get; private set; }
 
+    private GameObject[] clouds1, clouds2;
+
     private void Start()
     {
         boatHealth = GetComponent<BoatHealth>();
-        speed = maxSpeed;
+        speed = _maxSpeed;
+
+        clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
+        clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
 
         ProgressManager.onPlayerFinish.AddListener(setfinish);
     }
@@ -23,7 +30,7 @@ public class BoatMovement : MonoBehaviour
     {
         calculateSpeed();
 
-        speed = Mathf.Clamp(speed, float.MinValue, maxSpeed);
+        speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
 
         distanceCovered += speed * Time.deltaTime;
 
@@ -40,9 +47,25 @@ public class BoatMovement : MonoBehaviour
         //Map to value between zero and one
         float speedMultiplier = Math.Normalize(boatHealth.health, boatHealth.minHealth, boatHealth.maxHealth);
 
-        float adjustedSpeed = maxSpeed * speedMultiplier;
+        float adjustedSpeed = _maxSpeed * speedMultiplier;
 
         //Map adjustedSpeed to value between the minSpeed and the maxSpeed
-        speed = (maxSpeed - minSpeed) * adjustedSpeed / maxSpeed + minSpeed;
+        speed = (_maxSpeed - minSpeed) * adjustedSpeed / _maxSpeed + minSpeed;
+
+        if (this.gameObject.name == "Boat1")
+        {
+            foreach (GameObject cloud in clouds1)
+            {
+                cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
+            }
+        }
+        else if (this.gameObject.name == "Boat2")
+        {
+            foreach (GameObject cloud in clouds2)
+            {
+                cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
+            }
+        }
+
     }
 }
