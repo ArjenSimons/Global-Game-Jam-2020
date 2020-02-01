@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 4f21eb939ddcf2a4e8e391b3589cd183, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: 160523e5cdec74b4a8590472a0f3b6d1, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: 160523e5cdec74b4a8590472a0f3b6d1, type: 3}
 --- !u!1 &3146351539305615183
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 233d55a69f592c940b04dbcc3cd12fcf, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: 136152fed47fa77408dc42aff2e88416, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: df5b13f7659d3d545915a331d33c3c78, type: 3}
 --- !u!114 &5301897032874356695
@@ -378,6 +380,7 @@ MonoBehaviour:
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!61 &4231886391223585867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -501,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 1cbb6dde13e4a6347ad790d552e26b61, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: 9e3fd7ac378fac8499f4d615748e4d5b, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: cd48c903d7902e64587f8eadf32f7139, type: 3}
 --- !u!114 &6286875844540295074
@@ -518,6 +522,7 @@ MonoBehaviour:
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!61 &599538087429341583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -725,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 6e2cfc571de3bdd488cc08a836f50423, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: 5a98a5531b10cc94592d4fea43ff70c6, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: 157ab495feb425b4e879efa01dd51369, type: 3}
 --- !u!114 &7968734267447582847
@@ -742,6 +748,7 @@ MonoBehaviour:
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!61 &6249281319382052140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -865,6 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 6d4e5f0f751daf047a7b6613ec603ae4, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: 9f9bb21f5dfdd6441bc032c4f22b8dae, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: bd01bea82508ad34aaab8df98b5c87e8, type: 3}
 --- !u!114 &245167645663956687
@@ -882,6 +890,7 @@ MonoBehaviour:
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!61 &1038663112628832144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1005,6 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
+  noDamageSprite: {fileID: 21300000, guid: 2338d77ac2af8f0439d632fc72f78bfc, type: 3}
   smallDamageSprite: {fileID: 21300000, guid: f5ae0b1082217dc4ba3756d260e14e31, type: 3}
   bigDamageSprite: {fileID: 21300000, guid: c2219c53559f77a46a0e94be475e400d, type: 3}
 --- !u!114 &7252173651092825825
@@ -1022,6 +1032,7 @@ MonoBehaviour:
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!61 &6574551020661929206
 BoxCollider2D:
   m_ObjectHideFlags: 0

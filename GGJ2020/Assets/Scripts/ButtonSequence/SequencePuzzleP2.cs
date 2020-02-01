@@ -133,7 +133,7 @@ public class SequencePuzzleP2 : MonoBehaviour
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
                     isActivated = false;
-                    //delete hole
+                    bS.RepairBoatSegment();
                 }
             }
             else
@@ -155,7 +155,7 @@ public class SequencePuzzleP2 : MonoBehaviour
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
                     isActivated = false;
-                    //delete hole
+                    bS.RepairBoatSegment();
                 }
             }
             else
