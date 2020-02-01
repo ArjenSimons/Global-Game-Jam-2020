@@ -16,12 +16,17 @@ public class SequencePuzzle : MonoBehaviour
     [SerializeField]
     private Buttons[] correctOrderBig;
 
-    int currentSequenceButton;
-    int smallOrderMax;
-    int bigOrderMax;
+    private int currentSequenceButton;
+    private int smallOrderMax;
+    private int bigOrderMax;
 
-    private void Start()
+    GameObject boatSegment;
+    BoatSegment bS;
+
+    public virtual void Start()
     {
+        bS = GetComponentInChildren<BoatSegment>();
+
         currentSequenceButton = 0;
         smallOrderMax = 4;
         bigOrderMax = 8;
@@ -30,53 +35,67 @@ public class SequencePuzzle : MonoBehaviour
     }
 
 
-    private void Update()
+    public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Check(Buttons.A);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            Check(Buttons.B);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            Check(Buttons.X);
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Check(Buttons.Y);
-        }
-
-        //if (Input.GetButton("A-Button1") || Input.GetButton("A-Button2"))
+        //if (Input.GetKeyDown(KeyCode.A))
         //{
         //    Check(Buttons.A);
         //}
-        //else if (Input.GetButton("B-Button1") || Input.GetButton("B-Button2"))
+        //else if (Input.GetKeyDown(KeyCode.B))
         //{
         //    Check(Buttons.B);
         //}
-        //else if (Input.GetButton("X-Button1") || Input.GetButton("X-Button2"))
+        //else if (Input.GetKeyDown(KeyCode.X))
         //{
         //    Check(Buttons.X);
         //}
-        //else if (Input.GetButton("Y-Button1") || Input.GetButton("Y-Button2"))
+        //else if (Input.GetKeyDown(KeyCode.Y))
         //{
         //    Check(Buttons.Y);
         //}
+
+        if (Input.GetButtonDown("A-Button1"))
+        {
+            Check(Buttons.A);
+            Debug.Log("press A xbox controller");
+        }
+        if (Input.GetButtonDown("B-Button1"))
+        {
+            Check(Buttons.B);
+            Debug.Log("press B xbox controller");
+        }
+        if (Input.GetButtonDown("X-Button1"))
+        {
+            Check(Buttons.X);
+            Debug.Log("press X xbox controller");
+        }
+        if (Input.GetButtonDown("Y-Button1"))
+        {
+            Check(Buttons.Y);
+            Debug.Log("press Y xbox controller");
+        }
+
     }
 
-    private void SequenceRandomizer()
+
+    public virtual void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
-        //if (stage = 1 )
+        //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         //{
-
-        //}
         for (int i = 0; i < correctOrderSmall.Length; i++)
         {
             correctOrderSmall[i] = (Buttons)UnityEngine.Random.Range(0, 3);
+        }
+        //}
+
+        //if (bS.MyStatus == BoatSegment.Status.BigDamage)
+        //{
+
+        //}
+        for (int j = 0; j < correctOrderBig.Length; j++)
+        {
+            correctOrderBig[j] = (Buttons)UnityEngine.Random.Range(0, 7);
         }
     }
 
@@ -85,7 +104,7 @@ public class SequencePuzzle : MonoBehaviour
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    private void Check(Buttons input)
+    public virtual void Check(Buttons input)
     {
         if (input == correctOrderSmall[currentSequenceButton])
         {
