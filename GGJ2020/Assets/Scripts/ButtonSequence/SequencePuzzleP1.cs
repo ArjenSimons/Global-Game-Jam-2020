@@ -27,7 +27,7 @@ public class SequencePuzzleP1 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-    bool isActivated;
+    public bool isActivated;
     private GameObject boatSegment;
 
     BoatSegment bS;
@@ -102,7 +102,6 @@ public class SequencePuzzleP1 : MonoBehaviour
                     buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
                 }
         }
-        isActivated = true;
     }
 
     /// <summary>
