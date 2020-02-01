@@ -26,7 +26,7 @@ public class CloudMovement : MonoBehaviour
     /// The speed of the cloud, maximum speed of cloud and maximum speed of boat.
     /// Slow and Fast speed offsets for paralax scrolling.
     /// </summary>
-    private float speed, maxSpeed, maxBoatSpeed, slowSpeedOffset, fastSpeedOffset, placementOffset, offScreenOffset;
+    private float speed, maxSpeed, maxBoatSpeed, slowSpeedOffset, fastSpeedOffset, offScreenOffset;
 
     /// <summary>
     /// MovementVector used to move the cloud.
@@ -54,7 +54,7 @@ public class CloudMovement : MonoBehaviour
         //randomizes X and Y scale of clouds
         this.transform.localScale = new Vector3(Random.Range(minWidth, maxWidth), Random.Range(minHeight, maxHeight), this.transform.localScale.z);
 
-        maxSpeed = 100;
+        maxSpeed = 12;
 
         if (this.gameObject.name.Contains(CloudSpeedType.Slow.ToString()))
         {
@@ -73,12 +73,17 @@ public class CloudMovement : MonoBehaviour
         fastSpeedOffset = 1.5f;
 
         //TODO: set maxBoatSpeed to maximum speed of boat.
-        
+
+        maxBoatSpeed = GameObject.Find("Boat").GetComponent<BoatMovement>().maxSpeed;
+
+        Debug.Log(maxBoatSpeed);
+
         //boats start at max speed so clouds should too.
         ChangeSpeed(maxBoatSpeed);
 
-        offScreenOffset = this.gameObject.GetComponent<SpriteRenderer>().size.x;
-        placementOffset = offScreenOffset / 2;
+        //
+
+        offScreenOffset = upperCamera.WorldToScreenPoint(new Vector3(this.transform.position.x + this.gameObject.GetComponent<SpriteRenderer>().sprite.rect.width, 0, 0)).x - upperCamera.WorldToScreenPoint(new Vector3(this.transform.position.x, 0, 0)).x;
     }
 
     // Update is called once per frame
@@ -86,7 +91,7 @@ public class CloudMovement : MonoBehaviour
     {
         if (upperCamera.WorldToScreenPoint(this.transform.position).x < upperCamera.pixelRect.xMin - offScreenOffset)
         {
-            this.transform.position = new Vector3(upperCamera.ScreenToWorldPoint(new Vector3(upperCamera.pixelWidth, 0, 0)).x + placementOffset, this.transform.position.y, this.transform.position.z);
+            this.transform.position = new Vector3(upperCamera.ScreenToWorldPoint(new Vector3(upperCamera.pixelWidth + offScreenOffset, 0, 0)).x, this.transform.position.y, this.transform.position.z);
         }
     }
 
@@ -103,7 +108,11 @@ public class CloudMovement : MonoBehaviour
     {
         float percentage = oneHundredPerc / maxBoatSpeed * boatSpeed;
 
+        Debug.Log(percentage);
+
         speed = percentage / oneHundredPerc * maxSpeed;
+
+        Debug.Log(speed);
 
         if (cloudSpeedType == CloudSpeedType.Fast)
         {
@@ -114,6 +123,8 @@ public class CloudMovement : MonoBehaviour
             speed += slowSpeedOffset;
         }
 
-        movementVector = -Vector3.right * speed;
+        movementVector = -Vector3.right * speed / 50;
+
+        Debug.Log(movementVector);
     }
 }

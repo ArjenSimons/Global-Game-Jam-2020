@@ -202,7 +202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970900936
 GameObject:
@@ -276,7 +276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &982231755
 PrefabInstance:
@@ -285,6 +285,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 180654232057131508, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1750593422460409036, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -397,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 3164186726262771371, guid: 2365266ae4bd7934eb15f9fb7e07b501,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3164186726262771371, guid: 2365266ae4bd7934eb15f9fb7e07b501,
         type: 3}
@@ -461,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 7765239979203303105, guid: cf20fff56c9f0a542b219cb038b7a334,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7765239979203303105, guid: cf20fff56c9f0a542b219cb038b7a334,
         type: 3}
@@ -535,7 +540,7 @@ PrefabInstance:
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -776,7 +781,7 @@ PrefabInstance:
     - target: {fileID: -2071133413246718448, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
       propertyPath: cloudSpeedType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 654637794412219176, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
@@ -836,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 3156737332050294480, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
       propertyPath: m_Name
-      value: CloudSlow
+      value: CloudFast
       objectReference: {fileID: 0}
     - target: {fileID: 6066806353036900508, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
