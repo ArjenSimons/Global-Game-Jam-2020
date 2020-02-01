@@ -366,6 +366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 180654232057131508}
   - component: {fileID: 3846247049904854867}
+  - component: {fileID: -2296543598701415572}
+  - component: {fileID: -2826990453939962975}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -413,6 +415,33 @@ MonoBehaviour:
   health: 0
   _maxHealth: 80
   _minHealth: 0
+--- !u!114 &-2296543598701415572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186692353721809990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f64f3f7d831d445b8d5b1d431109d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpeed: 20
+  maxSpeed: 100
+--- !u!114 &-2826990453939962975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186692353721809990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968e5f12bba0e91479c50035c833689e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PlayerType: 0
 --- !u!1 &4446208247413109421
 GameObject:
   m_ObjectHideFlags: 0
