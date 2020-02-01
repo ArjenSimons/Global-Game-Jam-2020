@@ -219,7 +219,12 @@ PrefabInstance:
     - target: {fileID: 4434199059068702580, guid: 48c3f7385f92f5d4bafd24752c56e57a,
         type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434199059068702580, guid: 48c3f7385f92f5d4bafd24752c56e57a,
+        type: 3}
+      propertyPath: orientation
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4434199059068702581, guid: 48c3f7385f92f5d4bafd24752c56e57a,
         type: 3}
