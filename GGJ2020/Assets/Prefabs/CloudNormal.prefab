@@ -96,4 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperCamera: {fileID: 8814269109008474495, guid: 4fc2004a421a3e343878a6d47af9f333,
     type: 3}
-  cloudSpeedType: 0
+  cloudSpeedType: 1
