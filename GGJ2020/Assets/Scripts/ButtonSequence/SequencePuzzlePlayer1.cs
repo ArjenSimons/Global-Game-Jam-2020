@@ -64,22 +64,48 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
                 Check(ButtonsPlayer1.A);
                 Debug.Log("press A xbox controller");
             }
-            if (Input.GetButtonDown("B-Button1"))
+            else if (Input.GetButtonDown("B-Button1"))
             {
                 Check(ButtonsPlayer1.B);
                 Debug.Log("press B xbox controller");
             }
-            if (Input.GetButtonDown("X-Button1"))
+            else if (Input.GetButtonDown("X-Button1"))
             {
                 Check(ButtonsPlayer1.X);
                 Debug.Log("press X xbox controller");
             }
-            if (Input.GetButtonDown("Y-Button1"))
+            else if (Input.GetButtonDown("Y-Button1"))
             {
                 Check(ButtonsPlayer1.Y);
                 Debug.Log("press Y xbox controller");
             }
         }
+
+        //if (player == Player.PLAYER_TWO)
+        //{
+        //    if (Input.GetButtonDown("A-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.A);
+        //        Debug.Log("press A logitech controller");
+        //    }
+
+        //    if (Input.GetButtonDown("B-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.B);
+        //        Debug.Log("press B logitech controller");
+        //    }
+
+        //    if (Input.GetButtonDown("X-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.X);
+        //        Debug.Log("press X logitech controller");
+        //    }
+        //    if (Input.GetButtonDown("Y-Button2"))
+        //    {
+        //        Check(ButtonsPlayer1.Y);
+        //        Debug.Log("press Y logitech controller");
+        //    }
+        //}
     }
 
 

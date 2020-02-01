@@ -56,26 +56,52 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
         //{
         //    Check(Buttons.Y);
 
+        //if (player == Player.PLAYER_ONE)
+        //{
+        //    if (Input.GetButtonDown("A-Button1"))
+        //    {
+        //        Check(ButtonsPlayer2.A);
+        //        Debug.Log("press A xbox controller");
+        //    }
+        //    if (Input.GetButtonDown("B-Button1"))
+        //    {
+        //        Check(ButtonsPlayer2.B);
+        //        Debug.Log("press B xbox controller");
+        //    }
+        //    if (Input.GetButtonDown("X-Button1"))
+        //    {
+        //        Check(ButtonsPlayer2.X);
+        //        Debug.Log("press X xbox controller");
+        //    }
+        //    if (Input.GetButtonDown("Y-Button1"))
+        //    {
+        //        Check(ButtonsPlayer2.Y);
+        //        Debug.Log("press Y xbox controller");
+        //    }
+
+        //}
+
+
         if (player == Player.PLAYER_TWO)
         {
-            if (Input.GetButtonDown("A-Button2"))
+            if (Input.GetKeyDown("joystick 2 button 1"))
             {
                 Check(ButtonsPlayer2.A);
                 Debug.Log("press A logitech controller");
             }
 
-            if (Input.GetButtonDown("B-Button2"))
+            else if (Input.GetKeyDown("joystick 2 button 2"))
             {
                 Check(ButtonsPlayer2.B);
                 Debug.Log("press B logitech controller");
             }
 
-            if (Input.GetButtonDown("X-Button2"))
+            else if (Input.GetKeyDown("joystick 2 button 0"))
             {
                 Check(ButtonsPlayer2.X);
                 Debug.Log("press X logitech controller");
             }
-            if (Input.GetButtonDown("Y-Button2"))
+            else if (Input.GetKeyDown("joystick 2 button 3"))
             {
                 Check(ButtonsPlayer2.Y);
                 Debug.Log("press Y logitech controller");
