@@ -9,15 +9,15 @@ public class ProgressManager
     [SerializeField] private BoatMovement boat1;
     [SerializeField] private BoatMovement boat2;
 
-    public float getProgression(BoatType boot)
+    public float getProgression(Player boot)
     {
         float distanceCovered = 0;
         switch (boot)
         {
-            case BoatType.BOAT_ONE:
+            case Player.PLAYER_ONE:
                 distanceCovered = boat1.distanceCovered;
                 break;
-            case BoatType.BOAT_TWO:
+            case Player.PLAYER_TWO:
                 distanceCovered = boat2.distanceCovered;
                 break;
             default: throw new ArgumentOutOfRangeException();
