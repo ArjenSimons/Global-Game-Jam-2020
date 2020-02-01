@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-///  This script manages the sequence puzzle
+///  This script manages the sequence puzzle PLAYER2
 /// </summary>
-public class SequencePuzzlePlayer1 : MonoBehaviour
+public class SequencePuzzleP2 : MonoBehaviour
 {
-    public enum ButtonsPlayer1 { A, B, X, Y }
+    public enum ButtonsP2 { A, B, X, Y }
 
     [SerializeField]
     private Player player;
 
     [SerializeField]
-    private ButtonsPlayer1[] correctOrderSmall;
+    private ButtonsP2[] correctOrderSmall;
 
     [SerializeField]
-    private ButtonsPlayer1[] correctOrderBig;
+    private ButtonsP2[] correctOrderBig;
 
     private int currentSequenceButton;
     private int smallOrderMax;
@@ -37,97 +37,55 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
         SequenceRandomizer();
     }
 
-
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    Check(Buttons.A);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    Check(Buttons.B);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.X))
-        //{
-        //    Check(Buttons.X);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    Check(Buttons.Y);
-        //}
-
+        // PLAYER TWO uses xbox controller
         if (player == Player.PLAYER_TWO)
         {
             if (Input.GetButtonDown("A-Button1"))
             {
-                Check(ButtonsPlayer1.A);
+                Check(ButtonsP2.A);
                 Debug.Log("press A xbox controller");
             }
             else if (Input.GetButtonDown("B-Button1"))
             {
-                Check(ButtonsPlayer1.B);
+                Check(ButtonsP2.B);
                 Debug.Log("press B xbox controller");
             }
             else if (Input.GetButtonDown("X-Button1"))
             {
-                Check(ButtonsPlayer1.X);
+                Check(ButtonsP2.X);
                 Debug.Log("press X xbox controller");
             }
             else if (Input.GetButtonDown("Y-Button1"))
             {
-                Check(ButtonsPlayer1.Y);
+                Check(ButtonsP2.Y);
                 Debug.Log("press Y xbox controller");
             }
         }
 
-        //if (player == Player.PLAYER_TWO)
-        //{
-        //    if (Input.GetButtonDown("A-Button2"))
-        //    {
-        //        Check(ButtonsPlayer1.A);
-        //        Debug.Log("press A logitech controller");
-        //    }
-
-        //    if (Input.GetButtonDown("B-Button2"))
-        //    {
-        //        Check(ButtonsPlayer1.B);
-        //        Debug.Log("press B logitech controller");
-        //    }
-
-        //    if (Input.GetButtonDown("X-Button2"))
-        //    {
-        //        Check(ButtonsPlayer1.X);
-        //        Debug.Log("press X logitech controller");
-        //    }
-        //    if (Input.GetButtonDown("Y-Button2"))
-        //    {
-        //        Check(ButtonsPlayer1.Y);
-        //        Debug.Log("press Y logitech controller");
-        //    }
-        //}
+        //InputKeyboard();
     }
 
-
+    /// <summary>
+    /// Randomize the button combination in the sequence puzzle
+    /// </summary>
     private void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
-        //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
-        //{
-        for (int i = 0; i < correctOrderSmall.Length; i++)
-        {
-            correctOrderSmall[i] = (ButtonsPlayer1)UnityEngine.Random.Range(0, 3);
-        }
-        //}
 
-        //if (bS.MyStatus == BoatSegment.Status.BigDamage)
-        //{
-
-        //}
-        for (int j = 0; j < correctOrderBig.Length; j++)
+        if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            correctOrderBig[j] = (ButtonsPlayer1)UnityEngine.Random.Range(0, 3);
+            for (int i = 0; i < correctOrderSmall.Length; i++)
+                correctOrderSmall[i] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
         }
+
+        if (bS.MyStatus == BoatSegment.Status.BigDamage)
+        {
+            for (int j = 0; j < correctOrderBig.Length; j++)
+                correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
+        }
+
     }
 
     /// <summary>
@@ -135,7 +93,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    private void Check(ButtonsPlayer1 input)
+    private void Check(ButtonsP2 input)
     {
         if (input == correctOrderSmall[currentSequenceButton])
         {
@@ -154,6 +112,29 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
             currentSequenceButton = 0;
             // generate a new sequence
             SequenceRandomizer();
+        }
+    }
+
+    /// <summary>
+    /// Method that reads user input thru keyboard
+    /// </summary>
+    private void InputKeyboard()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Check(ButtonsP2.A);
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            Check(ButtonsP2.B);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            Check(ButtonsP2.X);
+        }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Check(ButtonsP2.Y);
         }
     }
 }
