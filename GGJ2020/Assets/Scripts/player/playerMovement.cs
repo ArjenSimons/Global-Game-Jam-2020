@@ -6,7 +6,7 @@ public class playerMovement : MonoBehaviour
 {
     [SerializeField]
     private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f;
-    private float playerSpeed = 0, inputDirectionUpper = 0, inputDirectionUnder = 0;
+    private float playerSpeed = 0, inputDirectionUpper = 0, inputDirectionUnder = 0, boatSize, amountOfChilds;
 
     [SerializeField]
     private GameObject boat;
@@ -21,7 +21,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boatRender = boat.GetComponent<SpriteRenderer>();
+        boatRender = boat.transform.GetChild(boat.transform.childCount - 1).GetComponent<SpriteRenderer>();
         playerRender = GetComponent<SpriteRenderer>();
     }
 
@@ -40,13 +40,14 @@ public class playerMovement : MonoBehaviour
     {
         var boatPos = boat.transform.position;
         var pos = transform.position;
-        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f))
         {
-            pos.x = boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            pos.x = boatPos.x + ((boatRender.size.x / 2) - playerRender.size.x + 0.1f);
             transform.position = pos;
-        } else if (transform.position.x < boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        }
+        else if (transform.position.x < boatPos.x - boatRender.size.x / 2)
         {
-            pos.x = boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            pos.x = boatPos.x - boatRender.size.x / 2;
             transform.position = pos;
         }
     }
