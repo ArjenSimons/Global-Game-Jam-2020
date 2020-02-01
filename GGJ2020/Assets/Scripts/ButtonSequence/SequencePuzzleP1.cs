@@ -33,8 +33,8 @@ public class SequencePuzzleP1 : MonoBehaviour
         bS = GetComponent<BoatSegment>();
 
         currentSequenceButton = 0;
-        smallOrderMax = 4;
-        bigOrderMax = 4;
+        smallOrderMax = correctOrderSmall.Length;
+        bigOrderMax = correctOrderBig.Length;
     }
 
 
