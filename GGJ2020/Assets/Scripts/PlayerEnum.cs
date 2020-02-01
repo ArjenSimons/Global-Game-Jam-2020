@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BoatType
+public enum Player
 {
-    BOAT_ONE,
-    BOAT_TWO
+    PLAYER_ONE,
+    PLAYER_TWO
 }
