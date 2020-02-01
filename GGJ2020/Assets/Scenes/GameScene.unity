@@ -741,6 +741,16 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 577073303537107225, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
+    - target: {fileID: 774933619942090208, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
     - target: {fileID: 1750593422460409036, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -801,6 +811,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2426821813742183346, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
     - target: {fileID: 3178915575186463355, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -811,6 +826,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 3626526089708113155, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -836,6 +856,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 5379929898325453673, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -886,6 +911,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1516003091}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df869b83e4dbb2448cbeecb73aad291, type: 3}
 --- !u!114 &982231756 stripped
@@ -2063,6 +2093,7 @@ MonoBehaviour:
   player: {fileID: 1867877769}
   repairButtonIndicator: {fileID: 1867877770}
   playerEnum: 0
+  tryingToActivate: 0
 --- !u!1 &1751869427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -2081,9 +2112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c443c53b5c0721841b50d0cbb1668dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1867877769}
-  repairButtonIndicator: {fileID: 1867877770}
+  player: {fileID: 508539260310649703}
+  repairButtonIndicator: {fileID: 508539260310649706}
   playerEnum: 1
+  tryingToActivate: 0
 --- !u!114 &1751869433 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -2409,6 +2441,7 @@ MonoBehaviour:
   player: 0
   correctOrderSmall: 00000000000000000000000000000000
   correctOrderBig: 00000000000000000000000000000000
+  isActivated: 0
 --- !u!4 &1867877773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
@@ -2919,6 +2952,7 @@ MonoBehaviour:
   - {fileID: 1521861887}
   - {fileID: 1521861886}
   - {fileID: 1521861885}
+  isActivated: 0
 --- !u!4 &508539260310649711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
@@ -3002,6 +3036,21 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 577073303537107225, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
+    - target: {fileID: 774933619942090208, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
+    - target: {fileID: 2426821813742183346, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
     - target: {fileID: 3178915575186463355, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -3012,6 +3061,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 508539260310649706}
+    - target: {fileID: 3626526089708113155, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -3042,6 +3096,11 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5379929898325453673, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -3097,6 +3156,11 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: boatHealth
+      value: 
+      objectReference: {fileID: 1239932369}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df869b83e4dbb2448cbeecb73aad291, type: 3}
 --- !u!114 &1750593422924748609 stripped
