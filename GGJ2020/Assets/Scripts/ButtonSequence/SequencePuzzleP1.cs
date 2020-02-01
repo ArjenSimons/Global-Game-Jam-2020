@@ -97,23 +97,47 @@ public class SequencePuzzleP1 : MonoBehaviour
     /// <returns></returns>
     private void Check(ButtonsP1 input)
     {
-        if (input == correctOrderSmall[currentSequenceButton])
+        if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            currentSequenceButton++;
-            Debug.Log("solved a thing");
-            if (currentSequenceButton == smallOrderMax)
+            if (input == correctOrderSmall[currentSequenceButton])
             {
-                Debug.Log(" you just solved the whole damn puzzle!");
+                currentSequenceButton++;
+                Debug.Log("solved a thing");
+                if (currentSequenceButton == smallOrderMax)
+                {
+                    Debug.Log(" you just solved the whole damn puzzle!");
+                    currentSequenceButton = 0;
+                    //delete hole
+                }
+            }
+            else
+            {
+                Debug.Log("you fucked up xD");
                 currentSequenceButton = 0;
-                //delete hole
+                // generate a new sequence
+                SequenceRandomizer();
             }
         }
-        else
+        else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            Debug.Log("you fucked up xD");
-            currentSequenceButton = 0;
-            // generate a new sequence
-            SequenceRandomizer();
+            if (input == correctOrderBig[currentSequenceButton])
+            {
+                currentSequenceButton++;
+                Debug.Log("solved a thing");
+                if (currentSequenceButton == bigOrderMax)
+                {
+                    Debug.Log(" you just solved the whole damn puzzle!");
+                    currentSequenceButton = 0;
+                    //delete hole
+                }
+            }
+            else
+            {
+                Debug.Log("you fucked up xD");
+                currentSequenceButton = 0;
+                // generate a new sequence
+                SequenceRandomizer();
+            }
         }
     }
 
