@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d0e67871c1cbff4db3bbc86424ebb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressManager: {fileID: 1233783983}
+  progressManager: {fileID: 1464259895}
   playerOneIndicator: {fileID: 1923550234}
   playerTwoIndicator: {fileID: 1599356398}
   speedIndicatorOne: {fileID: 1350207571}
@@ -1252,27 +1252,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59fd861985278c14a83c488ae388b2d8, type: 3}
---- !u!1 &1233783982 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2766340627998777627, guid: 59fd861985278c14a83c488ae388b2d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1233783981}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1233783983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233783982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d1467dadd53fce4e9c8ec5408516d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raceDistance: 100
-  boatOne: {fileID: 982231756}
-  boatTwo: {fileID: 1750593422924748609}
 --- !u!1 &1239932367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -1655,6 +1634,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c9a0edd5e229f24291c8247cf955a62, type: 3}
+--- !u!1 &1464259894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1464259896}
+  - component: {fileID: 1464259895}
+  m_Layer: 0
+  m_Name: ProgressManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1464259895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464259894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1467dadd53fce4e9c8ec5408516d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raceDistance: 100
+  boatOne: {fileID: 982231756}
+  boatTwo: {fileID: 1750593422924748609}
+--- !u!4 &1464259896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464259894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 709.11084, y: 520.3365, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1503262504 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2426821813742183346, guid: 6df869b83e4dbb2448cbeecb73aad291,
@@ -2324,6 +2349,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 1.5}
   m_Direction: 0
+--- !u!114 &1867877772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867877769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a649fb7bbf3d7949950fcb7d746eb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
+  correctOrderSmall: 00000000000000000000000000000000
+  correctOrderBig: 00000000000000000000000000000000
 --- !u!1 &1882732193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,21 +2438,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882732193}
   m_CullTransparentMesh: 0
---- !u!114 &1867877772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1867877769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a649fb7bbf3d7949950fcb7d746eb8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 0
-  correctOrderSmall: 00000000000000000000000000000000
-  correctOrderBig: 00000000000000000000000000000000
 --- !u!1 &1923550233
 GameObject:
   m_ObjectHideFlags: 0
