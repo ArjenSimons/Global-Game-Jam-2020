@@ -727,6 +727,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: UpperCamera1
   m_TagString: MainCamera
@@ -742,6 +743,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a852759b2f52b547b63e8840dbe5b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  screenShakeTime: 0.25
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1545,6 +1560,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 3846247049904854867, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 970900938}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -1637,18 +1657,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2f64f3f7d831d445b8d5b1d431109d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &982231760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 774933619942090208, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 982231755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &982231761 stripped
@@ -3279,74 +3287,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1751827310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 982231755}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1751827311 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 982231755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751827310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1751827312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751827310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c443c53b5c0721841b50d0cbb1668dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1867877769}
-  repairButtonIndicator: {fileID: 1867877770}
-  playerEnum: 0
-  tryingToActivate: 0
---- !u!1 &1751869427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750593422924748608}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1751869429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751869427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c443c53b5c0721841b50d0cbb1668dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1867877769}
-  repairButtonIndicator: {fileID: 1867877770}
-  playerEnum: 1
-  tryingToActivate: 0
---- !u!114 &1751869433 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750593422924748608}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751869427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1859211581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3362,12 +3302,12 @@ PrefabInstance:
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerOneBoat.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerTwoBoat.Array.size
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
@@ -3388,7 +3328,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerOneBoat.Array.data[3]
       value: 
-      objectReference: {fileID: 982231760}
+      objectReference: {fileID: 111684785}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerOneBoat.Array.data[4]
@@ -3398,7 +3338,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerOneBoat.Array.data[5]
       value: 
-      objectReference: {fileID: 1751827311}
+      objectReference: {fileID: 0}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerOneBoat.Array.data[6]
@@ -3428,7 +3368,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTwoBoat.Array.data[3]
       value: 
-      objectReference: {fileID: 1750593422924748613}
+      objectReference: {fileID: 1503262504}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerTwoBoat.Array.data[4]
@@ -3438,7 +3378,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTwoBoat.Array.data[5]
       value: 
-      objectReference: {fileID: 1751869433}
+      objectReference: {fileID: 0}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerTwoBoat.Array.data[6]
@@ -4498,6 +4438,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 508539260310649706}
+    - target: {fileID: 3846247049904854867, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -4595,18 +4540,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2f64f3f7d831d445b8d5b1d431109d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1750593422924748613 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 774933619942090208, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750593422924748608}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1750593422924748614 stripped

@@ -7,8 +7,11 @@ public class HealthChangeEvent : UnityEvent<Player, int, bool> { }
 
 public class BoatHealth : MonoBehaviour
 {
-    //Don;t acces this variable acces health instead!!!
+    //Don't access this variable access health instead!!!
     private int _health;
+
+    [SerializeField]
+    private Camera cam;
 
     public int health
     {
@@ -47,6 +50,8 @@ public class BoatHealth : MonoBehaviour
         {
             health -= damage;
         }
+
+        cam.GetComponent<ScreenShake>().activateScreenShake();
     }
 
     // Restore the damage dealt to the boat
