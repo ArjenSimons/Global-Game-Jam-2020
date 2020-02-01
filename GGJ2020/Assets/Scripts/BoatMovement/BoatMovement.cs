@@ -22,8 +22,6 @@ public class BoatMovement : MonoBehaviour
 
         clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
         clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
-
-        //ProgressManager.onPlayerFinish.AddListener(setfinish);
     }
 
     private void FixedUpdate()
@@ -35,11 +33,6 @@ public class BoatMovement : MonoBehaviour
         distanceCovered += speed * Time.deltaTime;
 
         
-    }
-
-    private void setfinish(Player player)
-    {
-        Debug.Log(player + ": finished");
     }
 
     private void calculateSpeed()
