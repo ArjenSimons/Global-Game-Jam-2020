@@ -82,7 +82,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
         //}
 
 
-        if (player == Player.PLAYER_TWO)
+        if (player == Player.PLAYER_ONE)
         {
             if (Input.GetKeyDown("joystick 2 button 1"))
             {

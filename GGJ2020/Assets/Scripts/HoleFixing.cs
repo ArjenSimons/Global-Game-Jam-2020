@@ -13,6 +13,8 @@ public class HoleFixing : MonoBehaviour
 
     private const string PLAYER_TAG = "Player";
 
+    private Player playerEnum;
+
     private BoatSegment boatSegment;
 
     private void Start()
@@ -72,5 +74,19 @@ public class HoleFixing : MonoBehaviour
         mayPressBtnA = false;
 
         Debug.Log("Je ziet nu de puzzel");
+
+        if (playerEnum == Player.PLAYER_ONE)
+        {
+            SequencePuzzlePlayer1 puzzlePlayer1 = player.GetComponent<SequencePuzzlePlayer1>();
+            puzzlePlayer1.enabled = true;
+            Debug.Log("yo xD");
+        }
+        else if (playerEnum == Player.PLAYER_TWO)
+        {
+            SequencePuzzlePlayer2 puzzlePlayer2 = player.GetComponent<SequencePuzzlePlayer2>();
+            puzzlePlayer2.enabled = true;
+
+            Debug.Log("player 2 bby xD");
+        }
     }
 }

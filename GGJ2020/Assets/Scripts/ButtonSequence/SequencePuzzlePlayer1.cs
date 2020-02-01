@@ -57,7 +57,7 @@ public class SequencePuzzlePlayer1 : MonoBehaviour
         //    Check(Buttons.Y);
         //}
 
-        if (player == Player.PLAYER_ONE)
+        if (player == Player.PLAYER_TWO)
         {
             if (Input.GetButtonDown("A-Button1"))
             {
