@@ -836,7 +836,7 @@ PrefabInstance:
     - target: {fileID: 3156737332050294480, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
       propertyPath: m_Name
-      value: Cloud
+      value: CloudSlow
       objectReference: {fileID: 0}
     - target: {fileID: 6066806353036900508, guid: 798b6003db19d57439dae4437226d557,
         type: 3}
