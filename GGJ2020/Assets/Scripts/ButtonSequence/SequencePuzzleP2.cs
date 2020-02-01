@@ -20,6 +20,8 @@ public class SequencePuzzleP2 : MonoBehaviour
     [SerializeField]
     private ButtonsP2[] correctOrderBig;
 
+    private playerMovement movementScript2;
+
     public Sprite[] buttonSprites;
     public GameObject[] buttons;
 
@@ -38,6 +40,7 @@ public class SequencePuzzleP2 : MonoBehaviour
         currentSequenceButton = 0;
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
+        movementScript2 = this.gameObject.GetComponent<playerMovement>();
     }
 
     private void Update()
@@ -52,17 +55,17 @@ public class SequencePuzzleP2 : MonoBehaviour
                     Check(ButtonsP2.A);
                     Debug.Log("press A xbox controller");
                 }
-                else if (Input.GetButtonDown("B-Button1"))
+                if (Input.GetButtonDown("B-Button1"))
                 {
                     Check(ButtonsP2.B);
                     Debug.Log("press B xbox controller");
                 }
-                else if (Input.GetButtonDown("X-Button1"))
+                if (Input.GetButtonDown("X-Button1"))
                 {
                     Check(ButtonsP2.X);
                     Debug.Log("press X xbox controller");
                 }
-                else if (Input.GetButtonDown("Y-Button1"))
+                if (Input.GetButtonDown("Y-Button1"))
                 {
                     Check(ButtonsP2.Y);
                     Debug.Log("press Y xbox controller");
@@ -106,6 +109,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StartSequencePuzzle()
     {
+        movementScript2.canWalk = false;
         playerCanvas.gameObject.SetActive(true);
         ResetSequencePuzzle();
         isActivated = true;
@@ -114,6 +118,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StopSequencePuzzle()
     {
+        movementScript2.canWalk = true;
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
@@ -150,6 +155,7 @@ public class SequencePuzzleP2 : MonoBehaviour
     public void SequenceFailed()
     {
         ResetSequencePuzzle();
+        StopSequencePuzzle();
 
         bS.GetComponent<HoleFixing>().ResetBtnA();
         Debug.Log("Sequence was failed.");

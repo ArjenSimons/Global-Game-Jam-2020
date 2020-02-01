@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1867877773}
     m_Modifications:
+    - target: {fileID: 3244027686633575729, guid: 32504eaa42e247d48a9af2cf660c3ceb,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3244027686633575733, guid: 32504eaa42e247d48a9af2cf660c3ceb,
         type: 3}
       propertyPath: m_Name
@@ -2060,7 +2065,7 @@ PrefabInstance:
     - target: {fileID: 3244027686633575729, guid: 32504eaa42e247d48a9af2cf660c3ceb,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3244027686633575733, guid: 32504eaa42e247d48a9af2cf660c3ceb,
         type: 3}
@@ -3301,6 +3306,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 256
+  canWalk: 0
 --- !u!50 &508539260310649705
 Rigidbody2D:
   serializedVersion: 4

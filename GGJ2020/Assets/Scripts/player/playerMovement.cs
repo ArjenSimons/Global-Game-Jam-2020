@@ -25,9 +25,12 @@ public class playerMovement : PlayerMovementBase
 
     private bool walking, grounded;
 
+    public bool canWalk;
+
     // Start is called before the first frame update
     void Start()
     {
+        canWalk = true;
         rb = GetComponent<Rigidbody2D>();
         boatSprite = boat.transform.GetChild(boat.transform.childCount - 1);
         boatRender = boatSprite.GetComponent<SpriteRenderer>();
@@ -36,7 +39,10 @@ public class playerMovement : PlayerMovementBase
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if (canWalk)
+        {
+            movement();
+        }
     }
 
     private void FixedUpdate()

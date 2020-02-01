@@ -20,6 +20,8 @@ public class SequencePuzzleP1 : MonoBehaviour
     [SerializeField]
     private ButtonsP1[] correctOrderBig;
 
+    private player2Movement playerMovementScript;
+
     public Sprite[] buttonSprites;
     public GameObject[] buttons;
 
@@ -39,6 +41,7 @@ public class SequencePuzzleP1 : MonoBehaviour
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
 
+        playerMovementScript = this.gameObject.GetComponent<player2Movement>();
         //StopSequencePuzzle();
 
     }
@@ -108,6 +111,7 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     public void StartSequencePuzzle()
     {
+        playerMovementScript.canMove = false;
         playerCanvas.gameObject.SetActive(true);
         ResetSequencePuzzle();
         isActivated = true;
@@ -116,6 +120,7 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     public void StopSequencePuzzle()
     {
+        playerMovementScript.canMove = true;
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
@@ -141,9 +146,8 @@ public class SequencePuzzleP1 : MonoBehaviour
     public void SequenceSolved()
     {
         ResetSequencePuzzle();
-        StopSequencePuzzle();
-
         bS.RepairBoatSegment();
+        StopSequencePuzzle();
 
         Debug.Log("Sequence was solved.");
     }
@@ -151,6 +155,7 @@ public class SequencePuzzleP1 : MonoBehaviour
     public void SequenceFailed()
     {
         ResetSequencePuzzle();
+        StopSequencePuzzle();
 
         Debug.Log("Sequence was failed.");
     }
