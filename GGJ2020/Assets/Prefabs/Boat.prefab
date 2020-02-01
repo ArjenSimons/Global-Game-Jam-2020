@@ -236,7 +236,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25920123, y: -0.054994315}
+  m_Offset: {x: 0.6002174, y: 0.8044243}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -247,7 +247,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8615977, y: 0.91001135}
+  m_Size: {x: 0.59395564, y: 2.6288486}
   m_EdgeRadius: 0
 --- !u!114 &8435416655693869117
 MonoBehaviour:
@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
+  playerEnum: 0
 --- !u!61 &4231886391223585867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -390,7 +391,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.27491045, y: 0.52637434}
+  m_Offset: {x: -0.7850826, y: 0.52637434}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -401,7 +402,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8301792, y: 0.38725132}
+  m_Size: {x: 0.8098349, y: 0.38725138}
   m_EdgeRadius: 0
 --- !u!1 &3282350313294004777
 GameObject:
@@ -516,6 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
+  playerEnum: 0
 --- !u!61 &599538087429341583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -529,7 +531,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15709168, y: -0.2592592}
+  m_Offset: {x: -0.6647278, y: 0.26713473}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -540,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2663909, y: 0.5014816}
+  m_Size: {x: 0.5466274, y: 1.5542694}
   m_EdgeRadius: 0
 --- !u!1 &4186692353721809990
 GameObject:
@@ -739,6 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
+  playerEnum: 0
 --- !u!61 &6249281319382052140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -752,7 +755,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.51054716, y: 0.17283936}
+  m_Offset: {x: 0.74342203, y: 0.17283936}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -763,7 +766,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2160687, y: 0.3943213}
+  m_Size: {x: 0.750319, y: 0.3943213}
   m_EdgeRadius: 0
 --- !u!1 &6359171770921729284
 GameObject:
@@ -878,6 +881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
+  playerEnum: 0
 --- !u!61 &1038663112628832144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -891,7 +895,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.43985665, y: -0.23569012}
+  m_Offset: {x: -0.38614285, y: 0.4518445}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -902,7 +906,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9974501, y: 0.54861975}
+  m_Size: {x: 0.6321974, y: 1.923689}
   m_EdgeRadius: 0
 --- !u!1 &7913341027960574257
 GameObject:
@@ -1017,6 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   repairButtonIndicator: {fileID: 0}
+  playerEnum: 0
 --- !u!61 &6574551020661929206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1030,7 +1035,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.65499765, y: -1.6765461}
+  m_Offset: {x: -0.14535752, y: -1.6765461}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1041,7 +1046,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6166831, y: 0.7049637}
+  m_Size: {x: 0.5290025, y: 0.7049637}
   m_EdgeRadius: 0
 --- !u!1001 &8085470396625305329
 PrefabInstance:
