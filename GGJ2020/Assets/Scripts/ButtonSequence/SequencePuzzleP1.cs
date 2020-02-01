@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 ///  This script manages the sequence puzzle PLAYER 1
@@ -18,6 +19,9 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     [SerializeField]
     private ButtonsP1[] correctOrderBig;
+
+    public Sprite[] buttonSprites;
+    public GameObject[] buttons;
 
     private int currentSequenceButton;
     private int smallOrderMax;
@@ -77,17 +81,23 @@ public class SequencePuzzleP1 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            Debug.Log("RANDOMIZE404040");
             for (int i = 0; i < correctOrderSmall.Length; i++)
-                correctOrderSmall[i] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
+            {
+
+                int randomNumber = UnityEngine.Random.Range(0, 3);
+                correctOrderSmall[i] = (ButtonsP1)randomNumber;
+                buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+            }
         }
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-
-            Debug.Log("RANDOMIZEWEEEEEEEEEE");
-            for (int j = 0; j < correctOrderBig.Length; j++)
-                correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
+                for (int j = 0; j < correctOrderBig.Length; j++)
+                {
+                    int randomNumber = UnityEngine.Random.Range(0, 3);
+                    correctOrderBig[j] = (ButtonsP1)randomNumber;
+                    buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+                }
         }
     }
 

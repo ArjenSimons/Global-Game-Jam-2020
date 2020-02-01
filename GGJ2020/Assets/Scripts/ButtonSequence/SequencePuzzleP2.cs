@@ -95,16 +95,11 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            Debug.Log("RANDOMIZE");
-            for (int j = 0; j < correctOrderBig.Length; j++)
-                correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
             for (int j = 0; j < correctOrderBig.Length; j++)
             {
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderBig[j] = (ButtonsP2)randomNumber;
                 buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
-
-                Debug.Log("grote");
             }
 
         }
