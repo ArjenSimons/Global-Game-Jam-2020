@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: UpperCamera1
   m_TagString: MainCamera
@@ -796,6 +797,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a852759b2f52b547b63e8840dbe5b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  screenShakeTime: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1447,6 +1462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 970900939}
   - component: {fileID: 970900938}
+  - component: {fileID: 970900937}
   m_Layer: 0
   m_Name: LowerCamera2
   m_TagString: MainCamera
@@ -1454,6 +1470,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &970900937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970900936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a852759b2f52b547b63e8840dbe5b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  screenShakeTime: 0.5
 --- !u!20 &970900938
 Camera:
   m_ObjectHideFlags: 0
@@ -1712,6 +1742,11 @@ PrefabInstance:
       propertyPath: boatHealth
       value: 
       objectReference: {fileID: 1516003091}
+    - target: {fileID: 3846247049904854867, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
@@ -4651,6 +4686,11 @@ PrefabInstance:
       propertyPath: boatHealth
       value: 
       objectReference: {fileID: 1239932369}
+    - target: {fileID: 3846247049904854867, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 970900938}
     - target: {fileID: 4186692353721809990, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_Name
