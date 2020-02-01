@@ -41,7 +41,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         currentSequenceButton = 0;
         smallOrderMax = 4;
-        bigOrderMax = 8;
+        bigOrderMax = 4;
 
 
     }
