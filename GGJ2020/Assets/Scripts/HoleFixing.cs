@@ -17,9 +17,16 @@ public class HoleFixing : MonoBehaviour
 
     private BoatSegment boatSegment;
 
+    private SequencePuzzleP1 puzzlePlayer1;
+    private SequencePuzzleP2 puzzlePlayer2;
+
     private void Start()
     {
         boatSegment = GetComponent<BoatSegment>();
+
+        puzzlePlayer1 = player.GetComponent<SequencePuzzleP1>();
+
+        puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
     }
 
     private void Update()
@@ -77,13 +84,11 @@ public class HoleFixing : MonoBehaviour
 
         if (playerEnum == Player.PLAYER_ONE)
         {
-            SequencePuzzlePlayer1 puzzlePlayer1 = player.GetComponent<SequencePuzzlePlayer1>();
             puzzlePlayer1.enabled = true;
             Debug.Log("yo xD");
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
-            SequencePuzzlePlayer2 puzzlePlayer2 = player.GetComponent<SequencePuzzlePlayer2>();
             puzzlePlayer2.enabled = true;
 
             Debug.Log("player 2 bby xD");

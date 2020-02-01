@@ -6,7 +6,7 @@
 ///// <summary>
 /////  This script manages the sequence puzzle
 ///// </summary>
-//public class SequencePuzzle : MonoBehaviour
+//public class SequencePuzzleDeprecated : MonoBehaviour
 //{
 //    public enum Buttons { A, B, X, Y }
 
