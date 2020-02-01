@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class DamageManager : MonoBehaviour
 {
-    public enum Player
-    {
-        One,
-        Two
-    }
-
     [Header("Health of each player")]
     [SerializeField] BoatHealth playerOneHealth;
     [SerializeField] BoatHealth playerTwoHealth;
@@ -46,16 +40,16 @@ public class DamageManager : MonoBehaviour
     {
         if (damage == 0)
             return;
-
+        
         switch (target)
         {
-            case Player.One:
+            case Player.PLAYER_ONE:
                 playerOneHealth.DamageBoat(damage);
-                DamageBoatSegment(Player.One, damage);
+                DamageBoatSegment(Player.PLAYER_ONE, damage);
                 break;
-            case Player.Two:
+            case Player.PLAYER_TWO:
                 playerTwoHealth.DamageBoat(damage);
-                DamageBoatSegment(Player.Two, damage);
+                DamageBoatSegment(Player.PLAYER_TWO, damage);
                 break;
         }
     }
@@ -67,7 +61,7 @@ public class DamageManager : MonoBehaviour
 
         switch (player)
         {
-            case Player.One:
+            case Player.PLAYER_ONE:
                 if (playerOneBoat[randomSegment].MyStatus == BoatSegment.Status.NoDamage)
                 {
                     playerOneBoat[randomSegment].DamageBoatSegment(damageDealt == SMALLDAMAGE ?
@@ -75,7 +69,7 @@ public class DamageManager : MonoBehaviour
                     return;
                 }
                 break;
-            case Player.Two:
+            case Player.PLAYER_TWO:
                 if (playerTwoBoat[randomSegment].MyStatus == BoatSegment.Status.NoDamage)
                 {
                     playerTwoBoat[randomSegment].DamageBoatSegment(damageDealt == SMALLDAMAGE ?
@@ -96,7 +90,7 @@ public class DamageManager : MonoBehaviour
     {
         switch (player)
         {
-            case Player.One:
+            case Player.PLAYER_ONE:
                 foreach (BoatSegment segment in playerOneBoat)
                 {
                     if (segment.MyStatus == BoatSegment.Status.NoDamage)
@@ -105,7 +99,7 @@ public class DamageManager : MonoBehaviour
                     }
                 }
                 break;
-            case Player.Two:
+            case Player.PLAYER_TWO:
                 foreach (BoatSegment segment in playerTwoBoat)
                 {
                     if (segment.MyStatus == BoatSegment.Status.NoDamage)

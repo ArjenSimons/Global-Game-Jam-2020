@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Player = DamageManager.Player;
 using UnityEngine;
 
 public class Canon : MonoBehaviour
@@ -254,7 +253,7 @@ public class Canon : MonoBehaviour
         if (collision.tag == "Player")
         {
             playerInteracting = collision.name;
-            opponent = collision.name == "Player1" ? Player.Two : Player.One;
+            opponent = collision.name == "Player1" ? Player.PLAYER_TWO : Player.PLAYER_ONE;
             interactingWithPlayer = true;
         }
     }
