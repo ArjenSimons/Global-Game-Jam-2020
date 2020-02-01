@@ -23,18 +23,18 @@ public class SequencePuzzleP1 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-    GameObject boatSegment;
+
+    private GameObject boatSegment;
+
     BoatSegment bS;
 
     private void Start()
     {
-        bS = GetComponentInChildren<BoatSegment>();
+        bS = GetComponent<BoatSegment>();
 
         currentSequenceButton = 0;
         smallOrderMax = 4;
         bigOrderMax = 8;
-
-        SequenceRandomizer();
     }
 
 
@@ -71,13 +71,13 @@ public class SequencePuzzleP1 : MonoBehaviour
         //InputKeyboard();
     }
 
-
-    private void SequenceRandomizer()
+    public void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
+            Debug.Log("RANDOMIZE404040");
             for (int i = 0; i < correctOrderSmall.Length; i++)
                 correctOrderSmall[i] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
         }
@@ -85,6 +85,7 @@ public class SequencePuzzleP1 : MonoBehaviour
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
 
+            Debug.Log("RANDOMIZEWEEEEEEEEEE");
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
         }
@@ -120,6 +121,7 @@ public class SequencePuzzleP1 : MonoBehaviour
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
+            //Debug.Log("RANDOMIZE1");
             if (input == correctOrderBig[currentSequenceButton])
             {
                 currentSequenceButton++;
@@ -139,6 +141,12 @@ public class SequencePuzzleP1 : MonoBehaviour
                 SequenceRandomizer();
             }
         }
+    }
+
+    public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
+    {
+        bS = brokenBoatSegment;
+        Debug.Log("Bs is nu de boatsegment..");
     }
 
     /// <summary>

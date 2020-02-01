@@ -23,22 +23,27 @@ public class SequencePuzzleP2 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-    GameObject boatSegment;
+    private GameObject boatSegment;
+
     BoatSegment bS;
 
     private void Start()
     {
-        bS = GetComponentInChildren<BoatSegment>();
+        bS = GetComponent<BoatSegment>();
 
         currentSequenceButton = 0;
         smallOrderMax = 4;
         bigOrderMax = 8;
 
-        SequenceRandomizer();
+       
     }
 
     private void Update()
     {
+        //if (activated)
+        //{
+        //    SequenceRandomizer();
+        //}
         // PLAYER TWO uses xbox controller
         if (player == Player.PLAYER_TWO)
         {
@@ -64,24 +69,28 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
         }
 
+     
+
         //InputKeyboard();
     }
 
     /// <summary>
     /// Randomize the button combination in the sequence puzzle
     /// </summary>
-    private void SequenceRandomizer()
+    public void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
+            Debug.Log("RANDOMIZE2");
             for (int i = 0; i < correctOrderSmall.Length; i++)
                 correctOrderSmall[i] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
         }
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
+            Debug.Log("RANDOMIZE");
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP2)UnityEngine.Random.Range(0, 3);
         }
@@ -118,6 +127,7 @@ public class SequencePuzzleP2 : MonoBehaviour
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
+            //Debug.Log("RANDOMIZE3");
             if (input == correctOrderBig[currentSequenceButton])
             {
                 currentSequenceButton++;
@@ -137,6 +147,11 @@ public class SequencePuzzleP2 : MonoBehaviour
                 SequenceRandomizer();
             }
         }
+    }
+
+    public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
+    {
+        bS = brokenBoatSegment;
     }
 
     /// <summary>
