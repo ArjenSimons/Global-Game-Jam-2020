@@ -5,11 +5,17 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f;
-    private float playerSpeed = 0, inputDirectionUpper = 0, inputDirectionUnder = 0, boatSize, amountOfChilds;
+    private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f, checkRadius = 0;
+    private float playerSpeed = 0, inputDirectionUpper = 0, inputDirectionUnder = 0;
 
     [SerializeField]
     private GameObject boat;
+
+    [SerializeField]
+    private Transform groundCheck;
+
+    [SerializeField]
+    private LayerMask ground;
 
     private Transform boatSprite;
 
@@ -17,7 +23,7 @@ public class playerMovement : MonoBehaviour
 
     private SpriteRenderer boatRender;
 
-    private bool walking;
+    private bool walking, grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,7 @@ public class playerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         clampPosition();
+        playerOnGround();
     }
 
     private void clampPosition()
@@ -51,6 +58,19 @@ public class playerMovement : MonoBehaviour
         {
             pos.x = boatPos.x - boatRender.size.x * boatSprite.transform.localScale.x / 2;
             transform.position = pos;
+        }
+    }
+
+    private void playerOnGround()
+    {
+        grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground);
+
+        if (grounded)
+        {
+            rb.gravityScale = 0;
+        } else
+        {
+            rb.gravityScale = 15;
         }
     }
 

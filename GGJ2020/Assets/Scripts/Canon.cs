@@ -233,7 +233,11 @@ public class Canon : MonoBehaviour
         {
             OnCanonBallShot(opponent, damage);
             Debug.Log($"finished shooting with damage {damage}");
-        }       
+        }
+        else
+        {
+            print("Guarenteed miss!");
+        }
     }
 
     private bool GuarenteedMiss()
