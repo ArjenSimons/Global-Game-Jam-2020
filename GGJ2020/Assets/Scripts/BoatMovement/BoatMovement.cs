@@ -72,7 +72,13 @@ public class BoatMovement : MonoBehaviour
             boostIsActive = true;
 
         if (boostIsActive)
+        {
             health += boostAmount;
+
+            if (health > 80)
+                health = 80;
+        }
+        
         StopCoroutine("ChangeSpeedOverTime");
         StartCoroutine(ChangeSpeedOverTime(CalculateSpeedDesiredSpeed(health)));
 
