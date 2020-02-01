@@ -4,5 +4,7 @@ using UnityEngine;
 
 public enum Tags
 {
-    Cloud
+    Cloud,
+    Cloud1,
+    Cloud2
 }
