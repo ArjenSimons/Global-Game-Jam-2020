@@ -10,7 +10,7 @@ public class BoatMovement : MonoBehaviour
     public int maxSpeed { get { return _maxSpeed; } }
     private BoatHealth boatHealth;
 
-    private float speed;
+    public float speed { get; private set; }
     public float distanceCovered { get; private set; }
 
     private GameObject[] clouds1, clouds2;

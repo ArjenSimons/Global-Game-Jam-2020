@@ -13,13 +13,20 @@ public class HoleFixing : MonoBehaviour
 
     private const string PLAYER_TAG = "Player";
 
-    private Player playerEnum;
+    public Player playerEnum;
 
     private BoatSegment boatSegment;
+
+    private SequencePuzzleP1 puzzlePlayer1;
+    private SequencePuzzleP2 puzzlePlayer2;
 
     private void Start()
     {
         boatSegment = GetComponent<BoatSegment>();
+
+        puzzlePlayer1 = player.GetComponent<SequencePuzzleP1>();
+        puzzlePlayer2 = player.GetComponent<SequencePuzzleP2>();
+
     }
 
     private void Update()
@@ -70,22 +77,21 @@ public class HoleFixing : MonoBehaviour
     // method do GENERATE SEQUENCE PUZZLE when pressed A BUTTON
     private void DisplaySequencePuzzle()
     {
+        Debug.Log("Je ziet nu de puzzel");
+
         HideButtonIndicator();
         mayPressBtnA = false;
 
-        Debug.Log("Je ziet nu de puzzel");
-
         if (playerEnum == Player.PLAYER_ONE)
         {
-            SequencePuzzlePlayer1 puzzlePlayer1 = player.GetComponent<SequencePuzzlePlayer1>();
-            puzzlePlayer1.enabled = true;
+            puzzlePlayer1.RetrieveBoatSegment(boatSegment);
+            puzzlePlayer1.SequenceRandomizer();
             Debug.Log("yo xD");
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
-            SequencePuzzlePlayer2 puzzlePlayer2 = player.GetComponent<SequencePuzzlePlayer2>();
-            puzzlePlayer2.enabled = true;
-
+            puzzlePlayer2.RetrieveBoatSegment(boatSegment);
+            puzzlePlayer2.SequenceRandomizer();
             Debug.Log("player 2 bby xD");
         }
     }

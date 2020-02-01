@@ -36,7 +36,7 @@ public class ProgressManager : MonoBehaviour
 
         float progression = distanceCovered / raceDistance * 100f;
 
-        Debug.Log(boot + ": " + progression);
+        //Debug.Log(boot + ": " + progression);
 
         if (progression >= 100)
             onPlayerFinish.Invoke(boot);

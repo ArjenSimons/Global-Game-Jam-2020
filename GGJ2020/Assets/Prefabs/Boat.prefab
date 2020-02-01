@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 1814983118362608677}
   - component: {fileID: 1814983118362608678}
   - component: {fileID: 5191075612942021619}
+  - component: {fileID: 8435416655693869117}
   m_Layer: 0
   m_Name: BoatSegment (1)
   m_TagString: Untagged
@@ -248,6 +249,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8615977, y: 0.91001135}
   m_EdgeRadius: 0
+--- !u!114 &8435416655693869117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814983118362608679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyStatus: 0
+  smallDamageSprite: {fileID: 21300000, guid: 160523e5cdec74b4a8590472a0f3b6d1, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: 160523e5cdec74b4a8590472a0f3b6d1, type: 3}
 --- !u!1 &3146351539305615183
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,8 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
-  smallDamageSprite: {fileID: 21300000, guid: 47bb2c56093f5fb45883ed1cd24ce9a5, type: 3}
-  bigDamageSprite: {fileID: 21300000, guid: d4c5924a03d2c9140af6f7bf97576c5d, type: 3}
+  smallDamageSprite: {fileID: 21300000, guid: 136152fed47fa77408dc42aff2e88416, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: df5b13f7659d3d545915a331d33c3c78, type: 3}
 --- !u!114 &5301897032874356695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,8 +500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
-  smallDamageSprite: {fileID: 21300000, guid: 47bb2c56093f5fb45883ed1cd24ce9a5, type: 3}
-  bigDamageSprite: {fileID: 21300000, guid: d4c5924a03d2c9140af6f7bf97576c5d, type: 3}
+  smallDamageSprite: {fileID: 21300000, guid: 9e3fd7ac378fac8499f4d615748e4d5b, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: cd48c903d7902e64587f8eadf32f7139, type: 3}
 --- !u!114 &6286875844540295074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,8 +723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
-  smallDamageSprite: {fileID: 21300000, guid: 47bb2c56093f5fb45883ed1cd24ce9a5, type: 3}
-  bigDamageSprite: {fileID: 21300000, guid: d4c5924a03d2c9140af6f7bf97576c5d, type: 3}
+  smallDamageSprite: {fileID: 21300000, guid: 5a98a5531b10cc94592d4fea43ff70c6, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: 157ab495feb425b4e879efa01dd51369, type: 3}
 --- !u!114 &7968734267447582847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,8 +862,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
-  smallDamageSprite: {fileID: 21300000, guid: 47bb2c56093f5fb45883ed1cd24ce9a5, type: 3}
-  bigDamageSprite: {fileID: 21300000, guid: d4c5924a03d2c9140af6f7bf97576c5d, type: 3}
+  smallDamageSprite: {fileID: 21300000, guid: 9f9bb21f5dfdd6441bc032c4f22b8dae, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: bd01bea82508ad34aaab8df98b5c87e8, type: 3}
 --- !u!114 &245167645663956687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,8 +1001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyStatus: 0
-  smallDamageSprite: {fileID: 21300000, guid: 47bb2c56093f5fb45883ed1cd24ce9a5, type: 3}
-  bigDamageSprite: {fileID: 21300000, guid: d4c5924a03d2c9140af6f7bf97576c5d, type: 3}
+  smallDamageSprite: {fileID: 21300000, guid: f5ae0b1082217dc4ba3756d260e14e31, type: 3}
+  bigDamageSprite: {fileID: 21300000, guid: c2219c53559f77a46a0e94be475e400d, type: 3}
 --- !u!114 &7252173651092825825
 MonoBehaviour:
   m_ObjectHideFlags: 0
