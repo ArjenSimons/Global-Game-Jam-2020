@@ -48,7 +48,7 @@ public class CloudMovement : MonoBehaviour
 
         oneHundredPerc = 100;
 
-        maxSpeed = 3;
+        maxSpeed = 6f;
         minSpeed = 0.2f;
 
         if (this.gameObject.name.Contains(CloudSpeedType.Slow.ToString()))
