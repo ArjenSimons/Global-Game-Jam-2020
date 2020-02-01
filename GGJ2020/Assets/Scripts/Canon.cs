@@ -16,14 +16,20 @@ public class Canon : MonoBehaviour
     private string playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
-    private float rotateSpeed = 0.25f;
-    private readonly float maxRotation = 15f;
+    private float rotateSpeed = 0.35f;
+    private float maxRotation;
+    private float minRotation;
+    private readonly float rotateOffset = 15f;
     private readonly float shootForce = 100f;
     private readonly float shootDuration = 5f;
     private readonly int orangeDamage = 1;
     private readonly int greenDamage = 2;
+    private readonly float rayXOffset = 1.3f;
+    private readonly float indicatorXOffset = 2.675f;
+    private readonly float barrelXOffset = 0.9f;
 
     private Vector2 canonBallPosition;
+    private Vector2 shootDirection;
 
     private bool InsideRedOfIndicator => rotatedAngle > 5 || rotatedAngle < -5;
     private bool InsideOrangeOfIndicator => (rotatedAngle > 3 && rotatedAngle <= 5) || (rotatedAngle < -3 && rotatedAngle >= -5);
@@ -32,8 +38,46 @@ public class Canon : MonoBehaviour
 
     public event Action<int> OnCanonBallShot;
 
+    [SerializeField] private Orientation orientation;
+    private enum Orientation { LEFT, RIGHT, MIDDLE }
+
     private void Awake()
+    {       
+        SetOrientation();   
+    }
+
+    private void SetOrientation()
     {
+        switch (orientation)
+        {
+            case Orientation.LEFT:
+                barrelRay.transform.localPosition = new Vector2(-rayXOffset, barrelRay.transform.localPosition.y);
+                indicator.transform.localPosition = new Vector2(-indicatorXOffset, indicator.transform.localPosition.y);
+                indicator.transform.eulerAngles = new Vector3(0, 0, 180);
+                canonball.transform.localPosition = new Vector2(-1, canonball.transform.localPosition.y);
+                barrelTF.localPosition = new Vector2(-barrelXOffset, barrelTF.localPosition.y);
+                maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
+                minRotation = barrelTF.localEulerAngles.z - rotateOffset;
+                shootDirection = -barrelTF.right;             
+                break;
+            case Orientation.RIGHT:
+                barrelRay.transform.localPosition = new Vector3(rayXOffset, barrelRay.transform.position.y, transform.localPosition.z);
+                indicator.transform.localPosition = new Vector2(-indicatorXOffset, indicator.transform.localPosition.y);               
+                canonball.transform.localPosition = new Vector2(1, canonball.transform.localPosition.y);
+                barrelTF.localPosition = new Vector2(barrelXOffset, barrelTF.localPosition.y);
+                maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
+                minRotation = barrelTF.localEulerAngles.z - rotateOffset;
+                shootDirection = barrelTF.right;
+                break;
+            case Orientation.MIDDLE:
+                barrelRay.transform.localPosition = new Vector3(0, barrelRay.transform.position.y, transform.localPosition.z);
+                indicator.transform.localPosition = new Vector2(0, indicator.transform.localPosition.y);
+                canonball.transform.localPosition = new Vector2(0, canonball.transform.localPosition.y);
+                barrelTF.localPosition = new Vector2(0, barrelTF.localPosition.y);
+                maxRotation = barrelTF.localEulerAngles.z + rotateOffset;
+                minRotation = barrelTF.localEulerAngles.z - rotateOffset;
+                break;
+        }
         canonBallPosition = canonball.transform.position;
     }
 
@@ -43,10 +87,17 @@ public class Canon : MonoBehaviour
             StartCoroutine(StartCanonActivation());
 
         if (activated)
-        {
-            RotateCanon();
+        {           
             CheckForCanonShot();
         }     
+    }
+
+    private void FixedUpdate()
+    {
+        if (activated)
+        {
+            RotateCanon();
+        }
     }
 
     private bool PlayerInput()
@@ -114,7 +165,7 @@ public class Canon : MonoBehaviour
     private void ShootCanon(int damage)
     {
         canonball.SetActive(true);
-        canonball.GetComponent<Rigidbody2D>().AddForce(barrelTF.right * shootForce);
+        canonball.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootForce);
         indicator.SetActive(false);
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
@@ -148,7 +199,7 @@ public class Canon : MonoBehaviour
     {      
         rotatedAngle += rotateSpeed;
 
-        if (rotatedAngle >= maxRotation || rotatedAngle <= -maxRotation)
+        if (rotatedAngle >= maxRotation || rotatedAngle <= minRotation)
         {
             rotateSpeed *= -1;          
         }
