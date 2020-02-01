@@ -1727,6 +1727,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 5028599717033579049, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: segmentOn
+      value: 
+      objectReference: {fileID: 1923612813}
     - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -1742,6 +1747,11 @@ PrefabInstance:
       propertyPath: boatHealth
       value: 
       objectReference: {fileID: 1516003091}
+    - target: {fileID: 5601401453158658437, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: segmentOn
+      value: 
+      objectReference: {fileID: 982231762}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -4478,6 +4488,11 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 508539260310649706}
+    - target: {fileID: 5028599717033579049, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: segmentOn
+      value: 
+      objectReference: {fileID: 787837573}
     - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -4498,6 +4513,11 @@ PrefabInstance:
       propertyPath: boatHealth
       value: 
       objectReference: {fileID: 1239932369}
+    - target: {fileID: 5601401453158658437, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: segmentOn
+      value: 
+      objectReference: {fileID: 1750593422924748615}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player

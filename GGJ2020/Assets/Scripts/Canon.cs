@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Status = BoatSegment.Status;
 
 public class Canon : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Canon : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject canonball;
     [SerializeField] private GameObject barrelRay;
+    [SerializeField] private BoatSegment segmentOn;
     [SerializeField] private bool debug;
 
     private bool interactingWithPlayer = false;
@@ -41,7 +43,7 @@ public class Canon : MonoBehaviour
     private Timer shootTimer;
     private Camera cam;
     private ProgressManager progressManager;
-    private Player opponent;
+    private Player opponent;  
 
     public event Action<Player, int> OnCanonBallShot;
 
@@ -111,8 +113,9 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInput() && interactingWithPlayer && !activated)
-            StartCoroutine(StartCanonActivation());
+        if (PlayerInput() && interactingWithPlayer && !activated 
+        && playerInteracting.CarryingCanonBall && segmentOn.MyStatus == Status.NoDamage)
+            StartCoroutine(StartCanonActivation());       
 
         if (activated)
         {           
@@ -135,7 +138,7 @@ public class Canon : MonoBehaviour
         float progressDiff = Mathf.Abs(progressManager.getProgression(player) - progressManager.getProgression(opponent));
         float angle = orientation == Orientation.LEFT ? -rotateOffset : rotateOffset;
         progressDiff = Mathf.Clamp(progressDiff, 0, maxProgressDifference);
-        print(progressDiff);
+        
         angle *= progressDiff * 0.01f;
         if(progressDiff > minProgressDifference)
         {            
@@ -208,13 +211,32 @@ public class Canon : MonoBehaviour
         || screenPos.y - halfHeight > camTopBound || screenPos.y + halfHeight < camBottomBound)
         {
             OnFinishedShooting(damage);
+        }      
+        //int axis = screenPos.y - halfHeight > camTopBound ? 1 : 0;
+        //StartCoroutine(CrashCannonBallOnOpponent(screenPos, () => OnFinishedShooting(damage), axis));
+    }
+
+    private IEnumerator CrashCannonBallOnOpponent(Vector3 offscreenPosition, Action OnHit, int fromAxis)
+    {
+        Vector3 screenSpawnPos;
+        if(fromAxis == 0)
+        {
+            float screenY = playerInteracting.name == "Player1" ? offscreenPosition.y - cam.pixelHeight : offscreenPosition.y + cam.pixelHeight;
+            screenSpawnPos = offscreenPosition.x < 0 ? new Vector3(cam.pixelWidth, screenY) : new Vector3(0, screenY);          
         }
-        
+        else
+        {
+            float screenY = playerInteracting.name == "Player1" ? cam.pixelHeight : Screen.height;
+            screenSpawnPos = offscreenPosition.x < 0 ? new Vector3(offscreenPosition.x, cam.pixelHeight) : new Vector3(0, offscreenPosition.y);
+        }
+        Vector3 worldPos = cam.ScreenToWorldPoint(screenSpawnPos);
+        yield return null;
+        canonball.transform.position = worldPos;
     }
 
     private void CheckForCanonShot()
     {
-        if (PlayerInput() && playerInteracting.CarryingCanonBall)
+        if (PlayerInput())
         {         
             if (InsideRedOfIndicator())
             {
@@ -266,10 +288,6 @@ public class Canon : MonoBehaviour
         if (!GuarenteedMiss())
         {
             OnCanonBallShot(opponent, damage);
-        }
-        else
-        {
-
         }
     }
 
