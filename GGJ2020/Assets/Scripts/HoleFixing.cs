@@ -73,6 +73,7 @@ public class HoleFixing : MonoBehaviour
             boatSegment.MyStatus == BoatSegment.Status.BigDamage))
         {
             ShowButtonIndicator();
+            tryingToActivate = true;
             mayPressBtnA = true;
         }
     }
