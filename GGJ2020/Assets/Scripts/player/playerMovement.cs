@@ -70,7 +70,7 @@ public class playerMovement : MonoBehaviour
             rb.gravityScale = 0;
         } else
         {
-            rb.gravityScale = 9.8f;
+            rb.gravityScale = 15;
         }
     }
 

@@ -55,7 +55,7 @@ public class player2Movement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 9.8f;
+            rb.gravityScale = 15;
         }
     }
 
