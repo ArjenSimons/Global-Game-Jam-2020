@@ -10,6 +10,10 @@ public class BoatMovement : MonoBehaviour
     private float speed;
     public float distanceCovered { get; private set; }
 
+    private void Start()
+    {
+        speed = maxSpeed;
+    }
 
     private void FixedUpdate()
     {
@@ -22,19 +26,16 @@ public class BoatMovement : MonoBehaviour
 
     private void calculateSpeed()
     {
-        int dummyHealth = 0;
+        int dummyHealth = 80;
         int dummyMaxHealth = 80;
         int dummyMinHealth = 0;
 
         //Map to value between zero and one
         float speedMultiplier = Math.Normalize(dummyHealth, dummyMinHealth, dummyMaxHealth);
 
-        float adjustedSpeed = speed * speedMultiplier;
-        Debug.Log("Speed: " + speed);
-        Debug.Log("speedMultiplier: " + speedMultiplier);
+        float adjustedSpeed = maxSpeed * speedMultiplier;
 
-        speed = (maxSpeed - minSpeed) * speed * speedMultiplier + minSpeed;
-
-        Debug.Log("Speed2: " + speed);
+        //Map adjustedSpeed between the minSpeed and the maxSpeed
+        speed = (maxSpeed - minSpeed) * (adjustedSpeed - minSpeed) / (maxSpeed - minSpeed) + minSpeed;
     }
 }
