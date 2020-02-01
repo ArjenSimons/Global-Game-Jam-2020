@@ -36,7 +36,7 @@ public class Canon : MonoBehaviour
     private Vector2 shootDirection;
 
     private Timer shootTimer;
-    [SerializeField] private Camera cam;
+    private Camera cam;
     private Player opponent;
 
     public event Action<Player, int> OnCanonBallShot;
@@ -221,6 +221,9 @@ public class Canon : MonoBehaviour
 
     private void OnFinishedShooting(int damage)
     {
+        if (GuarenteedMiss())
+            return;
+
         Rigidbody2D ballRB = canonball.GetComponent<Rigidbody2D>();
         ballRB.velocity = Vector3.zero;
         ballRB.angularVelocity = 0;
@@ -230,6 +233,15 @@ public class Canon : MonoBehaviour
         shootingCanonBall = false;
         shootTimer = null;
         Debug.Log($"finished shooting with damage {damage}");
+    }
+
+    private bool GuarenteedMiss()
+    {
+        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
+        ProgressManager progressManager = FindObjectOfType<ProgressManager>();
+        return progressManager == null 
+        || (orientation == Orientation.LEFT && (progressManager.getProgression(player) < progressManager.getProgression(opponent)))
+        || (orientation == Orientation.RIGHT && (progressManager.getProgression(player) > progressManager.getProgression(opponent)));
     }
 
     private void ActivateCanon()
