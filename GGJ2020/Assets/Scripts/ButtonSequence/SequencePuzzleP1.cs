@@ -76,18 +76,18 @@ public class SequencePuzzleP1 : MonoBehaviour
     {
         // decide whether to use correctOrderSmall or correctOrderBig
 
-        if (bS.MyStatus == BoatSegment.Status.SmallDamage)
-        {
+        //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
+        //{
             for (int i = 0; i < correctOrderSmall.Length; i++)
                 correctOrderSmall[i] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
-        }
+        //}
 
-        if (bS.MyStatus == BoatSegment.Status.BigDamage)
-        {
+        //if (bS.MyStatus == BoatSegment.Status.BigDamage)
+        //{
 
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
-        }
+        //}
     }
 
     /// <summary>
@@ -97,8 +97,8 @@ public class SequencePuzzleP1 : MonoBehaviour
     /// <returns></returns>
     private void Check(ButtonsP1 input)
     {
-        if (bS.MyStatus == BoatSegment.Status.SmallDamage)
-        {
+        //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
+        //{
             if (input == correctOrderSmall[currentSequenceButton])
             {
                 currentSequenceButton++;
@@ -117,9 +117,9 @@ public class SequencePuzzleP1 : MonoBehaviour
                 // generate a new sequence
                 SequenceRandomizer();
             }
-        }
-        else if (bS.MyStatus == BoatSegment.Status.BigDamage)
-        {
+        //}
+        //else if (bS.MyStatus == BoatSegment.Status.BigDamage)
+        //{
             if (input == correctOrderBig[currentSequenceButton])
             {
                 currentSequenceButton++;
@@ -138,7 +138,7 @@ public class SequencePuzzleP1 : MonoBehaviour
                 // generate a new sequence
                 SequenceRandomizer();
             }
-        }
+        //}
     }
 
     /// <summary>

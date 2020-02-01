@@ -33,6 +33,7 @@ public class HoleFixing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && mayPressBtnA)
         {
+            Debug.Log("XD");
             DisplaySequencePuzzle();
         }
     }
@@ -84,12 +85,12 @@ public class HoleFixing : MonoBehaviour
 
         if (playerEnum == Player.PLAYER_ONE)
         {
-            puzzlePlayer1.enabled = true;
+            //puzzlePlayer1.enabled = true;
             Debug.Log("yo xD");
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
-            puzzlePlayer2.enabled = true;
+            //puzzlePlayer2.enabled = true;
 
             Debug.Log("player 2 bby xD");
         }

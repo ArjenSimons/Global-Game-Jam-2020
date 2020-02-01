@@ -128,10 +128,10 @@ public class Canon : MonoBehaviour
 
     private bool InsideRedOfIndicator()
     {
-        print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
-        print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
-        print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
-        print(rotatedAngle);
+        //print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
+        //print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
+        //print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
+        //print(rotatedAngle);
         return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset;
     }
 
@@ -175,7 +175,7 @@ public class Canon : MonoBehaviour
         float halfHeight = canonball.GetComponent<SpriteRenderer>().sprite.rect.height * 0.5f;
         float camTopBound = cam.name == "UpperCamera1" ? Screen.height : cam.pixelHeight;
         float camBottomBound = cam.name == "UpperCamera1" ? cam.pixelHeight : 0;
-        print(screenPos + " " + cam.pixelWidth + " " + cam.pixelHeight);
+        //print(screenPos + " " + cam.pixelWidth + " " + cam.pixelHeight);
         if (screenPos.x - halfWidth > cam.pixelWidth || screenPos.x + halfWidth < 0
         || screenPos.y - halfHeight > camTopBound || screenPos.y + halfHeight < camBottomBound)
         {

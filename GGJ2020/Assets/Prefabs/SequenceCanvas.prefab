@@ -178,8 +178,8 @@ RectTransform:
   m_Children:
   - {fileID: 3244027686064965107}
   - {fileID: 3244027685421631102}
-  - {fileID: 8681950740369599353}
   - {fileID: 3244027686219308377}
+  - {fileID: 8681950740369599353}
   - {fileID: 4769387315696854238}
   - {fileID: 7359615491871276172}
   m_Father: {fileID: 0}
@@ -295,7 +295,7 @@ PrefabInstance:
     - target: {fileID: 1760459837152794324, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1760459837152794324, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 1760459837152794325, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
       propertyPath: m_Name
-      value: XButton2
+      value: Button1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d572d0b99e62fa4bbddc721f7512c2c, type: 3}
@@ -551,7 +551,7 @@ PrefabInstance:
     - target: {fileID: 1760459837152794324, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1760459837152794324, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
@@ -621,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 1760459837152794325, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
       propertyPath: m_Name
-      value: Button1
+      value: Button2
       objectReference: {fileID: 0}
     - target: {fileID: 1760459837152794327, guid: 5d572d0b99e62fa4bbddc721f7512c2c,
         type: 3}
