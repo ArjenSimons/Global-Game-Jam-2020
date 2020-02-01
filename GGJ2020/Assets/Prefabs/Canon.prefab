@@ -55,7 +55,10 @@ MonoBehaviour:
   indicator: {fileID: 4434199059998715512}
   canonball: {fileID: 4434199060394990583}
   barrelRay: {fileID: 4434199060254164597}
+  debug: 0
+  playerInteracting: 
   rotatedAngle: 0
+  cam: {fileID: 0}
   orientation: 0
 --- !u!61 &4434199059068702582
 BoxCollider2D:
@@ -551,7 +554,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b4bc04cb67d738f45aac031edaf7f4a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9aaa4921ad4885a43ad2f7d0cccf660e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
