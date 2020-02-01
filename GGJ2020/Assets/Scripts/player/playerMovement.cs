@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class playerMovement : PlayerMovementBase
 {
     [SerializeField]
     private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f, checkRadius = 0;
@@ -116,5 +116,15 @@ public class playerMovement : MonoBehaviour
         {
             walking = false;
         }
+    }  
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "CanonballStack" && !CarryingCanonBall)
+        {
+            print("test");
+            CarryingCanonBall = true;
+        }
+        
     }
 }

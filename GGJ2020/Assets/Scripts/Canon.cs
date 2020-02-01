@@ -14,7 +14,7 @@ public class Canon : MonoBehaviour
     private bool interactingWithPlayer = false;
     private bool shootingCanonBall = false;
     private bool activated = false;
-    [SerializeField] private string playerInteracting;
+    [SerializeField] private PlayerMovementBase playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
     private float rotateSpeed = 1.05f;
@@ -142,8 +142,11 @@ public class Canon : MonoBehaviour
     }
 
     private bool PlayerInput()
-    {       
-        switch (playerInteracting)
+    {
+        if (playerInteracting == null)
+            return false;
+
+        switch (playerInteracting.name)
         {
             case "Player1": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button2");
             case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
@@ -186,7 +189,7 @@ public class Canon : MonoBehaviour
 
     private void CheckForCanonShot()
     {
-        if (PlayerInput())
+        if (PlayerInput() && playerInteracting.CarryingCanonBall)
         {         
             if (InsideRedOfIndicator())
             {
@@ -213,6 +216,7 @@ public class Canon : MonoBehaviour
         shootingCanonBall = true;
         activated = false;
         interactingWithPlayer = false;
+        playerInteracting.LoseCanonBall();
         StartCoroutine(WaitForShotFinish(damage));
     }
 
@@ -267,7 +271,7 @@ public class Canon : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            playerInteracting = collision.name;
+            playerInteracting = collision.GetComponent<PlayerMovementBase>();
             opponent = collision.name == "Player1" ? Player.PLAYER_TWO : Player.PLAYER_ONE;
             interactingWithPlayer = true;
         }
@@ -277,8 +281,14 @@ public class Canon : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            playerInteracting = "";
+            playerInteracting = null;
             interactingWithPlayer = false;
+            if (activated)
+            {
+                indicator.SetActive(false);
+                barrelRay.SetActive(false);
+                activated = false;              
+            }
         }
     }
 }

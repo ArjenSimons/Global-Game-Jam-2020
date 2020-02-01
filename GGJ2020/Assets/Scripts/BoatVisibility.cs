@@ -13,9 +13,9 @@ public class BoatVisibility : MonoBehaviour
     [SerializeField]
     private Camera cam;
 
-    private Player boatType, enemyBoatType;
-
     private Vector3 fakeBoatPos;
+
+    private bool player1;
 
     private float completeCamView, startPosCameraView, percentageEqualToPlayer, percentage, fakeBoatPosX, playerProgression, enemyProgression;
 
@@ -26,8 +26,15 @@ public class BoatVisibility : MonoBehaviour
     void Start()
     {
         completeCamView = cam.farClipPlane / 23.25f;
-        boatType = GetComponent<Boat>().PlayerType;
-        enemyBoatType = enemyBoat.GetComponent<Boat>().PlayerType;
+        startPosCameraView = transform.position.x - (completeCamView / 2);
+        if (gameObject.name == "Boat1")
+        {
+            player1 = true;
+        }
+        else
+        {
+            player1 = false;
+        }
     }
 
     // Update is called once per frame
@@ -38,18 +45,34 @@ public class BoatVisibility : MonoBehaviour
 
     private void checkBoatDistance()
     {
-        playerProgression = progressManager.getProgression(boatType);
-        enemyProgression = progressManager.getProgression(enemyBoatType);
+        if (player1)
+        {
+            playerProgression = progressManager.getProgression(Player.PLAYER_TWO);
+            enemyProgression = progressManager.getProgression(Player.PLAYER_ONE);
+        } else
+        {
+            playerProgression = progressManager.getProgression(Player.PLAYER_ONE);
+            enemyProgression = progressManager.getProgression(Player.PLAYER_TWO);
+        }
 
         if (enemyProgression > playerProgression - visibilityRange && enemyProgression < playerProgression + visibilityRange)
         {
+            if (!fakeEnemyBoat.activeSelf)
+            {
+                fakeEnemyBoat.SetActive(true);
+            }
             showBoat();
-        } 
+        } else
+        {
+            if (fakeEnemyBoat.activeSelf)
+            {
+                fakeEnemyBoat.SetActive(false);
+            }
+        }
     }
 
     private void showBoat()
     {
-        startPosCameraView = transform.position.x - (completeCamView / 2);
         percentageEqualToPlayer = visibilityRange + (enemyProgression - playerProgression);
         percentage = percentageEqualToPlayer / (visibilityRange * 2);
         fakeBoatPosX = completeCamView * percentage;
