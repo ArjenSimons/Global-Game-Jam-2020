@@ -10,8 +10,9 @@ public class Canon : MonoBehaviour
     [SerializeField] private GameObject canonball;
     [SerializeField] private GameObject barrelRay;
 
-    private bool interactingWithPlayer = false;
+    private bool interactingWithPlayer = true;
     private bool shootingCanonBall = false;
+    private bool activated = false;
     private string playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
@@ -38,14 +39,14 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInput() && !interactingWithPlayer)
+        if (PlayerInput() && interactingWithPlayer && !activated)
             StartCoroutine(StartCanonActivation());
 
-        if(!interactingWithPlayer)
-            return;
-
-        RotateCanon();
-        CheckForCanonShot();
+        if (activated)
+        {
+            RotateCanon();
+            CheckForCanonShot();
+        }     
     }
 
     private bool PlayerInput()
@@ -54,8 +55,8 @@ public class Canon : MonoBehaviour
         {
             case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button1");
             case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button2");
-            default: return Input.GetKeyDown(KeyCode.Space);
-        }
+            default: return Input.GetButtonDown("A-Button2");              
+        }       
     }
 
     private IEnumerator WaitForShotFinish(int damage)
@@ -118,6 +119,7 @@ public class Canon : MonoBehaviour
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
         shootingCanonBall = true;
+        activated = false;
         interactingWithPlayer = false;
         StartCoroutine(WaitForShotFinish(damage));
     }
@@ -131,12 +133,13 @@ public class Canon : MonoBehaviour
         canonball.SetActive(false);
         OnCanonBallShot(damage);
         shootingCanonBall = false;
+        shootTimer = null;
         Debug.Log($"finished shooting with damage {damage}");
     }
 
     private void ActivateCanon()
-    {
-        interactingWithPlayer = true;
+    {     
+        activated = true;
         indicator.SetActive(true);
         barrelRay.SetActive(true);
     }
