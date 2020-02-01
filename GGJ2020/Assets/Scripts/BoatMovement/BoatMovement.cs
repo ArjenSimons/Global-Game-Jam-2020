@@ -6,7 +6,8 @@ public class BoatMovement : MonoBehaviour
 {
     [SerializeField] private int minSpeed;
     [SerializeField] private int _maxSpeed;
-    //[SerializeField] private int maxBoostSpeed;
+    [SerializeField] private int boostAmount = 30;
+    [SerializeField] private int boostTime = 5;
 
     [SerializeField] private ProgressManager progressionManager;
 
@@ -16,9 +17,11 @@ public class BoatMovement : MonoBehaviour
     public float speed { get; private set; }
     public float distanceCovered { get; private set; }
 
-    //private bool boostIsActive = false;
+    private bool boostIsActive = false;
 
     private GameObject[] clouds1, clouds2;
+
+    private float timer;
 
     private void Start()
     {
@@ -28,6 +31,17 @@ public class BoatMovement : MonoBehaviour
 
         clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
         clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
+
+        if (boostIsActive)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > boostTime)
+            {
+                timer = 0;
+                boostIsActive = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -54,8 +68,19 @@ public class BoatMovement : MonoBehaviour
         //    else
         //        speed = CalculateSpeedDesiredSpeed(health);
         //}
-        StartCoroutine(ChangeSpeedOverTime(CalculateSpeedDesiredSpeed(health)));
+        if (!progressionManager.IsAhead(player) && healthIncreased)
+            boostIsActive = true;
 
+        if (boostIsActive)
+        {
+            health += boostAmount;
+
+            if (health > 80)
+                health = 80;
+        }
+        
+        StopCoroutine("ChangeSpeedOverTime");
+        StartCoroutine(ChangeSpeedOverTime(CalculateSpeedDesiredSpeed(health)));
 
         UpdateClouds();
     }
