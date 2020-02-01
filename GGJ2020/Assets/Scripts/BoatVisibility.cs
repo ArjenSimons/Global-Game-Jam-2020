@@ -13,7 +13,7 @@ public class BoatVisibility : MonoBehaviour
     [SerializeField]
     private Camera cam;
 
-    private BoatType boatType, enemyBoatType;
+    private Player boatType, enemyBoatType;
 
     private Vector3 fakeBoatPos;
 
@@ -26,8 +26,8 @@ public class BoatVisibility : MonoBehaviour
     void Start()
     {
         completeCamView = cam.farClipPlane / 23.25f;
-        boatType = GetComponent<BoatType>();
-        enemyBoatType = enemyBoat.GetComponent<BoatType>();
+        boatType = GetComponent<Boat>().PlayerType;
+        enemyBoatType = enemyBoat.GetComponent<Boat>().PlayerType;
     }
 
     // Update is called once per frame
