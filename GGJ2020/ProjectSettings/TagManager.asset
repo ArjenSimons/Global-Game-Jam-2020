@@ -7,6 +7,7 @@ TagManager:
   - Cloud
   - Cloud1
   - Cloud2
+  - CanonballStack
   layers:
   - Default
   - TransparentFX
