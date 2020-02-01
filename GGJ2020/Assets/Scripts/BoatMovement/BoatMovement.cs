@@ -26,16 +26,14 @@ public class BoatMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        calculateSpeed();
+        CalculateSpeed();
 
         speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
 
-        distanceCovered += speed * Time.deltaTime;
-
-        
+        distanceCovered += speed * Time.deltaTime;   
     }
 
-    private void calculateSpeed()
+    private void CalculateSpeed()
     {
         //Map to value between zero and one
         float speedMultiplier = Math.Normalize(boatHealth.health, boatHealth.minHealth, boatHealth.maxHealth);
