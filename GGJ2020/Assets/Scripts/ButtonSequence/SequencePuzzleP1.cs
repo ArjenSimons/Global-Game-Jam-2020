@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 ///  This script manages the sequence puzzle PLAYER 1
@@ -19,22 +20,30 @@ public class SequencePuzzleP1 : MonoBehaviour
     [SerializeField]
     private ButtonsP1[] correctOrderBig;
 
+    private player2Movement playerMovementScript;
+
+    public Sprite[] buttonSprites;
+    public GameObject[] buttons;
+
     private int currentSequenceButton;
     private int smallOrderMax;
     private int bigOrderMax;
 
     public bool isActivated;
-    private GameObject boatSegment;
 
     BoatSegment bS;
 
+    public Canvas playerCanvas;
+
     private void Start()
     {
-        bS = GetComponent<BoatSegment>();
-
         currentSequenceButton = 0;
         smallOrderMax = correctOrderSmall.Length;
         bigOrderMax = correctOrderBig.Length;
+
+        playerMovementScript = this.gameObject.GetComponent<player2Movement>();
+        //StopSequencePuzzle();
+
     }
 
 
@@ -80,18 +89,75 @@ public class SequencePuzzleP1 : MonoBehaviour
 
         if (bS.MyStatus == BoatSegment.Status.SmallDamage)
         {
-            Debug.Log("RANDOMIZE404040");
             for (int i = 0; i < correctOrderSmall.Length; i++)
-                correctOrderSmall[i] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
+            {
+
+                int randomNumber = UnityEngine.Random.Range(0, 3);
+                correctOrderSmall[i] = (ButtonsP1)randomNumber;
+                buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+            }
         }
 
         if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-
-            Debug.Log("RANDOMIZEWEEEEEEEEEE");
-            for (int j = 0; j < correctOrderBig.Length; j++)
-                correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
+                for (int j = 0; j < correctOrderBig.Length; j++)
+                {
+                    int randomNumber = UnityEngine.Random.Range(0, 3);
+                    correctOrderBig[j] = (ButtonsP1)randomNumber;
+                    buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+                }
         }
+    }
+
+    public void StartSequencePuzzle()
+    {
+        playerMovementScript.canMove = false;
+        playerCanvas.gameObject.SetActive(true);
+        ResetSequencePuzzle();
+        isActivated = true;
+        Debug.Log("Started puzzle");
+    }
+
+    public void StopSequencePuzzle()
+    {
+        playerMovementScript.canMove = true;
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+        playerCanvas.gameObject.SetActive(false);
+        Debug.Log("Ended puzzle");
+    }
+
+    public void ResetSequencePuzzle()
+    {
+        currentSequenceButton = 0;
+        SequenceRandomizer();
+        Debug.Log("Puzzle Reset");
+    }
+
+    public void RightButtonWasPressed()
+    {
+        buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
+        currentSequenceButton++;
+        Debug.Log("The right Button was pressed.");
+    }
+
+    public void SequenceSolved()
+    {
+        ResetSequencePuzzle();
+        bS.RepairBoatSegment();
+        StopSequencePuzzle();
+
+        Debug.Log("Sequence was solved.");
+    }
+
+    public void SequenceFailed()
+    {
+        ResetSequencePuzzle();
+        StopSequencePuzzle();
+
+        Debug.Log("Sequence was failed.");
     }
 
     /// <summary>
@@ -105,45 +171,32 @@ public class SequencePuzzleP1 : MonoBehaviour
         {
             if (input == correctOrderSmall[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == smallOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    bS.RepairBoatSegment();
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
         else if (bS.MyStatus == BoatSegment.Status.BigDamage)
         {
-            //Debug.Log("RANDOMIZE1");
             if (input == correctOrderBig[currentSequenceButton])
             {
-                currentSequenceButton++;
-                Debug.Log("solved a thing");
+                RightButtonWasPressed();
+
                 if (currentSequenceButton == bigOrderMax)
                 {
-                    Debug.Log(" you just solved the whole damn puzzle!");
-                    currentSequenceButton = 0;
-                    isActivated = false;
-                    bS.RepairBoatSegment();
+                    SequenceSolved();
                 }
             }
             else
             {
-                Debug.Log("you fucked up xD");
-                currentSequenceButton = 0;
-                // generate a new sequence
-                SequenceRandomizer();
+                SequenceFailed();
             }
         }
     }
