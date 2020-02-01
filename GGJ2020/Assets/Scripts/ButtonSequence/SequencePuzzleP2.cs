@@ -31,6 +31,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     BoatSegment bS;
 
+    public Canvas playerCanvas;
+
     private void Start()
     {
         bS = GetComponent<BoatSegment>();
@@ -117,12 +119,18 @@ public class SequencePuzzleP2 : MonoBehaviour
         {
             if (input == correctOrderSmall[currentSequenceButton])
             {
+                buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
                 currentSequenceButton++;
                 Debug.Log("solved a thing");
                 if (currentSequenceButton == smallOrderMax)
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+                    foreach (GameObject button in buttons)
+                    {
+                        button.GetComponent<Image>().color = new Color(255,255,255);
+                    }
+                    playerCanvas.gameObject.SetActive(false);
                     //delete hole
                 }
             }
@@ -138,12 +146,18 @@ public class SequencePuzzleP2 : MonoBehaviour
         {
             if (input == correctOrderBig[currentSequenceButton])
             {
+                buttons[currentSequenceButton].GetComponent<Image>().color = new Color(0, 0, 0);
                 currentSequenceButton++;
                 Debug.Log("solved a thing");
                 if (currentSequenceButton == bigOrderMax)
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+                    foreach (GameObject button in buttons)
+                    {
+                        button.GetComponent<Image>().color = new Color(255, 255, 255);
+                    }
+                    playerCanvas.gameObject.SetActive(false);
                     //delete hole
                 }
             }

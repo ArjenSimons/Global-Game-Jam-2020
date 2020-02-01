@@ -92,6 +92,7 @@ public class HoleFixing : MonoBehaviour
         {
             puzzlePlayer2.RetrieveBoatSegment(boatSegment);
             puzzlePlayer2.SequenceRandomizer();
+            puzzlePlayer2.playerCanvas.gameObject.SetActive(true);
             Debug.Log("player 2 bby xD");
         }
     }
