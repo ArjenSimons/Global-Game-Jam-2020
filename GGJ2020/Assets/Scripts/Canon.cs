@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Player = DamageManager.Player;
 using UnityEngine;
 
 public class Canon : MonoBehaviour
@@ -9,11 +10,12 @@ public class Canon : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject canonball;
     [SerializeField] private GameObject barrelRay;
+    [SerializeField] private bool debug;
 
-    private bool interactingWithPlayer = true;
+    private bool interactingWithPlayer = false;
     private bool shootingCanonBall = false;
     private bool activated = false;
-    private string playerInteracting;
+    [SerializeField] private string playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
     private float rotateSpeed = 0.35f;
@@ -24,10 +26,8 @@ public class Canon : MonoBehaviour
     private readonly float rotateOffset = 15f;
     private readonly float shootForce = 100f;
     private readonly float shootDuration = 5f;
-    private readonly int orangeDamage = 1;
     private readonly float minRotatedAngleForRedOffset = 6;
     private readonly float minRotatedAngleForOrangeOffset = 3;
-    private readonly int greenDamage = 2;
     private float indicatorXOffset;
     private readonly float barrelYOffset = 0.15f;
     private readonly float leftOrientationRotateAngle = 180f;
@@ -37,15 +37,35 @@ public class Canon : MonoBehaviour
     private Vector2 shootDirection;
 
     private Timer shootTimer;
+    private Camera cam;
+    private Player opponent;
 
-    public event Action<int> OnCanonBallShot;
+    public event Action<Player, int> OnCanonBallShot;
 
     [SerializeField] private Orientation orientation;
     private enum Orientation { LEFT, RIGHT, MIDDLE }
 
     private void Awake()
-    {       
+    {
+        if (debug) interactingWithPlayer = true;
+        GetCamera();
         SetOrientation();   
+    }
+
+    private void GetCamera()
+    {
+        Camera[] cams = FindObjectsOfType<Camera>();
+        char boatNum = transform.root.name[transform.root.name.Length - 1];
+        for(int i = 0; i < cams.Length; i++)
+        {
+            char camNum = cams[i].name[cams[i].name.Length - 1];
+            if (char.IsDigit(camNum) && camNum == boatNum)
+            {
+                cam = cams[i];
+                break;
+            }
+        }
+
     }
 
     private void SetOrientation()
@@ -111,8 +131,7 @@ public class Canon : MonoBehaviour
     {
         print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
         print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
-        print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");
-        
+        print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
         print(rotatedAngle);
         return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset;
     }
@@ -127,8 +146,8 @@ public class Canon : MonoBehaviour
     {       
         switch (playerInteracting)
         {
-            case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button1");
-            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button2");
+            case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
+            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button2");
             default: return Input.GetButtonDown("A-Button2");              
         }       
     }
@@ -152,11 +171,11 @@ public class Canon : MonoBehaviour
     private void CheckForOffScreenCanonball(int damage)
     {
         //uses main camera for now -> should use camera for his side of screen
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(canonball.transform.position);
+        Vector3 screenPos = cam.WorldToScreenPoint(canonball.transform.position);
         float halfWidth = canonball.GetComponent<SpriteRenderer>().sprite.rect.width * 0.5f;
         float halfHeight = canonball.GetComponent<SpriteRenderer>().sprite.rect.height * 0.5f;
-        if (screenPos.x - halfWidth > Camera.main.pixelWidth || screenPos.x + halfWidth < 0
-        || screenPos.y - halfHeight > Camera.main.pixelHeight || screenPos.y + halfHeight < 0)
+        if (screenPos.x - halfWidth > cam.pixelWidth || screenPos.x + halfWidth < 0
+        || screenPos.y - halfHeight > cam.pixelHeight || screenPos.y + halfHeight < 0)
         {
             OnFinishedShooting(damage);
         }
@@ -175,12 +194,12 @@ public class Canon : MonoBehaviour
             else if (InsideOrangeOfIndicator())
             {
                 Debug.Log("insideOrange");
-                ShootCanon(orangeDamage);
+                ShootCanon(DamageManager.SMALLDAMAGE);
             }
             else
             {
                 Debug.Log("insideGreen");
-                ShootCanon(greenDamage);
+                ShootCanon(DamageManager.BIGDAMAGE);
             }
         }
     }
@@ -205,7 +224,7 @@ public class Canon : MonoBehaviour
         ballRB.angularVelocity = 0;
         canonball.transform.position = canonBallPosition;
         canonball.SetActive(false);
-        OnCanonBallShot(damage);
+        OnCanonBallShot(opponent ,damage);
         shootingCanonBall = false;
         shootTimer = null;
         Debug.Log($"finished shooting with damage {damage}");
@@ -235,6 +254,7 @@ public class Canon : MonoBehaviour
         if (collision.tag == "Player")
         {
             playerInteracting = collision.name;
+            opponent = collision.name == "Player1" ? Player.Two : Player.One;
             interactingWithPlayer = true;
         }
     }
