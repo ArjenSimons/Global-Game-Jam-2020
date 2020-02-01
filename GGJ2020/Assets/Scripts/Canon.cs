@@ -36,7 +36,7 @@ public class Canon : MonoBehaviour
     private Vector2 shootDirection;
 
     private Timer shootTimer;
-    private Camera cam;
+    [SerializeField] private Camera cam;
     private Player opponent;
 
     public event Action<Player, int> OnCanonBallShot;
@@ -146,7 +146,7 @@ public class Canon : MonoBehaviour
         switch (playerInteracting)
         {
             case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
-            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button2");
+            case "Player2": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button2");
             default: return Input.GetButtonDown("A-Button2");              
         }       
     }
@@ -173,8 +173,11 @@ public class Canon : MonoBehaviour
         Vector3 screenPos = cam.WorldToScreenPoint(canonball.transform.position);
         float halfWidth = canonball.GetComponent<SpriteRenderer>().sprite.rect.width * 0.5f;
         float halfHeight = canonball.GetComponent<SpriteRenderer>().sprite.rect.height * 0.5f;
+        float camTopBound = cam.name == "UpperCamera1" ? Screen.height : cam.pixelHeight;
+        float camBottomBound = cam.name == "UpperCamera1" ? cam.pixelHeight : 0;
+        print(screenPos + " " + cam.pixelWidth + " " + cam.pixelHeight);
         if (screenPos.x - halfWidth > cam.pixelWidth || screenPos.x + halfWidth < 0
-        || screenPos.y - halfHeight > cam.pixelHeight || screenPos.y + halfHeight < 0)
+        || screenPos.y - halfHeight > camTopBound || screenPos.y + halfHeight < camBottomBound)
         {
             OnFinishedShooting(damage);
         }
@@ -223,7 +226,7 @@ public class Canon : MonoBehaviour
         ballRB.angularVelocity = 0;
         canonball.transform.position = canonBallPosition;
         canonball.SetActive(false);
-        OnCanonBallShot(opponent ,damage);
+        OnCanonBallShot(opponent, damage);
         shootingCanonBall = false;
         shootTimer = null;
         Debug.Log($"finished shooting with damage {damage}");
