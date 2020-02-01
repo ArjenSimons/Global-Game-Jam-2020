@@ -15,8 +15,11 @@ public class BoatSegment : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private Sprite noDamageSprite;
     [SerializeField] private Sprite smallDamageSprite;
     [SerializeField] private Sprite bigDamageSprite;
+
+    [SerializeField] private BoatHealth boatHealth;
 
     private void Start()
     {
@@ -50,5 +53,25 @@ public class BoatSegment : MonoBehaviour
                 spriteRenderer.sprite = bigDamageSprite;
                 break;
         }
+    }
+
+    // Repair boat to undamaged
+    public void RepairBoatSegment()
+    {
+        switch (MyStatus)
+        {
+            case Status.NoDamage:
+                Debug.Log("There is nothing to restore!");
+                break;
+            case Status.SmallDamage:
+                boatHealth.RestoreBoat(DamageManager.SMALLDAMAGE);
+                break;
+            case Status.BigDamage:
+                boatHealth.RestoreBoat(DamageManager.BIGDAMAGE);
+                break;
+        }
+
+        MyStatus = Status.NoDamage;
+        spriteRenderer.sprite = noDamageSprite;
     }
 }

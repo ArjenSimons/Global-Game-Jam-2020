@@ -28,4 +28,10 @@ public class BoatHealth : MonoBehaviour
             health -= damage;
         }
     }
+
+    // Restore the damage dealt to the boat
+    public void RestoreBoat(int restore)
+    {
+        health += restore;
+    }
 }
