@@ -23,7 +23,7 @@ public class SequencePuzzleP1 : MonoBehaviour
     private int smallOrderMax;
     private int bigOrderMax;
 
-
+    bool isActivated;
     private GameObject boatSegment;
 
     BoatSegment bS;
@@ -40,33 +40,36 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     private void Update()
     {
-
-        // PLAYER ONE usese logitech controller
-        if (player == Player.PLAYER_ONE)
+        if (isActivated)
         {
-            if (Input.GetKeyDown("joystick 2 button 1"))
+            if (player == Player.PLAYER_ONE)
             {
-                Check(ButtonsP1.A);
-                Debug.Log("press A logitech controller");
-            }
+                if (Input.GetKeyDown("joystick 2 button 1"))
+                {
+                    Check(ButtonsP1.A);
+                    Debug.Log("press A logitech controller");
+                }
 
-            else if (Input.GetKeyDown("joystick 2 button 2"))
-            {
-                Check(ButtonsP1.B);
-                Debug.Log("press B logitech controller");
-            }
+                else if (Input.GetKeyDown("joystick 2 button 2"))
+                {
+                    Check(ButtonsP1.B);
+                    Debug.Log("press B logitech controller");
+                }
 
-            else if (Input.GetKeyDown("joystick 2 button 0"))
-            {
-                Check(ButtonsP1.X);
-                Debug.Log("press X logitech controller");
-            }
-            else if (Input.GetKeyDown("joystick 2 button 3"))
-            {
-                Check(ButtonsP1.Y);
-                Debug.Log("press Y logitech controller");
+                else if (Input.GetKeyDown("joystick 2 button 0"))
+                {
+                    Check(ButtonsP1.X);
+                    Debug.Log("press X logitech controller");
+                }
+                else if (Input.GetKeyDown("joystick 2 button 3"))
+                {
+                    Check(ButtonsP1.Y);
+                    Debug.Log("press Y logitech controller");
+                }
             }
         }
+        // PLAYER ONE usese xbox controller
+        
 
         //InputKeyboard();
     }
@@ -89,6 +92,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             for (int j = 0; j < correctOrderBig.Length; j++)
                 correctOrderBig[j] = (ButtonsP1)UnityEngine.Random.Range(0, 3);
         }
+        isActivated = true;
     }
 
     /// <summary>
@@ -108,6 +112,7 @@ public class SequencePuzzleP1 : MonoBehaviour
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+                    isActivated = false;
                     //delete hole
                 }
             }
@@ -130,6 +135,7 @@ public class SequencePuzzleP1 : MonoBehaviour
                 {
                     Debug.Log(" you just solved the whole damn puzzle!");
                     currentSequenceButton = 0;
+                    isActivated = false;
                     //delete hole
                 }
             }

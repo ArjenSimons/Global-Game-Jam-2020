@@ -31,9 +31,22 @@ public class HoleFixing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && mayPressBtnA)
+        switch (playerEnum)
         {
-            DisplaySequencePuzzle();
+            case Player.PLAYER_ONE:
+                if (Input.GetButtonDown("A-Button1") && mayPressBtnA)
+                {
+                    Debug.Log("XD");
+                    DisplaySequencePuzzle();
+                }
+                break;
+            case Player.PLAYER_TWO:
+                if (Input.GetButtonDown("B-Button1") && mayPressBtnA)
+                {
+                    Debug.Log("XD");
+                    DisplaySequencePuzzle();
+                }
+                break;
         }
     }
 
