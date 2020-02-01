@@ -12,6 +12,7 @@ public class Canon : MonoBehaviour
 
     private bool interactingWithPlayer = false;
     private bool shootingCanonBall = false;
+    private string playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
     private float rotateSpeed = 0.25f;
@@ -37,13 +38,24 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) ActivateCanon();
+        if (PlayerInput() && !interactingWithPlayer)
+            StartCoroutine(StartCanonActivation());
 
         if(!interactingWithPlayer)
             return;
 
         RotateCanon();
         CheckForCanonShot();
+    }
+
+    private bool PlayerInput()
+    {       
+        switch (playerInteracting)
+        {
+            case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button1");
+            case "Player2": return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("A-Button2");
+            default: return Input.GetKeyDown(KeyCode.Space);
+        }
     }
 
     private IEnumerator WaitForShotFinish(int damage)
@@ -54,6 +66,12 @@ public class Canon : MonoBehaviour
             CheckForOffScreenCanonball(damage);
             yield return null;
         }
+    }
+
+    private IEnumerator StartCanonActivation()
+    {
+        yield return null;
+        ActivateCanon();
     }
 
     private void CheckForOffScreenCanonball(int damage)
@@ -72,7 +90,7 @@ public class Canon : MonoBehaviour
 
     private void CheckForCanonShot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PlayerInput())
         {         
             if (InsideRedOfIndicator)
             {
@@ -135,11 +153,21 @@ public class Canon : MonoBehaviour
         barrelTF.RotateAround(pivotTF.transform.position, Vector3.forward, rotateSpeed);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.tag == "Player")
+        if (collision.tag == "Player")
         {
+            playerInteracting = collision.name;
             interactingWithPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            playerInteracting = "";
+            interactingWithPlayer = false;
         }
     }
 }
