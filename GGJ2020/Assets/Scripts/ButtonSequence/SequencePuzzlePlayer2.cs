@@ -26,7 +26,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
     GameObject boatSegment;
     BoatSegment bS;
 
-    public virtual void Start()
+    private void Start()
     {
         bS = GetComponentInChildren<BoatSegment>();
 
@@ -38,7 +38,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
     }
 
 
-    public virtual void Update()
+    private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.A))
         //{
@@ -84,7 +84,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
     }
 
 
-    public virtual void SequenceRandomizer()
+    private void SequenceRandomizer()
     {
         // decide whether to use correctOrderSmall or correctOrderBig
         //if (bS.MyStatus == BoatSegment.Status.SmallDamage)
@@ -110,7 +110,7 @@ public class SequencePuzzlePlayer2 : MonoBehaviour
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    public virtual void Check(ButtonsPlayer2 input)
+    private void Check(ButtonsPlayer2 input)
     {
         if (input == correctOrderSmall[currentSequenceButton])
         {
