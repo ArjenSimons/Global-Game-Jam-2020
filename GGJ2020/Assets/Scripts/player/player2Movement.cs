@@ -6,7 +6,7 @@ public class player2Movement : PlayerMovementBase
 {
     [SerializeField]
     private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f, checkRadius = 0;
-    private float playerSpeed = 0, inputDirectionUpper = 0;
+    private float playerSpeed = 0, inputDirectionDown = 0;
 
     [SerializeField]
     private GameObject boat;
@@ -84,9 +84,9 @@ public class player2Movement : PlayerMovementBase
 
     private void movement()
     {
-        inputDirectionUpper = Input.GetAxis("UpperJoystickHorizontal2");
+        inputDirectionDown = Input.GetAxis("UpperJoystickHorizontal2");
 
-        if (Input.GetKey(KeyCode.LeftArrow) || inputDirectionUpper < -0.2f)
+        if (Input.GetKey(KeyCode.LeftArrow) || inputDirectionDown < -0.2f)
         {
             walking = true;
 
@@ -99,7 +99,7 @@ public class player2Movement : PlayerMovementBase
             rb.velocity = transform.right * playerSpeed;
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) || inputDirectionUpper > 0.2f)
+        if (Input.GetKey(KeyCode.RightArrow) || inputDirectionDown > 0.2f)
         {
             walking = true;
 
@@ -118,7 +118,7 @@ public class player2Movement : PlayerMovementBase
             playerSpeed = rb.velocity.x;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionDown >= -0.2f && inputDirectionDown <= 0.2f)
         {
             walking = false;
         }

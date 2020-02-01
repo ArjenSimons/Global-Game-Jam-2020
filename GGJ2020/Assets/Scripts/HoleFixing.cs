@@ -39,7 +39,7 @@ public class HoleFixing : MonoBehaviour
     private void Update()
     {
         inputDownPlayer1 = Input.GetAxis("DownJoystickVertical1");
-        inputDownPlayer2 = Input.GetAxis("DownJoystickVertical2");
+        inputDownPlayer2 = Input.GetAxis("UpperJoystickVertical2");
 
         if (tryingToActivate)
         {
