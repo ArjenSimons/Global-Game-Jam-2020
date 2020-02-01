@@ -49,6 +49,7 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     private void Update()
     {
+        // PLAYER ONE usese logitech controller
         if (isActivated)
         {
             if (player == Player.PLAYER_ONE)
@@ -77,10 +78,6 @@ public class SequencePuzzleP1 : MonoBehaviour
                 }
             }
         }
-        // PLAYER ONE usese xbox controller
-        
-
-        //InputKeyboard();
     }
 
     public void SequenceRandomizer()
@@ -204,29 +201,5 @@ public class SequencePuzzleP1 : MonoBehaviour
     public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
     {
         bS = brokenBoatSegment;
-        Debug.Log("Bs is nu de boatsegment..");
-    }
-
-    /// <summary>
-    /// Method that reads user input thru keyboard
-    /// </summary>
-    private void InputKeyboard()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Check(ButtonsP1.A);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            Check(ButtonsP1.B);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            Check(ButtonsP1.X);
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Check(ButtonsP1.Y);
-        }
     }
 }

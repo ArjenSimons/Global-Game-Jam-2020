@@ -47,7 +47,7 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         if (isActivated)
         {
-            // PLAYER TWO uses logitech controller
+            // PLAYER TWO uses xbox controller
             if (player == Player.PLAYER_TWO)
             {
                 if (Input.GetButtonDown("A-Button1"))
@@ -72,10 +72,6 @@ public class SequencePuzzleP2 : MonoBehaviour
                 }
             }
         }
-
-
-
-        //InputKeyboard();
     }
 
     /// <summary>
@@ -205,28 +201,5 @@ public class SequencePuzzleP2 : MonoBehaviour
     public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
     {
         bS = brokenBoatSegment;
-    }
-
-    /// <summary>
-    /// Method that reads user input thru keyboard
-    /// </summary>
-    private void InputKeyboard()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Check(ButtonsP2.A);
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            Check(ButtonsP2.B);
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            Check(ButtonsP2.X);
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Check(ButtonsP2.Y);
-        }
     }
 }
