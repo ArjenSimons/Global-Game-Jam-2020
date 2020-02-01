@@ -6,12 +6,14 @@ public class BoatMovement : MonoBehaviour
 {
     [SerializeField] private int minSpeed;
     [SerializeField] private int maxSpeed;
+    private BoatHealth boatHealth;
 
     private float speed;
     public float distanceCovered { get; private set; }
 
     private void Start()
     {
+        boatHealth = GetComponent<BoatHealth>();
         speed = maxSpeed;
     }
 
@@ -31,11 +33,15 @@ public class BoatMovement : MonoBehaviour
         int dummyMinHealth = 0;
 
         //Map to value between zero and one
-        float speedMultiplier = Math.Normalize(dummyHealth, dummyMinHealth, dummyMaxHealth);
+        float speedMultiplier = Math.Normalize(boatHealth.health, boatHealth.minHealth, boatHealth.maxHealth);
 
         float adjustedSpeed = maxSpeed * speedMultiplier;
 
+        Debug.Log(speedMultiplier);
+        Debug.Log("Speed1: " + speed);
         //Map adjustedSpeed between the minSpeed and the maxSpeed
         speed = (maxSpeed - minSpeed) * (adjustedSpeed - minSpeed) / (maxSpeed - minSpeed) + minSpeed;
+
+        Debug.Log("Speed2: " + speed);
     }
 }
