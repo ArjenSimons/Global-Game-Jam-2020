@@ -103,7 +103,7 @@ public class Canon : MonoBehaviour
                 startRotatedAngle = middleOrientationRotateAngle;
                 break;
         }
-        print(maxRotation + " " + minRotation);
+        //print(maxRotation + " " + minRotation);
         canonBallPosition = canonball.transform.position;
     }
 
