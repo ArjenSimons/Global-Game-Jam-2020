@@ -905,7 +905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608968851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.300003, y: 0.72999954, z: 0}
+  m_LocalPosition: {x: 51.29, y: 0.72999954, z: 0}
   m_LocalScale: {x: 1.85, y: 1.85, z: 1}
   m_Children: []
   m_Father: {fileID: 1217775000}
@@ -3660,7 +3660,10 @@ MonoBehaviour:
   player: 0
   correctOrderSmall: 00000000000000000000000000000000
   correctOrderBig: 00000000000000000000000000000000
+  buttonSprites: []
+  buttons: []
   isActivated: 0
+  playerCanvas: {fileID: 0}
 --- !u!4 &1867877773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
@@ -4331,6 +4334,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 256
+  canWalk: 0
 --- !u!50 &508539260310649705
 Rigidbody2D:
   serializedVersion: 4
@@ -4400,6 +4404,7 @@ MonoBehaviour:
   - {fileID: 1521861886}
   - {fileID: 1521861885}
   isActivated: 0
+  playerCanvas: {fileID: 0}
 --- !u!4 &508539260310649711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
