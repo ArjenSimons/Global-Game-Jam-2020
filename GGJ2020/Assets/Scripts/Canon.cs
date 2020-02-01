@@ -249,9 +249,8 @@ public class Canon : MonoBehaviour
 
     private void RotateBarrelBack()
     {
-        float angle = orientation == Orientation.LEFT ? -extraAngleBasedOnOpponent : extraAngleBasedOnOpponent;
-        barrelTF.RotateAround(pivotTF.position, Vector3.forward, angle);
-        indicator.transform.RotateAround(pivotTF.position, Vector3.forward, angle);
+        barrelTF.RotateAround(pivotTF.position, Vector3.forward, -extraAngleBasedOnOpponent);
+        indicator.transform.RotateAround(pivotTF.position, Vector3.forward, -extraAngleBasedOnOpponent);
         extraAngleBasedOnOpponent = 0;
     }
 
