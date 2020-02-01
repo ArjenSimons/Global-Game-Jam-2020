@@ -10,6 +10,8 @@ public class GameStateManager : MonoBehaviour
     private readonly int gameOverSceneIndex = 1;
     private Player winner;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,6 +25,7 @@ public class GameStateManager : MonoBehaviour
 
         ListenToProgressManager();
         DontDestroyOnLoad(this.gameObject);
+        //audioManager.Play("ambient");
     }
 
     private void Update()
