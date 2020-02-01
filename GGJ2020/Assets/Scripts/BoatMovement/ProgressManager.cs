@@ -6,13 +6,19 @@ using UnityEngine.Events;
 
 public class ProgressManager : MonoBehaviour
 {
-    [SerializeField] private static int raceDistance;
+    [Tooltip("The minimum amount of seconds the race can last")]
+    [SerializeField] private int raceDistance;
     [SerializeField] private BoatMovement boatOne;
     [SerializeField] private BoatMovement boatTwo;
 
     public class OnPlayterFinishEvent : UnityEvent<Player> { }
 
     public static OnPlayterFinishEvent onPlayerFinish = new OnPlayterFinishEvent();
+
+    private void Start()
+    {
+        raceDistance *= 100;
+    }
 
     public float getProgression(Player boot)
     {
@@ -29,6 +35,8 @@ public class ProgressManager : MonoBehaviour
         }
 
         float progression = distanceCovered / raceDistance * 100f;
+
+        Debug.Log(boot + ": " + progression);
 
         if (progression >= 100)
             onPlayerFinish.Invoke(boot);

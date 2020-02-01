@@ -25,7 +25,7 @@ public class BoatMovement : MonoBehaviour
 
         speed = Mathf.Clamp(speed, float.MinValue, maxSpeed);
 
-        distanceCovered += speed;
+        distanceCovered += speed * Time.deltaTime;
 
         
     }
