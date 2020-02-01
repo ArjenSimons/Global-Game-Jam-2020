@@ -25,6 +25,8 @@ public class playerMovement : MonoBehaviour
 
     private bool walking, grounded;
 
+    public bool CarryingCanonBall { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +117,19 @@ public class playerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {
             walking = false;
+        }
+    }
+
+    public void LoseCanonBall()
+    {
+        CarryingCanonBall = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "CanonballStack" && !CarryingCanonBall)
+        {
+            CarryingCanonBall = true;
         }
     }
 }
