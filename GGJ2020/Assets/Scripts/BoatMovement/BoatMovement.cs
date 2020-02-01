@@ -52,6 +52,12 @@ public class BoatMovement : MonoBehaviour
         //Map adjustedSpeed to value between the minSpeed and the maxSpeed
         speed = (_maxSpeed - minSpeed) * adjustedSpeed / _maxSpeed + minSpeed;
 
+        UpdateClouds();
+    }
+
+
+    private void UpdateClouds() {
+
         if (this.gameObject.name == "Boat1")
         {
             foreach (GameObject cloud in clouds1)
@@ -66,6 +72,5 @@ public class BoatMovement : MonoBehaviour
                 cloud.GetComponent<CloudMovement>().ChangeSpeed(speed);
             }
         }
-
     }
 }
