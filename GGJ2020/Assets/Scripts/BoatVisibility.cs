@@ -43,14 +43,14 @@ public class BoatVisibility : MonoBehaviour
 
         if (enemyProgression > playerProgression - visibilityRange && enemyProgression < playerProgression + visibilityRange)
         {
-            showBoat(enemyProgression, playerProgression);
+            showBoat();
         } 
     }
 
-    private void showBoat(float enemyPos, float playerPos)
+    private void showBoat()
     {
         startPosCameraView = transform.position.x - (completeCamView / 2);
-        percentageEqualToPlayer = visibilityRange + (enemyPos - playerPos);
+        percentageEqualToPlayer = visibilityRange + (enemyProgression - playerProgression);
         percentage = percentageEqualToPlayer / (visibilityRange * 2);
         fakeBoatPosX = completeCamView * percentage;
 
