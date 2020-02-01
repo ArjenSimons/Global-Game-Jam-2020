@@ -147,7 +147,7 @@ public class Canon : MonoBehaviour
         {
             case "Player1": return Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A-Button1");
             case "Player2": return Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A-Button2");
-            default: return Input.GetButtonDown("A-Button2");              
+            default: return Input.GetKeyDown(KeyCode.Space);              
         }       
     }
 
