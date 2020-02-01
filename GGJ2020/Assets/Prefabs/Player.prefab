@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 508539260281132929}
   - component: {fileID: 5036870671611831210}
   - component: {fileID: 4130754548458104495}
+  - component: {fileID: 3870699328437490232}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -119,3 +120,17 @@ MonoBehaviour:
   maxMovementSpeed: 5
   movementDecay: 0.5
   movementSpeedIncrease: 1.2
+--- !u!114 &3870699328437490232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508539260281132928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492560114b7d5414e8f314f7a8e3dea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputButtons: 
+  sequences: []
