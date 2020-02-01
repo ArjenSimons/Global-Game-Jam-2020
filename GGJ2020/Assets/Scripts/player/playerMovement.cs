@@ -8,7 +8,12 @@ public class playerMovement : MonoBehaviour
     private float maxMovementSpeed = 5, movementDecay = 0.5f, movementSpeedIncrease = 1.2f;
     private float playerSpeed = 0, inputDirectionUpper = 0, inputDirectionUnder = 0;
 
+    [SerializeField]
+    private GameObject boat;
+
     private Rigidbody2D rb;
+
+    private SpriteRenderer boatRender, playerRender;
 
     private bool walking;
 
@@ -16,12 +21,34 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boatRender = boat.GetComponent<SpriteRenderer>();
+        playerRender = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
+    }
+
+    private void FixedUpdate()
+    {
+        clampPosition();
+    }
+
+    private void clampPosition()
+    {
+        var boatPos = boat.transform.position;
+        var pos = transform.position;
+        if (transform.position.x > boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        {
+            pos.x = boatPos.x + ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            transform.position = pos;
+        } else if (transform.position.x < boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2)))
+        {
+            pos.x = boatPos.x - ((boatRender.size.x / 2) - (playerRender.size.x / 2));
+            transform.position = pos;
+        }
     }
 
     private void movement()
