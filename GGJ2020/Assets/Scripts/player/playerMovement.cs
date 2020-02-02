@@ -43,6 +43,12 @@ public class playerMovement : PlayerMovementBase
         {
             movement();
         }
+        else
+        {
+            playerSpeed = 0;
+            rb.velocity = transform.right * playerSpeed;
+            animController.SetBool("IsWalking", false);
+        }
     }
 
     private void FixedUpdate()
