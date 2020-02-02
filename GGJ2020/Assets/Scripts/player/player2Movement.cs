@@ -25,6 +25,8 @@ public class player2Movement : PlayerMovementBase
 
     private bool walking, grounded;
 
+    public bool repairEventStarted;
+
     public bool canMove, paused;
 
     // Start is called before the first frame update
@@ -41,9 +43,16 @@ public class player2Movement : PlayerMovementBase
     {
         if (canMove && !paused)
         {
+            repairEventStarted = false;
             movement();
         }
-        
+        else
+        {
+            repairEventStarted = true;
+            playerSpeed = 0;
+            rb.velocity = transform.right * playerSpeed;
+            animController.SetBool("IsWalking", false);
+        }
     }
 
     private void FixedUpdate()
@@ -137,7 +146,7 @@ public class player2Movement : PlayerMovementBase
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "CanonballStack" && !CarryingCanonBall)
-        {            
+        {
 
             CarryingCanonBall = true;
         }

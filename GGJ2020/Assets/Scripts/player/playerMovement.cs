@@ -25,6 +25,8 @@ public class playerMovement : PlayerMovementBase
 
     private bool walking, grounded;
 
+    public bool repairEventStarted;
+
     public bool canMove, paused;
 
     // Start is called before the first frame update
@@ -41,7 +43,15 @@ public class playerMovement : PlayerMovementBase
     {
         if (canMove && !paused)
         {
+            repairEventStarted = false;
             movement();
+        }
+        else
+        {
+            repairEventStarted = true;
+            playerSpeed = 0;
+            rb.velocity = transform.right * playerSpeed;
+            animController.SetBool("IsWalking", false);
         }
     }
 
