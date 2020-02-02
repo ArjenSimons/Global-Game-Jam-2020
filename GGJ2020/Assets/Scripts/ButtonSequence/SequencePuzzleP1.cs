@@ -217,7 +217,7 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     public void NullBoatSegment()
     {
-        bS = null;
+        //bS = null;
         currentHole = null;
     }
 
