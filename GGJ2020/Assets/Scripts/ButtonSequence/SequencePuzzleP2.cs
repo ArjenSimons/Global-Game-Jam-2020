@@ -105,7 +105,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StartSequencePuzzle()
     {
-        movementScript2.canWalk = false;
+        movementScript2.canMove = false;
         playerCanvas.gameObject.SetActive(true);
         ResetSequencePuzzle();
         isActivated = true;
@@ -114,7 +114,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StopSequencePuzzle()
     {
-        movementScript2.canWalk = true;
+        movementScript2.canMove = true;
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
