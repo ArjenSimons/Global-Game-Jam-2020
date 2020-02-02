@@ -132,6 +132,7 @@ public class playerMovement : PlayerMovementBase
         }
 
         animController.SetBool("IsWalking", walking);
+        animController.SetBool("HoldingBall", CarryingCanonBall);
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {
