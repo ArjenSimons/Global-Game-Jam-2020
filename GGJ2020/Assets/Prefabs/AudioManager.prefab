@@ -129,7 +129,7 @@ MonoBehaviour:
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: endmenuBGM
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c352c33a1c932044c9f9b65dc57089ee, type: 3}
     volume: 0.107
     pitch: 1
     loop: 1
