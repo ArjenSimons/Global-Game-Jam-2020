@@ -40,7 +40,37 @@ public class DamageManager : MonoBehaviour
     {
         if (damage == 0)
             return;
-        
+
+        bool mayDamagePlayer = false;
+
+        // Checks if any segments are unharmed
+        switch (target)
+        {
+            case Player.PLAYER_ONE:
+                foreach (BoatSegment segment in playerOneBoat)
+                {
+                    if (segment.MyStatus == BoatSegment.Status.NoDamage)
+                    {
+                        mayDamagePlayer = true;
+                    }
+                }
+                break;
+            case Player.PLAYER_TWO:
+                foreach (BoatSegment segment in playerTwoBoat)
+                {
+                    if (segment.MyStatus == BoatSegment.Status.NoDamage)
+                    {
+                        mayDamagePlayer = true;
+                    }
+                }
+                break;
+        }
+
+        if (!mayDamagePlayer)
+        {
+            return;
+        }
+
         switch (target)
         {
             case Player.PLAYER_ONE:

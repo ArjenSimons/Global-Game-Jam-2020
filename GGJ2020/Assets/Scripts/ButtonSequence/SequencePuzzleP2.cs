@@ -90,6 +90,7 @@ public class SequencePuzzleP2 : MonoBehaviour
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderSmall[i] = (ButtonsP2)randomNumber;
                 buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+                buttons[i].GetComponent<Image>().color = new Color(255, 255, 255);
             }
         }
 
@@ -100,6 +101,7 @@ public class SequencePuzzleP2 : MonoBehaviour
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderBig[j] = (ButtonsP2)randomNumber;
                 buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+                buttons[j].GetComponent<Image>().color = new Color(255, 255, 255);
             }
 
         }
@@ -120,6 +122,7 @@ public class SequencePuzzleP2 : MonoBehaviour
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
+            Debug.Log("Colour changed p2");
         }
         playerCanvas.gameObject.SetActive(false);
         Debug.Log("Ended puzzle");
@@ -156,11 +159,6 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         ResetSequencePuzzle();
         StopSequencePuzzle();
-
-        foreach (GameObject button in buttons)
-        {
-            button.GetComponent<Image>().color = new Color(255, 255, 255);
-        }
 
         if (currentHole != null)
         {

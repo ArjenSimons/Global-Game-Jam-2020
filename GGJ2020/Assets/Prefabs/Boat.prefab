@@ -259,6 +259,8 @@ MonoBehaviour:
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
   tryingToActivate: 0
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
 --- !u!61 &4231886391223585867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -402,6 +404,8 @@ MonoBehaviour:
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
   tryingToActivate: 0
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
 --- !u!61 &3395042205624338590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -545,6 +549,8 @@ MonoBehaviour:
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
   tryingToActivate: 0
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
 --- !u!61 &599538087429341583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -626,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  _maxHealth: 80
+  _maxHealth: 40
   _minHealth: 0
 --- !u!114 &-2296543598701415572
 MonoBehaviour:
@@ -645,6 +651,7 @@ MonoBehaviour:
   boostAmount: 30
   boostTime: 5
   progressionManager: {fileID: 0}
+  paused: 0
 --- !u!114 &-2826990453939962975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +782,8 @@ MonoBehaviour:
   repairButtonIndicator: {fileID: 0}
   playerEnum: 0
   tryingToActivate: 0
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
 --- !u!61 &1038663112628832144
 BoxCollider2D:
   m_ObjectHideFlags: 0
