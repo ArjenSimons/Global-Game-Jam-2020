@@ -85,9 +85,10 @@ public class CountDown : MonoBehaviour
     {
         while (true)
         {
+            audioManager.Play("countdown");
             yield return new WaitForSeconds(1);
             countDownTime--;
-            audioManager.Play("countdown");
+            Debug.Log("countdown");
         }
     }
 
@@ -99,6 +100,7 @@ public class CountDown : MonoBehaviour
             countDown.gameObject.SetActive(false);
             P1ReadyText.gameObject.SetActive(false);
             P2ReadyText.gameObject.SetActive(false);
+            StopCoroutine("Countdown");
         }
     }
 
