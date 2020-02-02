@@ -66,7 +66,7 @@ MonoBehaviour:
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: smalldamage
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
     volume: 0.143
     pitch: 0
     loop: 0
