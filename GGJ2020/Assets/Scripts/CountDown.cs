@@ -19,7 +19,6 @@ public class CountDown : MonoBehaviour
     {
         startTime = 3;
         countDownTime = startTime;
-        StartCoroutine("Countdown");
         paused = true;
 
         boat1 = GameObject.Find("Boat1").GetComponent<BoatMovement>();
@@ -67,6 +66,11 @@ public class CountDown : MonoBehaviour
             yield return new WaitForSeconds(1);
             Destroy(text);
         }
+    }
+
+    public void StartCountDown()
+    {
+        StartCoroutine("Countdown");
     }
 
     public void Pause()
