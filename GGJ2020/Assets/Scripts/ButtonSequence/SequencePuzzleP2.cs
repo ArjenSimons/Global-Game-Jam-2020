@@ -147,6 +147,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         bS.RepairBoatSegment();
 
+        currentHole = null;
+
         Debug.Log("Sequence was solved.");
     }
 

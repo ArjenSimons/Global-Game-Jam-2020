@@ -25,12 +25,9 @@ public class playerMovement : PlayerMovementBase
 
     private bool walking, grounded;
 
-<<<<<<< HEAD
-    public bool canWalk;
     public bool repairEventStarted;
-=======
+
     public bool canMove, paused;
->>>>>>> develop
 
     // Start is called before the first frame update
     void Start()
