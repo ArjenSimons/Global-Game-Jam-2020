@@ -40,7 +40,7 @@ public class ProgressManager : MonoBehaviour
 
         //Debug.Log(boot + ": " + progression);
 
-        if (progression >= 100)
+        if (progression >= 100 && !GameStateManager.Instance.GameOver)
             onPlayerFinish.Invoke(boot);
 
         return progression;
