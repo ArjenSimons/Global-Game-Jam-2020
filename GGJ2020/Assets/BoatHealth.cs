@@ -50,7 +50,6 @@ public class BoatHealth : MonoBehaviour
         {
             health -= damage;
         }
-
         cam.GetComponent<ScreenShake>().activateScreenShake();
     }
 

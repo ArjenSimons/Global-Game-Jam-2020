@@ -10,4 +10,9 @@ public class PlayerMovementBase : MonoBehaviour
     {
         CarryingCanonBall = false;
     }
+
+    public void GiveCannonBall()
+    {
+        CarryingCanonBall = true;
+    }
 }

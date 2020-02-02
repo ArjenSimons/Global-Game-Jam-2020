@@ -8,6 +8,7 @@ TagManager:
   - Cloud1
   - Cloud2
   - CanonballStack
+  - Boat
   layers:
   - Default
   - TransparentFX
