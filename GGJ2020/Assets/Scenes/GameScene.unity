@@ -4523,7 +4523,7 @@ MonoBehaviour:
   - {fileID: 2053764548}
   isActivated: 0
   playerCanvas: {fileID: 2053764551}
-  audioManager: {fileID: 69354954}
+  audioManager: {fileID: 0}
 --- !u!4 &1867877773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
@@ -5494,7 +5494,7 @@ MonoBehaviour:
   - {fileID: 1521861886}
   isActivated: 0
   playerCanvas: {fileID: 1521861889}
-  audioManager: {fileID: 69354954}
+  audioManager: {fileID: 0}
 --- !u!4 &508539260310649711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,

@@ -30,9 +30,9 @@ public class Canon : MonoBehaviour
     private readonly float rotateOffset = 20f;
     private readonly float shootForce = 250f;
     private readonly float shootDuration = 3f;
-    private readonly float minRotatedAngleForRedOffset = 10;
+    private readonly float minRotatedAngleForRedOffset = 5;
     private float extraRotateSpeed = 0.75f;
-    private readonly float minRotatedAngleForOrangeOffset = 3;
+    private readonly float minRotatedAngleForOrangeOffset = 5;
     private readonly float barrelYOffset = 0.15f;
     private readonly float minProgressDifference = 10f;
     private readonly float maxProgressDifference = 25f;
