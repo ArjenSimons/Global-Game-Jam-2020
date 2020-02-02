@@ -48,6 +48,9 @@ public class player2Movement : PlayerMovementBase
 
     private void FixedUpdate()
     {
+
+        animController.SetBool("IsWalking", walking);
+
         clampPosition();
         playerOnGround();
     }
@@ -91,6 +94,8 @@ public class player2Movement : PlayerMovementBase
         {
             walking = true;
 
+            transform.localScale = new Vector3(0 - Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
             playerSpeed -= movementSpeedIncrease;
             if (playerSpeed <= -maxMovementSpeed)
             {
@@ -103,6 +108,8 @@ public class player2Movement : PlayerMovementBase
         if (Input.GetKey(KeyCode.RightArrow) || inputDirectionUnder > 0 || inputDirectionUpper > 0.2f)
         {
             walking = true;
+
+            transform.localScale = new Vector3(0 + Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             playerSpeed += movementSpeedIncrease;
             if (playerSpeed >= maxMovementSpeed)
@@ -118,6 +125,8 @@ public class player2Movement : PlayerMovementBase
             rb.velocity *= movementDecay;
             playerSpeed = rb.velocity.x;
         }
+
+        animController.SetBool("IsWalking", walking);
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {

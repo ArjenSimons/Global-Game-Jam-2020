@@ -3607,7 +3607,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c7e597ffc173f264aa5e16835812f3d5,
+      objectReference: {fileID: 21300000, guid: b545bdbcb89d54342837facc91085b4b,
         type: 3}
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -3699,6 +3699,11 @@ PrefabInstance:
       propertyPath: checkRadius
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4130754548458104495, guid: 624fc64cff4f22f4491d9f3038f302a0,
+        type: 3}
+      propertyPath: animController
+      value: 
+      objectReference: {fileID: 1867877774}
     - target: {fileID: 5036870671611831210, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
       propertyPath: m_Constraints
@@ -4464,7 +4469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b545bdbcb89d54342837facc91085b4b,
+      objectReference: {fileID: 21300000, guid: c7e597ffc173f264aa5e16835812f3d5,
         type: 3}
     - target: {fileID: 508539260281132942, guid: 624fc64cff4f22f4491d9f3038f302a0,
         type: 3}
@@ -4559,6 +4564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0c0d4b0968980145bb2c976845160da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animController: {fileID: 508539260310649712}
   maxMovementSpeed: 5
   movementDecay: 0.5
   movementSpeedIncrease: 1.2
@@ -4609,8 +4615,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.75, y: 1.5}
+  m_Offset: {x: 0.0021649962, y: 0.03248474}
+  m_Size: {x: 0.32129848, y: 0.5427798}
   m_Direction: 0
 --- !u!114 &508539260310649708
 MonoBehaviour:
