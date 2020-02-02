@@ -215,6 +215,7 @@ MonoBehaviour:
   indicator: {fileID: 4434199059998715512}
   canonball: {fileID: 4434199060394990583}
   barrelRay: {fileID: 4434199060254164597}
+  segmentOn: {fileID: 0}
   debug: 0
   playerInteracting: {fileID: 0}
   rotatedAngle: 0
@@ -419,6 +420,8 @@ GameObject:
   - component: {fileID: 4434199060394990582}
   - component: {fileID: 4434199060394990576}
   - component: {fileID: 4434199060394990577}
+  - component: {fileID: 3411829088911380924}
+  - component: {fileID: 5046862759346984594}
   m_Layer: 0
   m_Name: CanonBall
   m_TagString: Untagged
@@ -511,6 +514,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3411829088911380924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434199060394990583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8baf617f43c11534798d956ef5afd415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hit: 0
+--- !u!58 &5046862759346984594
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434199060394990583}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.13
 --- !u!1 &4434199060717504325
 GameObject:
   m_ObjectHideFlags: 0

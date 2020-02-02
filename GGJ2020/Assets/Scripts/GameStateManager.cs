@@ -10,6 +10,8 @@ public class GameStateManager : MonoBehaviour
     private readonly int gameOverSceneIndex = 1;
     [SerializeField] private Player winner;
 
+    public readonly float cameraOffset = 20f;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
