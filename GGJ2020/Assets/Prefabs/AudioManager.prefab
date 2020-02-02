@@ -53,22 +53,22 @@ MonoBehaviour:
     soundSource: {fileID: 0}
   - name: cannonfire1
     clip: {fileID: 8300000, guid: ce2eb6cdc18bd7b49bd396d140a1b9aa, type: 3}
-    volume: 0.156
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: cannonfire2
-    clip: {fileID: 0}
-    volume: 0.277
-    pitch: 0
-    loop: 0
+  - name: mainmenuBGM
+    clip: {fileID: 8300000, guid: a342fa211e42eeb47a9691a790c75613, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: smalldamage
     clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
     volume: 0.143
-    pitch: 0
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
@@ -82,49 +82,63 @@ MonoBehaviour:
   - name: aimingsound
     clip: {fileID: 0}
     volume: 0
-    pitch: 0
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: finishedgame
     clip: {fileID: 0}
     volume: 0
-    pitch: 0
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: ambient
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    loop: 0
+    clip: {fileID: 8300000, guid: 866fb5117cde1c948801d09a589a82ab, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: repairfailed
     clip: {fileID: 0}
     volume: 0
-    pitch: 0
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: repairsucceeded
     clip: {fileID: 0}
     volume: 0
-    pitch: 0
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: repairsound
     clip: {fileID: 8300000, guid: 06445776681167c49866cea1fb25b172, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 0.207
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: countdown
     clip: {fileID: 8300000, guid: 6eafa624591688149959666fb7ed4276, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 0.107
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: endmenuBGM
+    clip: {fileID: 0}
+    volume: 0.107
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: cannonmiss
+    clip: {fileID: 8300000, guid: 8a59215b18b2fbd4e9fc0a0cfbba0ebe, type: 3}
+    volume: 0.107
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}

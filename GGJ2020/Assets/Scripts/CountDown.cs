@@ -38,6 +38,7 @@ public class CountDown : MonoBehaviour
 
         player2movement = GameObject.Find("Player2").GetComponent<playerMovement>();
         player2movement.paused = paused;
+        audioManager.Play("mainmenuBGM");
     }
 
     // Update is called once per frame
@@ -46,6 +47,7 @@ public class CountDown : MonoBehaviour
         if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown(KeyCode.T))
         {
             Pause();
+            audioManager.Stop("mainmenuBGM");
             countDown.text = countDownTime.ToString();
             Debug.Log("Player one ready");
             P1IsReady();
@@ -53,6 +55,7 @@ public class CountDown : MonoBehaviour
 
         if (Input.GetButtonDown("A-Button1") || Input.GetKeyDown(KeyCode.Y))
         {
+            audioManager.Stop("mainmenuBGM");
             Debug.Log("Player two ready");
             P2IsReady();
         }
@@ -76,6 +79,7 @@ public class CountDown : MonoBehaviour
                 StopCoroutine("Countdown");
                 countDown.text = "GO!";
                 Resume();
+                audioManager.Play("ambient");
                 StartCoroutine("FadeGo");
             }
         }

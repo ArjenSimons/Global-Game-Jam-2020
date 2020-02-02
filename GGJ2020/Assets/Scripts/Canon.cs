@@ -308,6 +308,7 @@ public class Canon : MonoBehaviour
 
     private bool GuarenteedMiss()
     {
+        audioManager.Play("cannonmiss");
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
         float progressDiff = Mathf.Abs(progressManager.getProgressionDifference(player));
         

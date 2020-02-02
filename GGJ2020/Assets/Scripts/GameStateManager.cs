@@ -25,7 +25,6 @@ public class GameStateManager : MonoBehaviour
         }
 
         ListenToProgressManager();
-        //audioManager.Play("ambient");
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -64,7 +63,7 @@ public class GameStateManager : MonoBehaviour
         this.winner = player;
         SceneManager.LoadSceneAsync(gameOverSceneIndex);
         SceneManager.sceneLoaded += OnGameEndSceneLoaded;
-        //audioManager.Play("finishedgame");
+        audioManager.Play("finishedgame");
     }
 
     private void OnGameEndSceneLoaded(Scene scene, LoadSceneMode mode)
