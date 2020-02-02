@@ -31,6 +31,13 @@ public class BoatMovement : MonoBehaviour
 
         clouds1 = GameObject.FindGameObjectsWithTag(Tags.Cloud1.ToString());
         clouds2 = GameObject.FindGameObjectsWithTag(Tags.Cloud2.ToString());
+    }
+
+    private void FixedUpdate()
+    {
+       // speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
+
+        distanceCovered += speed * Time.deltaTime;
 
         if (boostIsActive)
         {
@@ -40,15 +47,9 @@ public class BoatMovement : MonoBehaviour
             {
                 timer = 0;
                 boostIsActive = false;
+                StartCoroutine(ChangeSpeedOverTime(CalculateSpeedDesiredSpeed(boatHealth.health)));
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
-
-        distanceCovered += speed * Time.deltaTime;   
     }
 
     private void SetSpeed(Player player, int health, bool healthIncreased)
@@ -75,8 +76,8 @@ public class BoatMovement : MonoBehaviour
         {
             health += boostAmount;
 
-            if (health > 80)
-                health = 80;
+            if (health > 90)
+                health = 90;
         }
         
         StopCoroutine("ChangeSpeedOverTime");
