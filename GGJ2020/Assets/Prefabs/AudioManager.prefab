@@ -86,9 +86,9 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: finishedgame
-    clip: {fileID: 0}
-    volume: 0
+  - name: startgame
+    clip: {fileID: 8300000, guid: 9c3e67d3825832545ba629e50f7d3660, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
     playOnAwake: 0
     soundSource: {fileID: 0}
   - name: endmenuBGM
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c352c33a1c932044c9f9b65dc57089ee, type: 3}
     volume: 0.107
     pitch: 1
     loop: 1

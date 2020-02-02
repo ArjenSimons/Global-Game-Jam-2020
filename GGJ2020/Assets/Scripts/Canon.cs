@@ -317,13 +317,12 @@ public class Canon : MonoBehaviour
         }
         else
         {
-            //play sound of missed shot
+            audioManager.Play("cannonmiss");
         }
     }
 
     private bool GuarenteedMiss()
     {
-        audioManager.Play("cannonmiss");
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
         float progressDiff = Mathf.Abs(progressManager.getProgressionDifference(player));
         

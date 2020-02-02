@@ -16,6 +16,7 @@ public class CountDown : MonoBehaviour
 
     [SerializeField]
     private AudioManager audioManager;
+    private bool isPlaying;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class CountDown : MonoBehaviour
         P1Ready = false;
         P2Ready = false;
         countDownStarted = false;
+        isPlaying = false;
 
         boat1 = GameObject.Find("Boat1").GetComponent<BoatMovement>();
         boat1.paused = paused;
@@ -81,6 +83,12 @@ public class CountDown : MonoBehaviour
                 Resume();
                 audioManager.Play("ambient");
                 StartCoroutine("FadeGo");
+
+                if (!isPlaying)
+                {
+                    audioManager.Play("startgame");
+                    isPlaying = true;
+                }
             }
         }
 
@@ -98,7 +106,6 @@ public class CountDown : MonoBehaviour
             {
                 audioManager.Play("countdown");
             }
-            Debug.Log("countdown");
         }
     }
 
