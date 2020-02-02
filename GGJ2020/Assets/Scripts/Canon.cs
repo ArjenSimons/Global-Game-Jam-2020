@@ -127,7 +127,7 @@ public class Canon : MonoBehaviour
     private void Update()
     {
         if (PlayerInput() && interactingWithPlayer && !activated && shootTimer == null
-        && playerInteracting.CarryingCanonBall && segmentOn.MyStatus == Status.NoDamage)
+        && playerInteracting.CarryingCanonBall)
             StartCoroutine(StartCanonActivation());       
 
         if (activated)
