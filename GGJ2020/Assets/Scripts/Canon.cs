@@ -29,7 +29,7 @@ public class Canon : MonoBehaviour
 
     private readonly float rotateOffset = 20f;
     private readonly float shootForce = 250f;
-    private readonly float shootDuration = 5f;
+    private readonly float shootDuration = 3f;
     private readonly float minRotatedAngleForRedOffset = 10;
     private float extraRotateSpeed = 0.75f;
     private readonly float minRotatedAngleForOrangeOffset = 3;
@@ -55,6 +55,7 @@ public class Canon : MonoBehaviour
 
     [SerializeField] private Orientation orientation;
     private enum Orientation { LEFT, RIGHT, MIDDLE }
+    public enum HitStatus { STATUS_MISSED, STATUS_HIT }
 
     [SerializeField]
     private AudioManager audioManager;
@@ -125,7 +126,7 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInput() && interactingWithPlayer && !activated 
+        if (PlayerInput() && interactingWithPlayer && !activated && shootTimer == null
         && playerInteracting.CarryingCanonBall && segmentOn.MyStatus == Status.NoDamage)
             StartCoroutine(StartCanonActivation());       
 
@@ -166,10 +167,6 @@ public class Canon : MonoBehaviour
 
     private bool InsideRedOfIndicator()
     {
-        //print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
-        //print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
-        //print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
-        //print(rotatedAngle);
         return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset + extraAngleBasedOnOpponent 
         || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset + extraAngleBasedOnOpponent;
     }
@@ -220,30 +217,43 @@ public class Canon : MonoBehaviour
         float camBottomBound = cam.name == "UpperCamera1" ? cam.pixelHeight : 0;
         //print(screenPos + " " + cam.pixelWidth + " " + cam.pixelHeight);
         if (screenPos.x - halfWidth > cam.pixelWidth || screenPos.x + halfWidth < 0
-        || screenPos.y - halfHeight > camTopBound || screenPos.y + halfHeight < camBottomBound)
+        || screenPos.y - halfHeight > camTopBound)
         {
-            OnFinishedShooting(damage);
-        }      
-        //int axis = screenPos.y - halfHeight > camTopBound ? 1 : 0;
-        //StartCoroutine(CrashCannonBallOnOpponent(screenPos, () => OnFinishedShooting(damage), axis));
+            if (!GuarenteedMiss() && damage != 0 && screenPos.y + halfHeight > camBottomBound)
+            {
+                int axis = screenPos.y - halfHeight > camTopBound || screenPos.y + halfHeight < camBottomBound ? 1 : 0;
+                StartCoroutine(CrashCannonBallOnOpponent(screenPos, (status) => OnFinishedShooting(damage, status), axis));
+            }
+            else
+            {
+                OnFinishedShooting(damage, HitStatus.STATUS_MISSED);
+            }
+            shootingCanonBall = false;
+        }  
     }
 
-    private IEnumerator CrashCannonBallOnOpponent(Vector3 offscreenPosition, Action OnHit, int fromAxis)
+    private IEnumerator CrashCannonBallOnOpponent(Vector3 offscreenPosition, Action<HitStatus> OnHit, int fromAxis)
     {
         Vector3 screenSpawnPos;
         if(fromAxis == 0)
         {
-            float screenY = playerInteracting.name == "Player1" ? offscreenPosition.y - cam.pixelHeight : offscreenPosition.y + cam.pixelHeight;
+            float screenY = playerInteracting.name == "Player1" ? offscreenPosition.y - cam.pixelHeight : offscreenPosition.y + cam.pixelHeight;           
             screenSpawnPos = offscreenPosition.x < 0 ? new Vector3(cam.pixelWidth, screenY) : new Vector3(0, screenY);          
         }
         else
         {
             float screenY = playerInteracting.name == "Player1" ? cam.pixelHeight : Screen.height;
-            screenSpawnPos = offscreenPosition.x < 0 ? new Vector3(offscreenPosition.x, cam.pixelHeight) : new Vector3(0, offscreenPosition.y);
+            screenSpawnPos = offscreenPosition.x < 0 ? new Vector3(offscreenPosition.x, screenY) : new Vector3(0, screenY);
         }
+        float cameraOffset = playerInteracting.name == "Player1" ? -GameStateManager.Instance.cameraOffset : GameStateManager.Instance.cameraOffset;
         Vector3 worldPos = cam.ScreenToWorldPoint(screenSpawnPos);
-        yield return null;
+        worldPos = new Vector3(worldPos.x,worldPos.y + (cameraOffset * 0.5f), 0);
         canonball.transform.position = worldPos;
+        CanonBall ball = canonball.GetComponent<CanonBall>();
+        ball.SetFallingOnOpponent(opponent);
+        yield return new WaitUntil(() => ball.Hit);
+        ball.ResetBall();
+        OnHit(ball.status);
     }
 
     private void CheckForCanonShot()
@@ -252,14 +262,17 @@ public class Canon : MonoBehaviour
         {         
             if (InsideRedOfIndicator())
             {
+                print("inside Red");
                 ShootCanon(0);
             }
             else if (InsideOrangeOfIndicator())
             {
+                print("inside Orange");
                 ShootCanon(DamageManager.SMALLDAMAGE);
             }
             else
             {
+                print("inside Green");
                 ShootCanon(DamageManager.BIGDAMAGE);
             }
         }
@@ -272,17 +285,16 @@ public class Canon : MonoBehaviour
         canonball.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootForce);             
         indicator.SetActive(false);
         barrelRay.SetActive(false);
-        shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
+        shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage, HitStatus.STATUS_MISSED));        
         shootingCanonBall = true;
         audioManager.Play("cannonfire1");
         activated = false;
         interactingWithPlayer = false;
-        RotateBarrelBack();
-        playerInteracting.LoseCanonBall();       
+        RotateCannonBack();               
         StartCoroutine(WaitForShotFinish(damage));
     }
 
-    private void RotateBarrelBack()
+    private void RotateCannonBack()
     {
         barrelTF.localPosition = barrelStartPosition;
         barrelTF.localEulerAngles = barrelStartRotation;
@@ -291,20 +303,19 @@ public class Canon : MonoBehaviour
         extraAngleBasedOnOpponent = 0;
     }
 
-    private void OnFinishedShooting(int damage)
+    private void OnFinishedShooting(int damage, HitStatus status)
     {
         Rigidbody2D ballRB = canonball.GetComponent<Rigidbody2D>();
         ballRB.velocity = Vector3.zero;
         ballRB.angularVelocity = 0;
         canonball.transform.position = canonBallPosition;
-        shootingCanonBall = false;
         shootTimer = null;
-        canonball.SetActive(false);
-        if (!GuarenteedMiss())
+        canonball.SetActive(false);      
+        if (status == HitStatus.STATUS_HIT)
         {
             OnCanonBallShot(opponent, damage);
         }
-        if (GuarenteedMiss())
+        else
         {
             audioManager.Play("cannonmiss");
         }
@@ -325,6 +336,7 @@ public class Canon : MonoBehaviour
         activated = true;
         indicator.SetActive(true);
         barrelRay.SetActive(true);
+        playerInteracting.LoseCanonBall();
         RotateRelativeToOpponent();
         //audioManager.Play("aimingsound");
     }
@@ -358,13 +370,14 @@ public class Canon : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.tag == "Player")
-        {
-            playerInteracting = null;
+        {           
             interactingWithPlayer = false;
             if (activated)
             {
                 indicator.SetActive(false);
                 barrelRay.SetActive(false);
+                playerInteracting.GiveCannonBall();
+                RotateCannonBack();
                 activated = false;              
             }
         }
