@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5968546399581184598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3953331124448764085}
+  - component: {fileID: 6651722229082668569}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3953331124448764085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968546399581184598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7312209, y: 1.0755223, z: -27.732647}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6651722229082668569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968546399581184598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610f33c2956a4e244a555fca96158069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsArray:
+  - name: heavydamage
+    clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
+    volume: 0.104
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: cannonfire1
+    clip: {fileID: 8300000, guid: ce2eb6cdc18bd7b49bd396d140a1b9aa, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: mainmenuBGM
+    clip: {fileID: 8300000, guid: a342fa211e42eeb47a9691a790c75613, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: smalldamage
+    clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
+    volume: 0.143
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: speedboost
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: aimingsound
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: finishedgame
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: ambient
+    clip: {fileID: 8300000, guid: 866fb5117cde1c948801d09a589a82ab, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairfailed
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairsucceeded
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairsound
+    clip: {fileID: 8300000, guid: 06445776681167c49866cea1fb25b172, type: 3}
+    volume: 0.207
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: countdown
+    clip: {fileID: 8300000, guid: 6eafa624591688149959666fb7ed4276, type: 3}
+    volume: 0.107
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: endmenuBGM
+    clip: {fileID: 0}
+    volume: 0.107
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: cannonmiss
+    clip: {fileID: 8300000, guid: 8a59215b18b2fbd4e9fc0a0cfbba0ebe, type: 3}
+    volume: 0.107
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}

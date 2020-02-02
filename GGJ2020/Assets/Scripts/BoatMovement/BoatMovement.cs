@@ -25,6 +25,9 @@ public class BoatMovement : MonoBehaviour
 
     public bool paused;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Start()
     {
         boatHealth = GetComponent<BoatHealth>();
@@ -76,7 +79,10 @@ public class BoatMovement : MonoBehaviour
         //        speed = CalculateSpeedDesiredSpeed(health);
         //}
         if (!progressionManager.IsAhead(player) && healthIncreased)
+        {
+            //audioManager.Play("speedboost");
             boostIsActive = true;
+        }
 
         if (boostIsActive)
         {

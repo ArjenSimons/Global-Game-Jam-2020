@@ -37,6 +37,9 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     private HoleFixing currentHole;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Start()
     {
         currentSequenceButton = 0;
@@ -94,6 +97,7 @@ public class SequencePuzzleP1 : MonoBehaviour
                 int randomNumber = UnityEngine.Random.Range(0, 3);
                 correctOrderSmall[i] = (ButtonsP1)randomNumber;
                 buttons[i].GetComponent<Image>().sprite = buttonSprites[randomNumber];
+                buttons[i].GetComponent<Image>().color = new Color(255, 255, 255);
             }
         }
 
@@ -104,7 +108,8 @@ public class SequencePuzzleP1 : MonoBehaviour
                     int randomNumber = UnityEngine.Random.Range(0, 3);
                     correctOrderBig[j] = (ButtonsP1)randomNumber;
                     buttons[j].GetComponent<Image>().sprite = buttonSprites[randomNumber];
-                }
+                buttons[j].GetComponent<Image>().color = new Color(255, 255, 255);
+            }
         }
     }
 
@@ -123,6 +128,7 @@ public class SequencePuzzleP1 : MonoBehaviour
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
+            Debug.Log("Colour changed");
         }
         playerCanvas.gameObject.SetActive(false);
         Debug.Log("Ended puzzle");
@@ -156,16 +162,12 @@ public class SequencePuzzleP1 : MonoBehaviour
         ResetSequencePuzzle();
         StopSequencePuzzle();
 
-        foreach (GameObject button in buttons)
-        {
-            button.GetComponent<Image>().color = new Color(255, 255, 255);
-        }
-
         if (currentHole != null)
         {
             RestartRepairIndicator();
         }
 
+        //audioManager.Play("repairfailed");
         Debug.Log("Sequence was failed.");
     }
 
@@ -181,7 +183,8 @@ public class SequencePuzzleP1 : MonoBehaviour
             if (input == correctOrderSmall[currentSequenceButton])
             {
                 RightButtonWasPressed();
-
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
                 if (currentSequenceButton == smallOrderMax)
                 {
                     SequenceSolved();
@@ -189,6 +192,8 @@ public class SequencePuzzleP1 : MonoBehaviour
             }
             else
             {
+                Debug.Log("play repair sound");
+                audioManager.Play("repairsound");
                 SequenceFailed();
             }
         }
@@ -197,6 +202,8 @@ public class SequencePuzzleP1 : MonoBehaviour
             if (input == correctOrderBig[currentSequenceButton])
             {
                 RightButtonWasPressed();
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
 
                 if (currentSequenceButton == bigOrderMax)
                 {
@@ -205,6 +212,8 @@ public class SequencePuzzleP1 : MonoBehaviour
             }
             else
             {
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
                 SequenceFailed();
             }
         }

@@ -12,6 +12,9 @@ public class GameStateManager : MonoBehaviour
 
     public readonly float cameraOffset = 20f;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,6 +65,7 @@ public class GameStateManager : MonoBehaviour
         this.winner = player;
         SceneManager.LoadSceneAsync(gameOverSceneIndex);
         SceneManager.sceneLoaded += OnGameEndSceneLoaded;
+        audioManager.Play("finishedgame");
     }
 
     private void OnGameEndSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -57,6 +57,9 @@ public class Canon : MonoBehaviour
     private enum Orientation { LEFT, RIGHT, MIDDLE }
     public enum HitStatus { STATUS_MISSED, STATUS_HIT }
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (debug) interactingWithPlayer = true;
@@ -284,6 +287,7 @@ public class Canon : MonoBehaviour
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage, HitStatus.STATUS_MISSED));        
         shootingCanonBall = true;
+        audioManager.Play("cannonfire1");
         activated = false;
         interactingWithPlayer = false;
         RotateCannonBack();               
@@ -319,6 +323,7 @@ public class Canon : MonoBehaviour
 
     private bool GuarenteedMiss()
     {
+        audioManager.Play("cannonmiss");
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
         float progressDiff = Mathf.Abs(progressManager.getProgressionDifference(player));
         
@@ -334,6 +339,7 @@ public class Canon : MonoBehaviour
         barrelRay.SetActive(true);
         playerInteracting.LoseCanonBall();
         RotateRelativeToOpponent();
+        //audioManager.Play("aimingsound");
     }
 
     private void RotateCanon()
