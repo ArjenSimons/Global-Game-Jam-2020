@@ -20,7 +20,7 @@ public class Canon : MonoBehaviour
     [SerializeField] private float rotatedAngle = 0;
 
     private float currentRotateSpeed;
-    private float rotateSpeed = 1.75f;
+    private float rotateSpeed = 1.25f;
     private float maxRotation;
     private float minRotation;
     private float startRotatedAngle;
@@ -31,7 +31,7 @@ public class Canon : MonoBehaviour
     private readonly float shootForce = 250f;
     private readonly float shootDuration = 5f;
     private readonly float minRotatedAngleForRedOffset = 10;
-    private float extraRotateSpeed = 0.5f;
+    private float extraRotateSpeed = 0.75f;
     private readonly float minRotatedAngleForOrangeOffset = 3;
     private readonly float barrelYOffset = 0.15f;
     private readonly float minProgressDifference = 10f;
@@ -323,7 +323,7 @@ public class Canon : MonoBehaviour
     private void RotateCanon()
     {
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
-        float progressDiff = progressManager.getProgressionDifference(player);
+        float progressDiff = progressManager.getProgressionDifference(player) * 0.1f;
         currentRotateSpeed = progressDiff > 0 ? rotateSpeed + (extraRotateSpeed * progressDiff) : rotateSpeed;       
         rotatedAngle += currentRotateSpeed;
         
