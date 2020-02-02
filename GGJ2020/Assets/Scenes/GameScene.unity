@@ -1030,6 +1030,40 @@ Transform:
   m_Father: {fileID: 1906658206}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &630863618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
+    type: 3}
+  m_PrefabInstance: {fileID: 982231755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &630863620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
+    type: 3}
+  m_PrefabInstance: {fileID: 982231755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630863618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &630863623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630863618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c443c53b5c0721841b50d0cbb1668dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1867877769}
+  repairButtonIndicator: {fileID: 1867877770}
+  playerEnum: 0
+  tryingToActivate: 0
 --- !u!1 &785934876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,18 +1145,6 @@ Transform:
   m_Father: {fileID: 380311458}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &787837573 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2426821813742183346, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 1750593422924748608}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &845283359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1226,40 @@ Transform:
   m_Father: {fileID: 380311458}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &890768237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1814983118362608679, guid: 6df869b83e4dbb2448cbeecb73aad291,
+    type: 3}
+  m_PrefabInstance: {fileID: 1750593422924748608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &890768239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8435416655693869117, guid: 6df869b83e4dbb2448cbeecb73aad291,
+    type: 3}
+  m_PrefabInstance: {fileID: 1750593422924748608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890768237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &890768242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890768237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c443c53b5c0721841b50d0cbb1668dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 508539260310649703}
+  repairButtonIndicator: {fileID: 508539260310649706}
+  playerEnum: 0
+  tryingToActivate: 0
 --- !u!1001 &918390238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1791,7 +1847,7 @@ PrefabInstance:
         type: 3}
       propertyPath: segmentOn
       value: 
-      objectReference: {fileID: 1923612813}
+      objectReference: {fileID: 0}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
@@ -3448,7 +3504,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerOneBoat.Array.data[0]
       value: 
-      objectReference: {fileID: 1923612813}
+      objectReference: {fileID: 630863620}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerOneBoat.Array.data[1]
@@ -3488,7 +3544,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerTwoBoat.Array.data[0]
       value: 
-      objectReference: {fileID: 787837573}
+      objectReference: {fileID: 890768239}
     - target: {fileID: 7062714982384274974, guid: 64123258eb4117f499ce5852734c9c99,
         type: 3}
       propertyPath: playerTwoBoat.Array.data[1]
@@ -4006,18 +4062,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923550233}
   m_CullTransparentMesh: 0
---- !u!114 &1923612813 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2426821813742183346, guid: 6df869b83e4dbb2448cbeecb73aad291,
-    type: 3}
-  m_PrefabInstance: {fileID: 982231755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a6702774fe4e74689fbe1b26dff19f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1938339913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,7 +4874,7 @@ PrefabInstance:
         type: 3}
       propertyPath: segmentOn
       value: 
-      objectReference: {fileID: 787837573}
+      objectReference: {fileID: 0}
     - target: {fileID: 5629005239293118059, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
