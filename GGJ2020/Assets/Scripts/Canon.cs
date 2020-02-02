@@ -126,7 +126,7 @@ public class Canon : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInput() && interactingWithPlayer && !activated && shootTimer == null
+        if (PlayerInput() && interactingWithPlayer && !activated 
         && playerInteracting.CarryingCanonBall)
             StartCoroutine(StartCanonActivation());       
 
@@ -194,7 +194,7 @@ public class Canon : MonoBehaviour
 
     private IEnumerator WaitForShotFinish(int damage)
     {
-        while (shootingCanonBall)
+        while (shootingCanonBall && shootTimer != null)
         {
             shootTimer.Tick(Time.deltaTime);
             CheckForOffScreenCanonball(damage);
