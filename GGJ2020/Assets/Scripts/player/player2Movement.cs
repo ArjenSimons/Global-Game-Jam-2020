@@ -57,7 +57,6 @@ public class player2Movement : PlayerMovementBase
 
     private void FixedUpdate()
     {
-
         animController.SetBool("IsWalking", walking);
 
         clampPosition();
@@ -136,6 +135,7 @@ public class player2Movement : PlayerMovementBase
         }
 
         animController.SetBool("IsWalking", walking);
+        animController.SetBool("HoldingBall", CarryingCanonBall);
 
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {

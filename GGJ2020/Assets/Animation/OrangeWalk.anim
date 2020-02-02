@@ -22,40 +22,43 @@ AnimationClip:
     - time: 0
       value: {fileID: -6960970891133246325, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.016666668
+    - time: 0.083333336
       value: {fileID: -7453682471270118406, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.033333335
+    - time: 0.15
       value: {fileID: -5180836378671185723, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.05
+    - time: 0.23333333
       value: {fileID: -2110911916391605400, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.06666667
+    - time: 0.3
       value: {fileID: -5226930038912466803, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.083333336
+    - time: 0.38333333
       value: {fileID: -4469573176772512330, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.1
+    - time: 0.46666667
       value: {fileID: 8768638380679119567, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.11666667
+    - time: 0.53333336
       value: {fileID: -4829130924198667249, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.13333334
+    - time: 0.6166667
+      value: {fileID: -3760904659442928682, guid: d9157b43a51a40444a4803ccf2edc3fe,
+        type: 3}
+    - time: 0.7
       value: {fileID: 8679529600127325868, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.15
+    - time: 0.76666665
       value: {fileID: -7488927128922563364, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.16666667
+    - time: 0.85
       value: {fileID: -975363307045654737, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.18333334
+    - time: 0.9166667
       value: {fileID: -2507745587085377153, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
-    - time: 0.2
+    - time: 1
       value: {fileID: 5005971036000985797, guid: d9157b43a51a40444a4803ccf2edc3fe,
         type: 3}
     attribute: m_Sprite
@@ -85,6 +88,7 @@ AnimationClip:
     - {fileID: -4469573176772512330, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
     - {fileID: 8768638380679119567, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
     - {fileID: -4829130924198667249, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
+    - {fileID: -3760904659442928682, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
     - {fileID: 8679529600127325868, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
     - {fileID: -7488927128922563364, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
     - {fileID: -975363307045654737, guid: d9157b43a51a40444a4803ccf2edc3fe, type: 3}
@@ -95,7 +99,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.21666667
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
