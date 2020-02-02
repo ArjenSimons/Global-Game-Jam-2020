@@ -8,7 +8,7 @@ public class CountDown : MonoBehaviour
     private int countDownTime, startTime;
     public Text text;
 
-    private bool paused;
+    private bool paused, P1Ready, P2Ready, countDownStarted;
 
     private BoatMovement boat1, boat2;
     private playerMovement player2movement;
@@ -20,6 +20,9 @@ public class CountDown : MonoBehaviour
         startTime = 3;
         countDownTime = startTime;
         paused = true;
+        P1Ready = false;
+        P2Ready = false;
+        countDownStarted = false;
 
         boat1 = GameObject.Find("Boat1").GetComponent<BoatMovement>();
         boat1.paused = paused;
@@ -37,17 +40,40 @@ public class CountDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countDownTime > 0)
+        if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown(KeyCode.T))
         {
-            Pause();
-            text.text = countDownTime.ToString();
+            Debug.Log("Player one ready");
+            P1IsReady();
         }
-        else
+
+        if (Input.GetButtonDown("A-Button1") || Input.GetKeyDown(KeyCode.Y))
         {
-            text.text = "GO!";
-            Resume();
-            StartCoroutine("FadeGo");
+            Debug.Log("Player two ready");
+            P2IsReady();
         }
+
+        if (P1Ready && P2Ready)
+        {
+            if (!countDownStarted)
+            {
+                StartCountDown();
+            }
+
+
+            if (countDownTime > 0)
+            {
+                Pause();
+                text.text = countDownTime.ToString();
+            }
+            else
+            {
+                text.text = "GO!";
+                Resume();
+                StartCoroutine("FadeGo");
+            }
+        }
+
+
     }
 
     public IEnumerator Countdown()
@@ -68,9 +94,20 @@ public class CountDown : MonoBehaviour
         }
     }
 
+    public void P1IsReady()
+    {
+        P1Ready = true;
+    }
+
+    public void P2IsReady()
+    {
+        P2Ready = true;
+    }
+
     public void StartCountDown()
     {
         StartCoroutine("Countdown");
+        countDownStarted = true;
     }
 
     public void Pause()
