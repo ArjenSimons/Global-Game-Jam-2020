@@ -14,6 +14,9 @@ public class CountDown : MonoBehaviour
     private playerMovement player2movement;
     private player2Movement playermovement;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,7 @@ public class CountDown : MonoBehaviour
 
         player2movement = GameObject.Find("Player2").GetComponent<playerMovement>();
         player2movement.paused = paused;
+        audioManager.Play("mainmenuBGM");
     }
 
     // Update is called once per frame
@@ -42,12 +46,16 @@ public class CountDown : MonoBehaviour
     {
         if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown(KeyCode.T))
         {
+            Pause();
+            audioManager.Stop("mainmenuBGM");
+            countDown.text = countDownTime.ToString();
             Debug.Log("Player one ready");
             P1IsReady();
         }
 
         if (Input.GetButtonDown("A-Button1") || Input.GetKeyDown(KeyCode.Y))
         {
+            audioManager.Stop("mainmenuBGM");
             Debug.Log("Player two ready");
             P2IsReady();
         }
@@ -57,6 +65,7 @@ public class CountDown : MonoBehaviour
             if (!countDownStarted)
             {
                 StartCountDown();
+                audioManager.Play("countdown");
             }
 
 
@@ -67,8 +76,10 @@ public class CountDown : MonoBehaviour
             }
             else
             {
+                StopCoroutine("Countdown");
                 countDown.text = "GO!";
                 Resume();
+                audioManager.Play("ambient");
                 StartCoroutine("FadeGo");
             }
         }
@@ -81,7 +92,13 @@ public class CountDown : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
+            
             countDownTime--;
+            if (countDownTime != 0)
+            {
+                audioManager.Play("countdown");
+            }
+            Debug.Log("countdown");
         }
     }
 
