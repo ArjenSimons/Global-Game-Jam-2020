@@ -164,10 +164,6 @@ public class Canon : MonoBehaviour
 
     private bool InsideRedOfIndicator()
     {
-        //print($"{startRotatedAngle + minRotatedAngleForRedOffset} {startRotatedAngle - minRotatedAngleForRedOffset}");
-        //print($"greater than {startRotatedAngle + minRotatedAngleForOrangeOffset} smaller or equal to {startRotatedAngle + minRotatedAngleForRedOffset}");
-        //print($"greater than {startRotatedAngle - minRotatedAngleForRedOffset} smaller or equal to {startRotatedAngle - minRotatedAngleForOrangeOffset}");     
-        //print(rotatedAngle);
         return rotatedAngle > startRotatedAngle + minRotatedAngleForRedOffset + extraAngleBasedOnOpponent 
         || rotatedAngle < startRotatedAngle - minRotatedAngleForRedOffset + extraAngleBasedOnOpponent;
     }
@@ -235,7 +231,6 @@ public class Canon : MonoBehaviour
 
     private IEnumerator CrashCannonBallOnOpponent(Vector3 offscreenPosition, Action<HitStatus> OnHit, int fromAxis)
     {
-        print("placed");       
         Vector3 screenSpawnPos;
         if(fromAxis == 0)
         {
@@ -264,14 +259,17 @@ public class Canon : MonoBehaviour
         {         
             if (InsideRedOfIndicator())
             {
+                print("inside Red");
                 ShootCanon(0);
             }
             else if (InsideOrangeOfIndicator())
             {
+                print("inside Orange");
                 ShootCanon(DamageManager.SMALLDAMAGE);
             }
             else
             {
+                print("inside Green");
                 ShootCanon(DamageManager.BIGDAMAGE);
             }
         }
@@ -311,7 +309,6 @@ public class Canon : MonoBehaviour
         canonball.SetActive(false);      
         if (status == HitStatus.STATUS_HIT)
         {
-            print("hit opponent");
             OnCanonBallShot(opponent, damage);
         }
         else

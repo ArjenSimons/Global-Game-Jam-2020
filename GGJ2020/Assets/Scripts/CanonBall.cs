@@ -31,14 +31,12 @@ public class CanonBall : MonoBehaviour
             SpriteRenderer spriteRend = boatSpriteObj.GetComponent<SpriteRenderer>();
             if (this.GetComponent<CircleCollider2D>().bounds.Intersects(spriteRend.bounds))
             {
-                print("hit");
                 Hit = true;
                 status = HitStatus.STATUS_HIT;
             }
             else if (transform.position.y - (GetComponent<SpriteRenderer>().sprite.rect.height * 0.5f) <
                 boatSpriteObj.transform.position.y - (spriteRend.sprite.rect.height * 0.5f))
             {
-                print("missed");
                 Hit = true;
                 status = HitStatus.STATUS_MISSED;
             }
