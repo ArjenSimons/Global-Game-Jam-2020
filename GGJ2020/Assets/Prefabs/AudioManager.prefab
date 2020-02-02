@@ -46,8 +46,8 @@ MonoBehaviour:
   soundsArray:
   - name: heavy damage
     clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
-    volume: 0.064
-    pitch: 0
+    volume: 0.104
+    pitch: 1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}

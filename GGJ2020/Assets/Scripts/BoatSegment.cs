@@ -21,6 +21,9 @@ public class BoatSegment : MonoBehaviour
 
     [SerializeField] private BoatHealth boatHealth;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,6 +36,7 @@ public class BoatSegment : MonoBehaviour
         {
             case Status.SmallDamage:
                 MyStatus = Status.SmallDamage;
+                audioManager.Play("heavy damage");
                 break;
             case Status.BigDamage:
                 MyStatus = Status.BigDamage;
