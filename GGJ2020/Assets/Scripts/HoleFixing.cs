@@ -22,6 +22,9 @@ public class HoleFixing : MonoBehaviour
     private SequencePuzzleP1 puzzlePlayer1;
     private SequencePuzzleP2 puzzlePlayer2;
 
+    [SerializeField] private playerMovement playerOne;
+    [SerializeField] private player2Movement playerTwo;
+
     private void Start()
     {
         boatSegment = GetComponent<BoatSegment>();
@@ -66,15 +69,39 @@ public class HoleFixing : MonoBehaviour
     /// <summary>
     /// tries to detect holes in all the boat parts
     /// </summary>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == PLAYER_TAG &&
             (boatSegment.MyStatus == BoatSegment.Status.SmallDamage ||
             boatSegment.MyStatus == BoatSegment.Status.BigDamage))
         {
-            ShowButtonIndicator();
-            tryingToActivate = true;
-            mayPressBtnA = true;
+            switch (playerEnum)
+            {
+                case Player.PLAYER_ONE:
+                    if (!playerTwo.repairEventStarted)
+                    {
+                        ShowButtonIndicator();
+                        tryingToActivate = true;
+                        mayPressBtnA = true;
+                    }
+                    else
+                    {
+                        HideButtonIndicator();
+                    }
+                    break;
+                case Player.PLAYER_TWO:
+                    if (!playerOne.repairEventStarted)
+                    {
+                        ShowButtonIndicator();
+                        tryingToActivate = true;
+                        mayPressBtnA = true;
+                    }
+                    else
+                    {
+                        HideButtonIndicator();
+                    }
+                    break;
+            }
         }
     }
 
@@ -86,11 +113,21 @@ public class HoleFixing : MonoBehaviour
         {
             HideButtonIndicator();
             mayPressBtnA = false;
+
+            switch (playerEnum)
+            {
+                case Player.PLAYER_ONE:
+                    puzzlePlayer1.NullBoatSegment();
+                    break;
+                case Player.PLAYER_TWO:
+                    puzzlePlayer2.NullBoatSegment();
+                    break;
+            }
         }
     }
 
     // Shows the activate repair button
-    private void ShowButtonIndicator()
+    public void ShowButtonIndicator()
     {
         repairButtonIndicator.SetActive(true);
     }
@@ -104,6 +141,7 @@ public class HoleFixing : MonoBehaviour
     public void ResetBtnA()
     {
         mayPressBtnA = true;
+        tryingToActivate = true;
     }
 
     // method do GENERATE SEQUENCE PUZZLE when pressed A BUTTON
@@ -115,11 +153,15 @@ public class HoleFixing : MonoBehaviour
 
         if (playerEnum == Player.PLAYER_ONE)
         {
+            playerTwo.repairEventStarted = true;
+            puzzlePlayer1.IntroduceNewHole(this);
             puzzlePlayer1.RetrieveBoatSegment(boatSegment);
             puzzlePlayer1.StartSequencePuzzle();
         }
         else if (playerEnum == Player.PLAYER_TWO)
         {
+            playerOne.repairEventStarted = true;
+            puzzlePlayer2.IntroduceNewHole(this);
             puzzlePlayer2.RetrieveBoatSegment(boatSegment);
             puzzlePlayer2.StartSequencePuzzle();
         }

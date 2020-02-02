@@ -35,6 +35,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public Canvas playerCanvas;
 
+    private HoleFixing currentHole;
+
     private void Start()
     {
         currentSequenceButton = 0;
@@ -105,7 +107,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StartSequencePuzzle()
     {
-        movementScript2.canWalk = false;
+        movementScript2.canMove = false;
         playerCanvas.gameObject.SetActive(true);
         ResetSequencePuzzle();
         isActivated = true;
@@ -114,7 +116,7 @@ public class SequencePuzzleP2 : MonoBehaviour
 
     public void StopSequencePuzzle()
     {
-        movementScript2.canWalk = true;
+        movementScript2.canMove = true;
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
@@ -145,6 +147,8 @@ public class SequencePuzzleP2 : MonoBehaviour
 
         bS.RepairBoatSegment();
 
+        currentHole = null;
+
         Debug.Log("Sequence was solved.");
     }
 
@@ -152,12 +156,18 @@ public class SequencePuzzleP2 : MonoBehaviour
     {
         ResetSequencePuzzle();
         StopSequencePuzzle();
+
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Image>().color = new Color(255, 255, 255);
         }
 
-        bS.GetComponent<HoleFixing>().ResetBtnA();
+        if (currentHole != null)
+        {
+            RestartRepairIndicator();
+        }
+
+        //bS.GetComponent<HoleFixing>().ResetBtnA();
         Debug.Log("Sequence was failed.");
     }
 
@@ -205,5 +215,24 @@ public class SequencePuzzleP2 : MonoBehaviour
     public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
     {
         bS = brokenBoatSegment;
+    }
+
+    public void NullBoatSegment()
+    {
+        //bS = null;
+        currentHole = null;
+    }
+
+    // New reference to hole
+    public void IntroduceNewHole(HoleFixing hole)
+    {
+        currentHole = hole;
+    }
+
+    // Restarts the repair indicator
+    private void RestartRepairIndicator()
+    {
+        currentHole.ShowButtonIndicator();
+        currentHole.ResetBtnA();
     }
 }

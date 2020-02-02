@@ -35,6 +35,8 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     public Canvas playerCanvas;
 
+    private HoleFixing currentHole;
+
     private void Start()
     {
         currentSequenceButton = 0;
@@ -154,6 +156,16 @@ public class SequencePuzzleP1 : MonoBehaviour
         ResetSequencePuzzle();
         StopSequencePuzzle();
 
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(255, 255, 255);
+        }
+
+        if (currentHole != null)
+        {
+            RestartRepairIndicator();
+        }
+
         Debug.Log("Sequence was failed.");
     }
 
@@ -201,5 +213,24 @@ public class SequencePuzzleP1 : MonoBehaviour
     public void RetrieveBoatSegment(BoatSegment brokenBoatSegment)
     {
         bS = brokenBoatSegment;
+    }
+
+    public void NullBoatSegment()
+    {
+        //bS = null;
+        currentHole = null;
+    }
+
+    // New reference to hole
+    public void IntroduceNewHole(HoleFixing hole)
+    {
+        currentHole = hole;
+    }
+
+    // Restarts the repair indicator
+    private void RestartRepairIndicator()
+    {
+        currentHole.ShowButtonIndicator();
+        currentHole.ResetBtnA();
     }
 }

@@ -23,6 +23,8 @@ public class BoatMovement : MonoBehaviour
 
     private float timer;
 
+    public bool paused;
+
     private void Start()
     {
         boatHealth = GetComponent<BoatHealth>();
@@ -35,9 +37,13 @@ public class BoatMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-       // speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
+        // speed = Mathf.Clamp(speed, float.MinValue, _maxSpeed);
 
-        distanceCovered += speed * Time.deltaTime;
+        if (!paused)
+        {
+            distanceCovered += speed * Time.deltaTime;
+        }
+        
 
         if (boostIsActive)
         {
