@@ -56,6 +56,9 @@ public class Canon : MonoBehaviour
     [SerializeField] private Orientation orientation;
     private enum Orientation { LEFT, RIGHT, MIDDLE }
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Awake()
     {
         if (debug) interactingWithPlayer = true;
@@ -271,6 +274,7 @@ public class Canon : MonoBehaviour
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
         shootingCanonBall = true;
+        //audioManager.PlayRandom("cannonfire");
         activated = false;
         interactingWithPlayer = false;
         RotateBarrelBack();
@@ -318,6 +322,7 @@ public class Canon : MonoBehaviour
         indicator.SetActive(true);
         barrelRay.SetActive(true);
         RotateRelativeToOpponent();
+        //audioManager.Play("aimingsound");
     }
 
     private void RotateCanon()

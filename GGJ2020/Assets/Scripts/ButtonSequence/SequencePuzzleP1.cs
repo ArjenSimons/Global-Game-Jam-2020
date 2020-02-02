@@ -37,6 +37,9 @@ public class SequencePuzzleP1 : MonoBehaviour
 
     private HoleFixing currentHole;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private void Start()
     {
         currentSequenceButton = 0;
@@ -166,6 +169,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             RestartRepairIndicator();
         }
 
+        //audioManager.Play("repairfailed");
         Debug.Log("Sequence was failed.");
     }
 
@@ -181,6 +185,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             if (input == correctOrderSmall[currentSequenceButton])
             {
                 RightButtonWasPressed();
+                //audioManager.Play("repairsound");
 
                 if (currentSequenceButton == smallOrderMax)
                 {
@@ -189,6 +194,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             }
             else
             {
+                //audioManager.Play("repairsound");
                 SequenceFailed();
             }
         }
@@ -197,6 +203,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             if (input == correctOrderBig[currentSequenceButton])
             {
                 RightButtonWasPressed();
+                //audioManager.Play("repairsound");
 
                 if (currentSequenceButton == bigOrderMax)
                 {
@@ -205,6 +212,7 @@ public class SequencePuzzleP1 : MonoBehaviour
             }
             else
             {
+                //audioManager.Play("repairsound");
                 SequenceFailed();
             }
         }

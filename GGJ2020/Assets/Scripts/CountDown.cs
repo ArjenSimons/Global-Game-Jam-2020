@@ -14,6 +14,9 @@ public class CountDown : MonoBehaviour
     private playerMovement player2movement;
     private player2Movement playermovement;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,7 @@ public class CountDown : MonoBehaviour
         {
             Pause();
             text.text = countDownTime.ToString();
+            //audioManager.Play("countdown");
         }
         else
         {

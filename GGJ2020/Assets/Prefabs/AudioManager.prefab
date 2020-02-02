@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsArray:
-  - name: heavy damage
+  - name: heavydamage
     clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
     volume: 0.104
     pitch: 1
@@ -65,14 +65,63 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: 
+  - name: smalldamage
     clip: {fileID: 0}
     volume: 0.143
     pitch: 0
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: 
+  - name: speedboost
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: aimingsound
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: finishedgame
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: ambient
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairfailed
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairsucceeded
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairsound
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    playOnAwake: 0
+    soundSource: {fileID: 0}
+  - name: repairsucceeded
     clip: {fileID: 0}
     volume: 0
     pitch: 0
