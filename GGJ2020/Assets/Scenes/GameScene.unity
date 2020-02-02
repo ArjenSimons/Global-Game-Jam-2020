@@ -3222,12 +3222,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32504eaa42e247d48a9af2cf660c3ceb, type: 3}
---- !u!1 &1521861885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7359615491871276173, guid: 32504eaa42e247d48a9af2cf660c3ceb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1521861884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1521861886 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4769387315696854239, guid: 32504eaa42e247d48a9af2cf660c3ceb,
@@ -3824,8 +3818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
-  correctOrderSmall: 00000000000000000000000000000000
-  correctOrderBig: 00000000000000000000000000000000
+  correctOrderSmall: 000000000000000000000000
+  correctOrderBig: 000000000000000000000000
   buttonSprites:
   - {fileID: 21300000, guid: 7d6694a127390c74daf2c82cde2ba560, type: 3}
   - {fileID: 21300000, guid: 50278f8cf81b403448600b8cbd3429cb, type: 3}
@@ -3835,7 +3829,6 @@ MonoBehaviour:
   - {fileID: 2053764550}
   - {fileID: 2053764549}
   - {fileID: 2053764548}
-  - {fileID: 2053764547}
   isActivated: 0
   playerCanvas: {fileID: 2053764551}
 --- !u!4 &1867877773 stripped
@@ -4441,12 +4434,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32504eaa42e247d48a9af2cf660c3ceb, type: 3}
---- !u!1 &2053764547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7359615491871276173, guid: 32504eaa42e247d48a9af2cf660c3ceb,
-    type: 3}
-  m_PrefabInstance: {fileID: 2053764546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2053764548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4769387315696854239, guid: 32504eaa42e247d48a9af2cf660c3ceb,
@@ -4684,8 +4671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
-  correctOrderSmall: 00000000000000000000000000000000
-  correctOrderBig: 00000000000000000000000000000000
+  correctOrderSmall: 000000000000000000000000
+  correctOrderBig: 000000000000000000000000
   buttonSprites:
   - {fileID: 21300000, guid: 7d6694a127390c74daf2c82cde2ba560, type: 3}
   - {fileID: 21300000, guid: 50278f8cf81b403448600b8cbd3429cb, type: 3}
@@ -4695,7 +4682,6 @@ MonoBehaviour:
   - {fileID: 1521861888}
   - {fileID: 1521861887}
   - {fileID: 1521861886}
-  - {fileID: 1521861885}
   isActivated: 0
   playerCanvas: {fileID: 1521861889}
 --- !u!4 &508539260310649711 stripped
