@@ -19,7 +19,8 @@ public class Canon : MonoBehaviour
     [SerializeField] private PlayerMovementBase playerInteracting;
     [SerializeField] private float rotatedAngle = 0;
 
-    private float rotateSpeed = 1.05f;
+    private float currentRotateSpeed;
+    private float rotateSpeed = 1.25f;
     private float maxRotation;
     private float minRotation;
     private float startRotatedAngle;
@@ -29,7 +30,7 @@ public class Canon : MonoBehaviour
     private readonly float rotateOffset = 20f;
     private readonly float shootForce = 250f;
     private readonly float shootDuration = 5f;
-    private readonly float minRotatedAngleForRedOffset = 10;
+    private readonly float minRotatedAngleForRedOffset = 10;  
     private readonly float minRotatedAngleForOrangeOffset = 3;
     private readonly float barrelYOffset = 0.15f;
     private readonly float minProgressDifference = 10f;
@@ -307,15 +308,19 @@ public class Canon : MonoBehaviour
     }
 
     private void RotateCanon()
-    {      
-        rotatedAngle += rotateSpeed;
+    {
+        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
+        float progressDiff = (progressManager.getProgression(player) - progressManager.getProgression(opponent)) * 0.01f;
+        currentRotateSpeed = progressDiff > 0 ? rotateSpeed + (rotateSpeed * progressDiff) : rotateSpeed;
+        print(currentRotateSpeed);
+        rotatedAngle += currentRotateSpeed;
 
         if (rotatedAngle >= maxRotation || rotatedAngle <= minRotation)
         {
             rotateSpeed *= -1;          
         }
 
-        barrelTF.RotateAround(pivotTF.transform.position, Vector3.forward, rotateSpeed);
+        barrelTF.RotateAround(pivotTF.transform.position, Vector3.forward, currentRotateSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
