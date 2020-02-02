@@ -113,6 +113,16 @@ public class HoleFixing : MonoBehaviour
         {
             HideButtonIndicator();
             mayPressBtnA = false;
+
+            switch (playerEnum)
+            {
+                case Player.PLAYER_ONE:
+                    puzzlePlayer1.NullBoatSegment();
+                    break;
+                case Player.PLAYER_TWO:
+                    puzzlePlayer2.NullBoatSegment();
+                    break;
+            }
         }
     }
 

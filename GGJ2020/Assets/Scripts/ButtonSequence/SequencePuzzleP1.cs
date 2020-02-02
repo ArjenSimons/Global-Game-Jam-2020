@@ -215,6 +215,12 @@ public class SequencePuzzleP1 : MonoBehaviour
         bS = brokenBoatSegment;
     }
 
+    public void NullBoatSegment()
+    {
+        bS = null;
+        currentHole = null;
+    }
+
     // New reference to hole
     public void IntroduceNewHole(HoleFixing hole)
     {
