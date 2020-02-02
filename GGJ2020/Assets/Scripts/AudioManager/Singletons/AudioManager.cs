@@ -61,6 +61,23 @@ public class AudioManager : MonoBehaviour
     }
 
     // method to play a sound
+    public void PlayOneShot(string name)
+    {
+        // find a sound in the array that has the name of name
+        // and store the sound that it found in s
+        Sound s = Array.Find(soundsArray, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound clip: " + name + " not found.");
+        }
+        if (!s.soundSource.isPlaying)
+        {
+            s.soundSource.Play();
+            s.soundSource.PlayOneShot(s.soundSource.clip, 0.2f);
+        }
+    }
+
+    // method to play a sound
     public void Stop(string name)
     {
         // find a sound in the array that has the name of name
