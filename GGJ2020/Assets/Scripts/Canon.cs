@@ -274,7 +274,7 @@ public class Canon : MonoBehaviour
         barrelRay.SetActive(false);
         shootTimer = new Timer(shootDuration, () => OnFinishedShooting(damage));        
         shootingCanonBall = true;
-        //audioManager.PlayRandom("cannonfire");
+        audioManager.Play("cannonfire1");
         activated = false;
         interactingWithPlayer = false;
         RotateBarrelBack();
