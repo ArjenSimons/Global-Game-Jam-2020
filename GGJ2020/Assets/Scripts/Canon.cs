@@ -288,12 +288,11 @@ public class Canon : MonoBehaviour
         shootingCanonBall = true;
         activated = false;
         interactingWithPlayer = false;
-        RotateBarrelBack();
-        playerInteracting.LoseCanonBall();       
+        RotateCannonBack();               
         StartCoroutine(WaitForShotFinish(damage));
     }
 
-    private void RotateBarrelBack()
+    private void RotateCannonBack()
     {
         barrelTF.localPosition = barrelStartPosition;
         barrelTF.localEulerAngles = barrelStartRotation;
@@ -336,6 +335,7 @@ public class Canon : MonoBehaviour
         activated = true;
         indicator.SetActive(true);
         barrelRay.SetActive(true);
+        playerInteracting.LoseCanonBall();
         RotateRelativeToOpponent();
     }
 
@@ -375,6 +375,7 @@ public class Canon : MonoBehaviour
                 indicator.SetActive(false);
                 barrelRay.SetActive(false);
                 playerInteracting.GiveCannonBall();
+                RotateCannonBack();
                 activated = false;              
             }
         }
