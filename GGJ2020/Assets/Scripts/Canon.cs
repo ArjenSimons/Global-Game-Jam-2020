@@ -20,7 +20,7 @@ public class Canon : MonoBehaviour
     [SerializeField] private float rotatedAngle = 0;
 
     private float currentRotateSpeed;
-    private float rotateSpeed = 1.25f;
+    private float rotateSpeed = 1.75f;
     private float maxRotation;
     private float minRotation;
     private float startRotatedAngle;
@@ -30,7 +30,8 @@ public class Canon : MonoBehaviour
     private readonly float rotateOffset = 20f;
     private readonly float shootForce = 250f;
     private readonly float shootDuration = 5f;
-    private readonly float minRotatedAngleForRedOffset = 10;  
+    private readonly float minRotatedAngleForRedOffset = 10;
+    private float extraRotateSpeed = 0.5f;
     private readonly float minRotatedAngleForOrangeOffset = 3;
     private readonly float barrelYOffset = 0.15f;
     private readonly float minProgressDifference = 10f;
@@ -38,8 +39,12 @@ public class Canon : MonoBehaviour
     private readonly float leftOrientationRotateAngle = 180f;
     private readonly float middleOrientationRotateAngle = 90f;
 
-    private Vector2 canonBallPosition;
-    private Vector2 shootDirection;
+    private Vector3 canonBallPosition;
+    private Vector3 shootDirection;
+    private Vector3 barrelStartPosition;
+    private Vector3 barrelStartRotation;
+    private Vector3 indicatorStartPosition;
+    private Vector3 indicatorStartRotation;
 
     private Timer shootTimer;
     private Camera cam;
@@ -108,8 +113,11 @@ public class Canon : MonoBehaviour
                 startRotatedAngle = middleOrientationRotateAngle;
                 break;
         }
-        //print(maxRotation + " " + minRotation);
         canonBallPosition = canonball.transform.position;
+        barrelStartPosition = barrelTF.localPosition;
+        barrelStartRotation = barrelTF.localEulerAngles;
+        indicatorStartPosition = indicator.transform.localPosition;
+        indicatorStartRotation = indicator.transform.localEulerAngles;
     }
 
     private void Update()
@@ -136,7 +144,7 @@ public class Canon : MonoBehaviour
     private void RotateRelativeToOpponent()
     {
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
-        float progressDiff = Mathf.Abs(progressManager.getProgression(player) - progressManager.getProgression(opponent));
+        float progressDiff = Mathf.Abs(progressManager.getProgressionDifference(player));
         float angle = orientation == Orientation.LEFT ? -rotateOffset : rotateOffset;
         progressDiff = Mathf.Clamp(progressDiff, 0, maxProgressDifference);
         
@@ -272,8 +280,10 @@ public class Canon : MonoBehaviour
 
     private void RotateBarrelBack()
     {
-        barrelTF.RotateAround(pivotTF.position, Vector3.forward, -extraAngleBasedOnOpponent);
-        indicator.transform.RotateAround(pivotTF.position, Vector3.forward, -extraAngleBasedOnOpponent);
+        barrelTF.localPosition = barrelStartPosition;
+        barrelTF.localEulerAngles = barrelStartRotation;
+        indicator.transform.localPosition = indicatorStartPosition;
+        indicator.transform.localEulerAngles = indicatorStartRotation;
         extraAngleBasedOnOpponent = 0;
     }
 
@@ -294,9 +304,12 @@ public class Canon : MonoBehaviour
 
     private bool GuarenteedMiss()
     {
-        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;       
-        return (orientation == Orientation.LEFT && (progressManager.getProgression(player) < progressManager.getProgression(opponent)))
-        || (orientation == Orientation.RIGHT && (progressManager.getProgression(player) > progressManager.getProgression(opponent)));
+        Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
+        float progressDiff = Mathf.Abs(progressManager.getProgressionDifference(player));
+        
+        return ( progressDiff > 5f &&
+        ( orientation == Orientation.LEFT && (progressManager.getProgression(player) < progressManager.getProgression(opponent)))
+        || (orientation == Orientation.RIGHT && (progressManager.getProgression(player) > progressManager.getProgression(opponent))));
     }
 
     private void ActivateCanon()
@@ -310,14 +323,14 @@ public class Canon : MonoBehaviour
     private void RotateCanon()
     {
         Player player = opponent == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
-        float progressDiff = (progressManager.getProgression(player) - progressManager.getProgression(opponent)) * 0.01f;
-        currentRotateSpeed = progressDiff > 0 ? rotateSpeed + (rotateSpeed * progressDiff) : rotateSpeed;
-        print(currentRotateSpeed);
+        float progressDiff = progressManager.getProgressionDifference(player);
+        currentRotateSpeed = progressDiff > 0 ? rotateSpeed + (extraRotateSpeed * progressDiff) : rotateSpeed;       
         rotatedAngle += currentRotateSpeed;
-
+        
         if (rotatedAngle >= maxRotation || rotatedAngle <= minRotation)
         {
-            rotateSpeed *= -1;          
+            rotateSpeed *= -1;
+            extraRotateSpeed *= -1;
         }
 
         barrelTF.RotateAround(pivotTF.transform.position, Vector3.forward, currentRotateSpeed);
