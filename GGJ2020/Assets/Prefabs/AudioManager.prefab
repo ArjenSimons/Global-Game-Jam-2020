@@ -44,28 +44,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundsArray:
-  - name: ambient waves
-    clip: {fileID: 0}
-    volume: 0.239
+  - name: heavy damage
+    clip: {fileID: 8300000, guid: eebea3b307f6c7640b158151ff05e577, type: 3}
+    volume: 0.064
     pitch: 0
-    loop: 1
-    playOnAwake: 1
+    loop: 0
+    playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: cannon fire 1
+  - name: cannonfire1
     clip: {fileID: 0}
     volume: 0.426
     pitch: 0.1
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: cannon fire 1
+  - name: cannonfire2
     clip: {fileID: 0}
     volume: 0.277
     pitch: 0
     loop: 0
     playOnAwake: 0
     soundSource: {fileID: 0}
-  - name: ambient seagulls
+  - name: 
     clip: {fileID: 0}
     volume: 0.143
     pitch: 0
