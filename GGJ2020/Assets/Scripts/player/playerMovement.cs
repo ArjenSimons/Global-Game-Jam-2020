@@ -25,9 +25,12 @@ public class playerMovement : PlayerMovementBase
 
     private bool walking, grounded;
 
+    public bool canWalk;
+
     // Start is called before the first frame update
     void Start()
     {
+        canWalk = true;
         rb = GetComponent<Rigidbody2D>();
         boatSprite = boat.transform.GetChild(boat.transform.childCount - 1);
         boatRender = boatSprite.GetComponent<SpriteRenderer>();
@@ -36,7 +39,10 @@ public class playerMovement : PlayerMovementBase
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if (canWalk)
+        {
+            movement();
+        }
     }
 
     private void FixedUpdate()
@@ -83,6 +89,8 @@ public class playerMovement : PlayerMovementBase
         {
             walking = true;
 
+            transform.localScale = new Vector3(0 - Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
             playerSpeed -= movementSpeedIncrease;
             if (playerSpeed <= -maxMovementSpeed)
             {
@@ -95,6 +103,8 @@ public class playerMovement : PlayerMovementBase
         if (Input.GetKey(KeyCode.D) || inputDirectionUnder > 0 || inputDirectionUpper > 0.2f)
         {
             walking = true;
+
+            transform.localScale = new Vector3(0 + Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             playerSpeed += movementSpeedIncrease;
             if (playerSpeed >= maxMovementSpeed)
@@ -111,6 +121,7 @@ public class playerMovement : PlayerMovementBase
             playerSpeed = rb.velocity.x;
         }
 
+        animController.SetBool("IsWalking", walking);
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {
@@ -122,7 +133,6 @@ public class playerMovement : PlayerMovementBase
     {
         if(other.tag == "CanonballStack" && !CarryingCanonBall)
         {
-            print("test");
             CarryingCanonBall = true;
         }
         

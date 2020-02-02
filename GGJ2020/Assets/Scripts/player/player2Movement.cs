@@ -25,9 +25,12 @@ public class player2Movement : PlayerMovementBase
 
     private bool walking, grounded;
 
+    public bool canMove;
+
     // Start is called before the first frame update
     void Start()
     {
+        canMove = true;
         rb = GetComponent<Rigidbody2D>();
         boatSprite = boat.transform.GetChild(boat.transform.childCount - 1);
         boatRender = boatSprite.GetComponent<SpriteRenderer>();
@@ -36,11 +39,18 @@ public class player2Movement : PlayerMovementBase
     // Update is called once per frame
     void Update()
     {
-        movement();
+        if (canMove)
+        {
+            movement();
+        }
+        
     }
 
     private void FixedUpdate()
     {
+
+        animController.SetBool("IsWalking", walking);
+
         clampPosition();
         playerOnGround();
     }
@@ -84,6 +94,8 @@ public class player2Movement : PlayerMovementBase
         {
             walking = true;
 
+            transform.localScale = new Vector3(0 - Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
             playerSpeed -= movementSpeedIncrease;
             if (playerSpeed <= -maxMovementSpeed)
             {
@@ -96,6 +108,8 @@ public class player2Movement : PlayerMovementBase
         if (Input.GetKey(KeyCode.RightArrow) || inputDirectionUnder > 0 || inputDirectionUpper > 0.2f)
         {
             walking = true;
+
+            transform.localScale = new Vector3(0 + Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             playerSpeed += movementSpeedIncrease;
             if (playerSpeed >= maxMovementSpeed)
@@ -112,22 +126,19 @@ public class player2Movement : PlayerMovementBase
             playerSpeed = rb.velocity.x;
         }
 
+        animController.SetBool("IsWalking", walking);
+
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || inputDirectionUnder == 0 && inputDirectionUpper >= -0.2f && inputDirectionUpper <= 0.2f)
         {
             walking = false;
         }
     }
 
-    public void LoseCanonBall()
-    {
-        CarryingCanonBall = false;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "CanonballStack" && !CarryingCanonBall)
-        {
-            print("test");
+        {            
+
             CarryingCanonBall = true;
         }
 

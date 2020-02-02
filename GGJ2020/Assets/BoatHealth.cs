@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthChangeEvent : UnityEvent<Player, int> { }
+public class HealthChangeEvent : UnityEvent<Player, int, bool> { }
 
 public class BoatHealth : MonoBehaviour
 {
-    //Don;t acces this variable acces health instead!!!
+    //Don't access this variable access health instead!!!
     private int _health;
+
+    [SerializeField]
+    private Camera cam;
 
     public int health
     {
         get { return _health; }
         set
         {
+            onHealthChanged.Invoke(playerType, value, value > _health);
             _health = value;
-            onHealthChanged.Invoke(playerType, health);
         }
     }
 
@@ -39,19 +42,21 @@ public class BoatHealth : MonoBehaviour
     // Deal damage to the boat
     public void DamageBoat(int damage)
     {
-        if (_health - damage <= minHealth)
+        if (health - damage <= minHealth)
         {
-            _health = minHealth;
+            health = minHealth;
         }
         else
         {
-            _health -= damage;
+            health -= damage;
         }
+
+        cam.GetComponent<ScreenShake>().activateScreenShake();
     }
 
     // Restore the damage dealt to the boat
     public void RestoreBoat(int restore)
     {
-        _health += restore;
+        health += restore;
     }
 }

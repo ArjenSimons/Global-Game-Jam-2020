@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameSceneEnemyVision.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/GameScene.unity
+    guid: a6c167a1ad2a0d7478f35dbe38739842
   - enabled: 1
     path: Assets/Scenes/GameEndScene.unity
     guid: 1d4923396a346054880503c4180efddc
