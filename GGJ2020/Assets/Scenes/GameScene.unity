@@ -1678,6 +1678,16 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 245167645663956687, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 245167645663956687, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 577073303537107225, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -1773,6 +1783,16 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 3250526792912006021, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 3250526792912006021, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 3626526089708113155, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -1818,6 +1838,16 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 5379929898325453673, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -1853,6 +1883,16 @@ PrefabInstance:
       propertyPath: repairButtonIndicator
       value: 
       objectReference: {fileID: 1867877770}
+    - target: {fileID: 6286875844540295074, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 6286875844540295074, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 6574551020661929206, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -3856,6 +3896,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1867877777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4130754548458104495, guid: 624fc64cff4f22f4491d9f3038f302a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1867877768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867877769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe6823d6e2d0c2418d11f784bbe1cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1882732193
 GameObject:
   m_ObjectHideFlags: 0
@@ -4615,6 +4667,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   canWalk: 0
+  repairEventStarted: 0
 --- !u!50 &508539260310649705
 Rigidbody2D:
   serializedVersion: 4
@@ -4791,6 +4844,16 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 245167645663956687, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 245167645663956687, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 577073303537107225, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -4831,6 +4894,16 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3250526792912006021, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 3250526792912006021, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 3626526089708113155, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -4881,6 +4954,16 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 5301897032874356695, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 5379929898325453673, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: boatHealth
@@ -4921,6 +5004,16 @@ PrefabInstance:
       propertyPath: playerEnum
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6286875844540295074, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerOne
+      value: 
+      objectReference: {fileID: 508539260310649704}
+    - target: {fileID: 6286875844540295074, guid: 6df869b83e4dbb2448cbeecb73aad291,
+        type: 3}
+      propertyPath: playerTwo
+      value: 
+      objectReference: {fileID: 1867877777}
     - target: {fileID: 7252173651092825825, guid: 6df869b83e4dbb2448cbeecb73aad291,
         type: 3}
       propertyPath: player
