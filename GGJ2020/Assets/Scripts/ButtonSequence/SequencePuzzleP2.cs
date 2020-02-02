@@ -187,7 +187,8 @@ public class SequencePuzzleP2 : MonoBehaviour
             if (input == correctOrderSmall[currentSequenceButton])
             {
                 RightButtonWasPressed();
-                //audioManager.Play("repairsound");
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
 
                 if (currentSequenceButton == smallOrderMax)
                 {
@@ -196,7 +197,8 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
             else
             {
-                //audioManager.Play("repairsound");
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
                 SequenceFailed();
             }
         }
@@ -205,7 +207,8 @@ public class SequencePuzzleP2 : MonoBehaviour
             if (input == correctOrderBig[currentSequenceButton])
             {
                 RightButtonWasPressed();
-                //audioManager.Play("repairsound");
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
 
                 if (currentSequenceButton == bigOrderMax)
                 {
@@ -214,7 +217,8 @@ public class SequencePuzzleP2 : MonoBehaviour
             }
             else
             {
-                //audioManager.Play("repairsound");
+                audioManager.Play("repairsound");
+                Debug.Log("play repair sound");
                 SequenceFailed();
             }
         }

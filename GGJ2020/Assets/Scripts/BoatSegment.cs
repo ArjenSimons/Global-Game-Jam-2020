@@ -40,7 +40,7 @@ public class BoatSegment : MonoBehaviour
                 break;
             case Status.BigDamage:
                 MyStatus = Status.BigDamage;
-                //audioManager.Play("small damage");
+                audioManager.Play("smalldamage");
                 break;
         }
         ChangeToDamageVisuals(damageType);

@@ -46,8 +46,7 @@ public class CountDown : MonoBehaviour
         if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown(KeyCode.T))
         {
             Pause();
-            text.text = countDownTime.ToString();
-            //audioManager.Play("countdown");
+            countDown.text = countDownTime.ToString();
             Debug.Log("Player one ready");
             P1IsReady();
         }
@@ -88,6 +87,7 @@ public class CountDown : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             countDownTime--;
+            audioManager.Play("countdown");
         }
     }
 

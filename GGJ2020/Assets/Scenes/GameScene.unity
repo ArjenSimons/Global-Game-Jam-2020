@@ -2611,7 +2611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9113d38612945304a9580cdbba6578ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  countDown: {fileID: 149722955}
+  P1GetReadyText: {fileID: 498372329}
+  P2GetReadyText: {fileID: 188107399}
+  P1ReadyText: {fileID: 2084658723}
+  P2ReadyText: {fileID: 590784424}
   audioManager: {fileID: 69354954}
 --- !u!114 &1175615479 stripped
 MonoBehaviour:
