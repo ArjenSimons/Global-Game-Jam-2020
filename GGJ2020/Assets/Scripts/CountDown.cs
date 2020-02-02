@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour
 {
     private int countDownTime, startTime;
-    public Text text;
+    public Text countDown, P1GetReadyText, P2GetReadyText, P1ReadyText, P2ReadyText;
 
-    private bool paused;
+    private bool paused, P1Ready, P2Ready, countDownStarted;
 
     private BoatMovement boat1, boat2;
     private playerMovement player2movement;
@@ -22,8 +22,10 @@ public class CountDown : MonoBehaviour
     {
         startTime = 3;
         countDownTime = startTime;
-        StartCoroutine("Countdown");
         paused = true;
+        P1Ready = false;
+        P2Ready = false;
+        countDownStarted = false;
 
         boat1 = GameObject.Find("Boat1").GetComponent<BoatMovement>();
         boat1.paused = paused;
@@ -41,18 +43,43 @@ public class CountDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countDownTime > 0)
+        if (Input.GetKeyDown("joystick 2 button 1") || Input.GetKeyDown(KeyCode.T))
         {
             Pause();
             text.text = countDownTime.ToString();
             //audioManager.Play("countdown");
+            Debug.Log("Player one ready");
+            P1IsReady();
         }
-        else
+
+        if (Input.GetButtonDown("A-Button1") || Input.GetKeyDown(KeyCode.Y))
         {
-            text.text = "GO!";
-            Resume();
-            StartCoroutine("FadeGo");
+            Debug.Log("Player two ready");
+            P2IsReady();
         }
+
+        if (P1Ready && P2Ready)
+        {
+            if (!countDownStarted)
+            {
+                StartCountDown();
+            }
+
+
+            if (countDownTime > 0)
+            {
+                Pause();
+                countDown.text = countDownTime.ToString();
+            }
+            else
+            {
+                countDown.text = "GO!";
+                Resume();
+                StartCoroutine("FadeGo");
+            }
+        }
+
+
     }
 
     public IEnumerator Countdown()
@@ -69,8 +96,30 @@ public class CountDown : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            Destroy(text);
+            countDown.gameObject.SetActive(false);
+            P1ReadyText.gameObject.SetActive(false);
+            P2ReadyText.gameObject.SetActive(false);
         }
+    }
+
+    public void P1IsReady()
+    {
+        P1Ready = true;
+        P1GetReadyText.gameObject.SetActive(false);
+        P1ReadyText.gameObject.SetActive(true);
+    }
+
+    public void P2IsReady()
+    {
+        P2Ready = true;
+        P2GetReadyText.gameObject.SetActive(false);
+        P2ReadyText.gameObject.SetActive(true);
+    }
+
+    public void StartCountDown()
+    {
+        StartCoroutine("Countdown");
+        countDownStarted = true;
     }
 
     public void Pause()
