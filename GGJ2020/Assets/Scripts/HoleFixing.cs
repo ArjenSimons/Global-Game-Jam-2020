@@ -43,7 +43,7 @@ public class HoleFixing : MonoBehaviour
                     {
                         if (!IsInvoking("StartSequencePuzzle"))
                         {
-                            Invoke("StartSequencePuzzle", 0.5f);
+                            Invoke("StartSequencePuzzle", 0f);
                         }
                         tryingToActivate = false;
                     }
@@ -53,7 +53,7 @@ public class HoleFixing : MonoBehaviour
                     {
                         if (!IsInvoking("StartSequencePuzzle"))
                         {
-                            Invoke("StartSequencePuzzle", 0.5f);
+                            Invoke("StartSequencePuzzle", 0f);
                         }
                         tryingToActivate = false;
                     }
