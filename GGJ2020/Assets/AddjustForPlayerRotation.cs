@@ -9,9 +9,9 @@ public class AddjustForPlayerRotation : MonoBehaviour
     private void FixedUpdate()
     {
         if (parentTransform.localScale.x < 0)
-            transform.localScale = new Vector3(-1, parentTransform.localScale.y, parentTransform.localScale.z);
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         else
-            transform.localScale = new Vector3(1, parentTransform.localScale.y, parentTransform.localScale.z);
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
 
     }
 }
