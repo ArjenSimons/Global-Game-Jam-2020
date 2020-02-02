@@ -25,8 +25,9 @@ public class player2Movement : PlayerMovementBase
 
     private bool walking, grounded;
 
-    public bool canMove;
     public bool repairEventStarted;
+
+    public bool canMove, paused;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class player2Movement : PlayerMovementBase
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (canMove && !paused)
         {
             repairEventStarted = false;
             movement();

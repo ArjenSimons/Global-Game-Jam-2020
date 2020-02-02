@@ -46,6 +46,21 @@ public class ProgressManager : MonoBehaviour
         return progression;
     }
 
+    public float getProgressionDifference(Player boot)
+    {
+        float boatOneProgression = boatOne.distanceCovered / raceDistance * 100f;
+        float boatTwoProgression = boatTwo.distanceCovered / raceDistance * 100f;
+
+        if(boot == Player.PLAYER_ONE)
+        {
+            return boatOneProgression - boatTwoProgression;
+        }
+        else
+        {
+            return boatTwoProgression - boatOneProgression;
+        }
+    }
+
     public bool IsAhead(Player boot)
     {
         switch (boot)
