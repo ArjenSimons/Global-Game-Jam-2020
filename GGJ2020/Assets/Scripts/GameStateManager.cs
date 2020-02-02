@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
         }
 
         ListenToProgressManager();
-        audioManager.Play("ambient");
+        //audioManager.Play("ambient");
         DontDestroyOnLoad(this.gameObject);
     }
 
